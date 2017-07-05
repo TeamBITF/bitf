@@ -14,11 +14,4 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>add</name>
-			<type>2</type>
-			<location>//Ts-xelf80/共有フォルダ/0楠祭　鍵班/Java/src</location>
-		</link>
-	</linkedResources>
 </projectDescription>
