@@ -61,15 +61,9 @@ public class StartPanel extends BITFPanel implements ActionListener{
 	    button2.setContentAreaFilled(false);
 	    button2.setBorderPainted(false);
 
-
-
-
-
-
-
 	    name = new JTextField(15);
 	    name.setToolTipText("名前を入力");
-	   name.setText("aaaaa");
+	    name.setText("aaaaa");
 
 
 	    name.setBounds(550,480,250,30);
