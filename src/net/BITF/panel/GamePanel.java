@@ -101,7 +101,9 @@ public class GamePanel extends BITFPanel implements ActionListener{
 
 		if(e.getActionCommand().equals("time")){
 			timer.stop();
-			nextStage = 2;
+			
+			//game画面をいじるから
+		//	nextStage = 2;
 
 		}
 
