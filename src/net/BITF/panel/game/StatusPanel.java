@@ -30,10 +30,10 @@ public class StatusPanel extends JPanel {
 	public StatusPanel(){
 		statusGauge = new BufferedImage[3];
 		try{
-			statusFrame = ImageIO.read(new File("data/img/gauge_frame.gif"));
+			statusFrame = ImageIO.read(new File("data/Game/gauge_frame.gif"));
 
 			for (int i = 0; i < 3; i++){
-				statusGauge[i] = ImageIO.read(new File("data/img/gauge_" + Integer.toString(i) + ".jpg"));
+				statusGauge[i] = ImageIO.read(new File("data/Game/gauge_" + Integer.toString(i) + ".jpg"));
 			}
 		}
 		catch (Exception e){
@@ -53,7 +53,7 @@ public class StatusPanel extends JPanel {
 		int h = statusGauge[0].getHeight();
 		for (int i = 0; i < 38; i++){
 
-			g2.drawImage(statusGauge[0], i * w + 5, 5, this);
+			g2.drawImage(statusGauge[0], i * w + 4, 4, this);
 		}
 
 		g2.drawImage(statusFrame, 0, 0, this);

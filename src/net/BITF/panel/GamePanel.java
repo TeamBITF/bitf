@@ -1,14 +1,17 @@
 ﻿package net.BITF.panel;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
 import net.BITF.Circle.ListCircle;
 import net.BITF.panel.game.AnswerPanel;
 import net.BITF.panel.game.StatusPanel;
 import net.BITF.panel.game.TestPanel;
-
-public class GamePanel extends BITFPanel{
+public class GamePanel extends BITFPanel implements ActionListener{
 
 	/**
 	 * 正解を格納する変数
@@ -22,7 +25,11 @@ public class GamePanel extends BITFPanel{
 	private static JPanel layoutPanelH;
 	private static JPanel layoutPanelV;
 
+	private Timer timer;
+
+
 	public GamePanel(){
+
 		super();
 
 		answerPanel = new AnswerPanel();
@@ -41,6 +48,13 @@ public class GamePanel extends BITFPanel{
 		statusPanel = new StatusPanel();
 		statusPanel.setBounds(0, 0, statusPanel.getWidth(), statusPanel.getHeight());
 
+
+		timer = new Timer(3000, this);
+		timer.setActionCommand("time");
+		timer.start();
+
+
+
 		//BoxLayout
 		layoutPanelH.add(statusPanel);
 		layoutPanelH.add(testPanel);
@@ -49,7 +63,14 @@ public class GamePanel extends BITFPanel{
 		layoutPanelV.add(answerPanel);
 
 		this.add(layoutPanelV);
+
+
+
+
+
+
 	}
+
 
 	public static int getResult() {
 		return result;
@@ -65,11 +86,24 @@ public class GamePanel extends BITFPanel{
 
 
 	@Override
-	public boolean update() {
+	public int update() {
 		testPanel.updateUI();
 		ListCircle.getInstance().update();
 
-		return false;
+		return nextStage;
+
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+
+		System.out.println("Timed out");
+
+		if(e.getActionCommand().equals("time")){
+			timer.stop();
+	//		this.nextStage = 2;
+
+		}
 
 	}
 }

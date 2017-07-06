@@ -1,6 +1,7 @@
 ﻿package net.BITF;
 
 
+
 public class Main {
 
 	protected static int fps = 30;

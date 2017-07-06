@@ -1,20 +1,34 @@
 ﻿package net.BITF.panel;
 
+import java.awt.Dimension;
+
 import javax.swing.JPanel;
+
+import net.BITF.frame.MainFrame;
 
 /**
  * setPreferredSize関数を必ず使ってください<BR>
  *
  */
-public abstract class BITFPanel extends JPanel{
+public class BITFPanel extends JPanel{
+
+	protected int nextStage;
+
+	public BITFPanel(){
+		nextStage = MainFrame.stage;
+		setPreferredSize(new Dimension(500, 500));
+	}
+
 	public BITFPanel getInstance(){
 		return this;
 	}
 
 	/**
-	 * メインループ<BR>
-	 * true : 次の画面に遷移させる
+	 * メインループ
 	 * @return
+	 * 遷移したいステージ番号
 	 */
-	public abstract boolean update();
+	public int update(){
+		return MainFrame.stage;
+	}
 }

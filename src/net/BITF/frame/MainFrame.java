@@ -9,17 +9,23 @@ import javax.swing.JFrame;
 import net.BITF.FrameRate;
 import net.BITF.Main;
 import net.BITF.panel.BITFPanel;
+import net.BITF.panel.EndPanel;
 import net.BITF.panel.GamePanel;
 import net.BITF.panel.StartPanel;
 
 public class MainFrame extends JFrame{
 
-	public int stage;
+	public static final MainFrame instance = new MainFrame();
+
+	public static int stage;
+	public static String name;
+
 	private BITFPanel bitfPanel;
 
 	public MainFrame(){
 
 		stage = 0;
+		name = " ";
 
 		if (Main.args.length > 0){
 			if(Main.args[0].equals("title")){
@@ -28,6 +34,9 @@ public class MainFrame extends JFrame{
 			else if (Main.args[0].equals("game")){
 				stage = 1;
 			}
+			else if (Main.args[0].equals("end")){
+				stage = 2;
+			}
 		}
 
 		setName("net.bitf.GameFrame");
@@ -35,44 +44,73 @@ public class MainFrame extends JFrame{
 
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 
-		GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
-        Rectangle rect = env.getMaximumWindowBounds();
-		setBounds(rect);
 
-		setLocationRelativeTo(this);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+		init();
 
 		nextStage();
 
 	}
 
+	private void init(){
+		bitfPanel = null;
+
+		GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        Rectangle rect = env.getMaximumWindowBounds();
+		setBounds(rect);
+
+		setLocationRelativeTo(this);
+	}
+
 	public void nextStage(){
 		Container pane = getContentPane();
+
+//		init();
+		pane.removeAll();
+		//validate();
+
+
+		System.out.println(stage);
 
 		switch(stage){
 		case 0:
 			System.out.println("Title");
 			bitfPanel = new StartPanel();
 			break;
+		case 1:
+			System.out.println("Game");
+			bitfPanel = new GamePanel();
+			break;
+		case 2:
+			System.out.println("End");
+			bitfPanel = new EndPanel();
+			break;
+
 
 		default:
-			bitfPanel = new GamePanel();
+			stage = 0;
+			bitfPanel = new StartPanel();
 		}
 
-//		if(stage == 0){
-//			bitfPanel = new StartPanel();
-//		}
-//		else if(stage == 1){
-//			bitfPanel = new GamePanel();
-//		}
 
+		System.out.println(bitfPanel.toString());
 
 
 		pane.add(bitfPanel);
-	}
+
+
+
+ 	}
 
 	public void update(){
-		bitfPanel.update();
+		int oldStage = stage;
+		int newStage = bitfPanel.update();
+
+		if (oldStage != newStage){
+			stage = newStage;
+			nextStage();
+		}
 
 		FrameRate.getInstance().count();
 	}
