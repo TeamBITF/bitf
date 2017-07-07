@@ -73,7 +73,6 @@ public class GamePanel extends BITFPanel implements ActionListener{
 		layoutPanelV.add(answerPanel);
 
 		this.add(layoutPanelV);
-
 		init();
 
 		timer = new Timer(1000, this);
