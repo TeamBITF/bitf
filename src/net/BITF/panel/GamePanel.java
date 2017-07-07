@@ -119,8 +119,6 @@ public class GamePanel extends BITFPanel implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
-		System.out.println("Timed out");
-
 		if(e.getActionCommand().equals("time")){
 			totalTimeLimit--;
 
@@ -129,6 +127,7 @@ public class GamePanel extends BITFPanel implements ActionListener{
 				time--;
 			}
 			else {
+				System.out.println("Timed out");
 				timer.stop();
 				init();
 			}
