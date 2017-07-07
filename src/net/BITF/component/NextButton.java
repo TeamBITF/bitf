@@ -10,9 +10,12 @@ import net.BITF.panel.GamePanel;
 
 public class NextButton extends JButton implements ActionListener{
 
-	public NextButton(){
+	private GamePanel gamePanel;
+
+	public NextButton(GamePanel gamePanel){
 		super("Next");
 
+		this.gamePanel = gamePanel;
 		this.addActionListener(this);
 	}
 
@@ -21,6 +24,6 @@ public class NextButton extends JButton implements ActionListener{
 //		System.out.println("ButtonClicked");
 
 		ListCircle.getInstance().removeAllCircle();
-		GamePanel.changeImage();
+		gamePanel.changeImage();
 	}
 }

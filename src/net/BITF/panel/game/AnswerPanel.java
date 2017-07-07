@@ -1,5 +1,7 @@
 ﻿package net.BITF.panel.game;
 
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
@@ -19,7 +21,7 @@ public class AnswerPanel extends JPanel{
 	private JComboBox comboBox;
 	private DefaultComboBoxModel model;
 
-	public AnswerPanel(){
+	public AnswerPanel(GamePanel gamePanel){
 
 		ImageManager images = ImageManager.getInstance();
 		String[] strings = { "選択なし" };
@@ -27,9 +29,9 @@ public class AnswerPanel extends JPanel{
 		List<String> list = new ArrayList<String>();
 		list.add("選択なし");
 
-		String[] nameList = images.getImageFromList(GamePanel.getResult()).getNameList();
+		String[] nameList = images.getImageFromList(gamePanel.getResult()).getNameList();
 		for (int i = 0; i < nameList.length; i++){
-			list.add(images.getImageFromList(GamePanel.getResult()).getName(i));
+			list.add(images.getImageFromList(gamePanel.getResult()).getName(i));
 		}
 
 		//strings += images.getImageFromList(GameFrame.getResult()).getNameList();
@@ -37,8 +39,10 @@ public class AnswerPanel extends JPanel{
 
 		model = new DefaultComboBoxModel(list.toArray());
 
-		pass = new NextButton();
+		pass = new NextButton(gamePanel);
 		comboBox = new JComboBox(model);
+	    comboBox.setPreferredSize(new Dimension(200, 40));
+	    comboBox.setFont(new Font("ＭＳ ゴシック", Font.BOLD, 30));
 
 		add(pass);
 		add(comboBox);
