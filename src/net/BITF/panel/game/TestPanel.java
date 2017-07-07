@@ -60,7 +60,7 @@ public class TestPanel extends JPanel implements MouseListener{
 	 * @param index
 	 */
 	public void changeImage(int index){
-		init(index);e
+		init(index);
 	}
 
 	private void init(int index){
