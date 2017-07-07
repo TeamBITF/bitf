@@ -63,12 +63,6 @@ public class GamePanel extends BITFPanel implements ActionListener{
 		layoutPanelV.add(answerPanel);
 
 		this.add(layoutPanelV);
-
-
-
-
-
-
 	}
 
 
@@ -101,7 +95,7 @@ public class GamePanel extends BITFPanel implements ActionListener{
 
 		if(e.getActionCommand().equals("time")){
 			timer.stop();
-			nextStage = 2;
+			//nextStage = 2;
 
 		}
 

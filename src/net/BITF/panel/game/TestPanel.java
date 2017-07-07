@@ -20,7 +20,7 @@ import net.BITF.util.ImageManager;
 public class TestPanel extends JPanel implements MouseListener{
 
 	private boolean flag;
-	
+
 	private String path;
 
 	private int maskColor;
@@ -60,8 +60,7 @@ public class TestPanel extends JPanel implements MouseListener{
 	 * @param index
 	 */
 	public void changeImage(int index){
-		init(index);
-
+		init(index);e
 	}
 
 	private void init(int index){
@@ -189,8 +188,8 @@ public class TestPanel extends JPanel implements MouseListener{
 	    		resetMask();
 	    	}
 	    }
-	    
-		
+
+
 
 		g2.drawImage(mask, 0, 0, this);
 

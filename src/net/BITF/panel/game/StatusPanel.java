@@ -40,8 +40,6 @@ public class StatusPanel extends JPanel {
 			e.printStackTrace();
 		}
 
-//		System.out.println(statusFrame.getWidth());
-//		System.out.println(statusFrame.getHeight());
 		setPreferredSize(new Dimension(statusFrame.getWidth(), statusFrame.getHeight()));
 	}
 
