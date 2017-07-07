@@ -22,6 +22,7 @@ public class StartPanel extends BITFPanel implements ActionListener{
 
 	private JLabel image;
 	private JLabel car;
+	private JLabel fire;
 	private JLabel title;
 	protected static JTextField name;
 //	private <型名> <変数名>;
@@ -37,9 +38,13 @@ public class StartPanel extends BITFPanel implements ActionListener{
 
 		//this.setPreferredSize(new Dimension(1366, 768));
 
-		ImageIcon icon = new ImageIcon("Z:/0楠祭　鍵班/startgamen/warp.gif");
+		ImageIcon icon = new ImageIcon("Z:/0楠祭　鍵班/startgamen/fire.gif");
 		image = new JLabel(icon);
 		image.setBounds(0,0,icon.getIconWidth(),icon.getIconHeight());
+		
+		icon = new ImageIcon("Z:/0楠祭　鍵班/startgamen/warp.gif");
+		fire = new JLabel(icon);
+		fire.setBounds(0,0,icon.getIconWidth(),icon.getIconHeight());
 
 		icon=new ImageIcon("Z:/0楠祭　鍵班/startgamen/car.png");
 		car= new JLabel(icon);
@@ -73,8 +78,9 @@ public class StartPanel extends BITFPanel implements ActionListener{
 	    add(button1);
 	    add(button2);
 	    add(title);
-		add(car);
-		add(image);
+	    add(car);
+	    add(fire);
+		fire.add(image);
 
 
 

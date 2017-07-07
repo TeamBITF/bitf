@@ -22,7 +22,7 @@ public class GamePanel extends BITFPanel implements ActionListener{
 	/**
 	 * 1枚最大1分
 	 */
-	public static int TIME_LIMIT_PER_IMAGE = 1000 * 60;
+	public static int TIME_LIMIT_PER_IMAGE = 60;
 
 	private AnswerPanel answerPanel;
 	private TestPanel testPanel;
@@ -39,7 +39,7 @@ public class GamePanel extends BITFPanel implements ActionListener{
 
 		super();
 
-		totalTimeLimit = 3 * 60 * 1000;
+		totalTimeLimit = 3 * 60;
 
 
 		FlowLayout layout = new FlowLayout();
@@ -82,7 +82,7 @@ public class GamePanel extends BITFPanel implements ActionListener{
 	}
 
 	private void init(){
-		time = (3000 < totalTimeLimit) ? GamePanel.TIME_LIMIT_PER_IMAGE : totalTimeLimit;
+		time = (60 < totalTimeLimit) ? GamePanel.TIME_LIMIT_PER_IMAGE : totalTimeLimit;
 
 		/*
 		 * TODO
@@ -110,6 +110,8 @@ public class GamePanel extends BITFPanel implements ActionListener{
 	@Override
 	public int update() {
 		testPanel.updateUI();
+		statusPanel.updateUI();
+
 		ListCircle.getInstance().update();
 
 		return nextStage;
