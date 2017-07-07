@@ -1,5 +1,6 @@
 ﻿package net.BITF.panel;
 
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -16,23 +17,39 @@ public class GamePanel extends BITFPanel implements ActionListener{
 	/**
 	 * 正解を格納する変数
 	 */
-	private static int result;
+	private int result;
 
-	private static AnswerPanel answerPanel;
-	private static TestPanel testPanel;
-	private static StatusPanel statusPanel;
+	/**
+	 * 1枚最大1分
+	 */
+	public static int TIME_LIMIT_PER_IMAGE = 1000 * 60;
 
-	private static JPanel layoutPanelH;
-	private static JPanel layoutPanelV;
+	private AnswerPanel answerPanel;
+	private TestPanel testPanel;
+	private StatusPanel statusPanel;
 
-	private Timer timer;
+	private JPanel layoutPanelH;
+	private JPanel layoutPanelV;
 
+	protected Timer timer;
+	protected int totalTimeLimit;
+	private int time;
 
 	public GamePanel(){
 
 		super();
 
-		answerPanel = new AnswerPanel();
+		totalTimeLimit = 3 * 60 * 1000;
+
+
+		FlowLayout layout = new FlowLayout();
+		layout.setAlignment(FlowLayout.LEFT);
+
+		this.setLayout(layout);
+
+		answerPanel = new AnswerPanel(this);
+		answerPanel.setBounds(0, 0, 300, this.getHeight());
+
 
 		layoutPanelH = new JPanel();
 		layoutPanelH.setLayout(new BoxLayout(layoutPanelH, BoxLayout.Y_AXIS));
@@ -45,15 +62,8 @@ public class GamePanel extends BITFPanel implements ActionListener{
 		testPanel = new TestPanel(result);
 		testPanel.setBounds(0, 48, this.getWidth(), this.getHeight());	//表示サイズを設定
 
-		statusPanel = new StatusPanel();
+		statusPanel = new StatusPanel(this);
 		statusPanel.setBounds(0, 0, statusPanel.getWidth(), statusPanel.getHeight());
-
-
-		timer = new Timer(3000, this);
-		timer.setActionCommand("time");
-		timer.start();
-
-
 
 		//BoxLayout
 		layoutPanelH.add(statusPanel);
@@ -64,23 +74,35 @@ public class GamePanel extends BITFPanel implements ActionListener{
 
 		this.add(layoutPanelV);
 
+		init();
 
-
-
-
-
+		timer = new Timer(1000, this);
+		timer.setActionCommand("time");
+		timer.start();
 	}
 
+	private void init(){
+		time = (3000 < totalTimeLimit) ? GamePanel.TIME_LIMIT_PER_IMAGE : totalTimeLimit;
 
-	public static int getResult() {
+		/*
+		 * TODO
+		 * 画像の初期化処理を組み込む
+		 */
+	}
+
+	public int getTime(){
+		return time;
+	}
+
+	public int getResult() {
 		return result;
 	}
 
-	public static void changeImage(){
+	public void changeImage(){
 		testPanel.changeImage();
 	}
 
-	public static void changeImage(int index){
+	public void changeImage(int index){
 		testPanel.changeImage(index);
 	}
 
@@ -100,11 +122,21 @@ public class GamePanel extends BITFPanel implements ActionListener{
 		System.out.println("Timed out");
 
 		if(e.getActionCommand().equals("time")){
-			timer.stop();
-			
-			//game画面をいじるから
-		//	nextStage = 2;
+			totalTimeLimit--;
 
+			//1枚にかける時間
+			if (time > 0){
+				time--;
+			}
+			else {
+				timer.stop();
+				init();
+			}
+
+			//全体の制限時間
+			if (totalTimeLimit <= 0){
+				//nextStage = 2;
+			}
 		}
 
 	}

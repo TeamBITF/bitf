@@ -9,9 +9,11 @@ import java.io.File;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
+import net.BITF.panel.GamePanel;
+
 public class StatusPanel extends JPanel {
 
-	private int persentage = 100;
+	private GamePanel gamePanel;
 
 	/**
 	 * 内側のサイズ
@@ -27,7 +29,7 @@ public class StatusPanel extends JPanel {
 	 */
 	private BufferedImage[] statusGauge;
 
-	public StatusPanel(){
+	public StatusPanel(GamePanel gamePanel){
 		statusGauge = new BufferedImage[3];
 		try{
 			statusFrame = ImageIO.read(new File("data/Game/gauge_frame.gif"));
@@ -51,7 +53,7 @@ public class StatusPanel extends JPanel {
 
 		int w = statusGauge[0].getWidth();
 		int h = statusGauge[0].getHeight();
-		for (int i = 0; i < 38; i++){
+		for (int i = 0; i < 38 / (gamePanel.getTime() / GamePanel.TIME_LIMIT_PER_IMAGE); i++){
 
 			g2.drawImage(statusGauge[0], i * w + 4, 4, this);
 		}

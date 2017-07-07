@@ -25,7 +25,7 @@ public class MainFrame extends JFrame{
 	public MainFrame(){
 
 		stage = 0;
-		name = " ";
+		name = "";
 
 		//チート用
 		bitfPanel = new GamePanel();
