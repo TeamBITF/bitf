@@ -30,6 +30,8 @@ public class StatusPanel extends JPanel {
 	private BufferedImage[] statusGauge;
 
 	public StatusPanel(GamePanel gamePanel){
+		this.gamePanel = gamePanel;
+
 		statusGauge = new BufferedImage[3];
 		try{
 			statusFrame = ImageIO.read(new File("data/Game/gauge_frame.gif"));
