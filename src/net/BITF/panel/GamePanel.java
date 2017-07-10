@@ -21,6 +21,7 @@ public class GamePanel extends BITFPanel implements ActionListener{
 
 	/**
 	 * 1枚最大1分
+	 * value = 60
 	 */
 	public static int TIME_LIMIT_PER_IMAGE = 60;
 
@@ -113,7 +114,7 @@ public class GamePanel extends BITFPanel implements ActionListener{
 	@Override
 	public int update() {
 		testPanel.updateUI();
-		statusPanel.updateUI();
+
 
 		ListCircle.getInstance().update();
 
@@ -130,6 +131,7 @@ public class GamePanel extends BITFPanel implements ActionListener{
 			//1枚にかける時間
 			if (time > 0){
 				time--;
+				statusPanel.updateUI();
 			}
 			else {
 				System.out.println("Timed out");
