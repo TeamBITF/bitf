@@ -15,6 +15,7 @@ public class Main{
 	public static int stage = 0;
 
 	public static String[] args;
+
 	public static Myo myo;
 	public static Hub hub;
 
