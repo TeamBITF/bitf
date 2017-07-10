@@ -9,6 +9,7 @@ public class Main{
 	public static boolean isDebugMode = false;
 
 	public static Fps fps;
+	public static int stage = 0;
 
 	public static String[] args;
 	private static Control control;
@@ -20,15 +21,10 @@ public class Main{
 			System.out.println(args[i]);
 			if (args[i].equals("-d")){
 				isDebugMode = true;
-
-
-//				try {
-//					Runtime.getRuntime().exec(new String[]{ "cmd.exe","/C","start" } );
-//				} catch (IOException e) {
-//					e.printStackTrace();
-//				}
-
 				System.out.println("DebugMode:true");
+			}
+			else if(args[i].equals("-s")){
+				stage = Integer.valueOf(args[++i]);
 			}
 		}
 

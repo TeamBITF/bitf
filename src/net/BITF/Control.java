@@ -9,7 +9,7 @@ public class Control implements IFps{
 	private MainFrame frame;
 
 	public Control(){
-		frame = new MainFrame();
+		frame = new MainFrame(Main.stage);
 		frame.setVisible(true);
 	}
 

@@ -7,7 +7,6 @@ import java.awt.Rectangle;
 import javax.swing.JFrame;
 
 import net.BITF.FrameRate;
-import net.BITF.Main;
 import net.BITF.panel.BITFPanel;
 import net.BITF.panel.EndPanel;
 import net.BITF.panel.GamePanel;
@@ -23,31 +22,12 @@ public class MainFrame extends JFrame{
 	private BITFPanel bitfPanel;
 
 	public MainFrame(){
-
 		stage = 0;
-
-		//チート用
-		bitfPanel = new GamePanel();
-
-		if (Main.args.length > 0){
-			if(Main.args[0].equals("title")){
-				stage = 0;
-			}
-			else if (Main.args[0].equals("game")){
-				stage = 1;
-			}
-			else if (Main.args[0].equals("end")){
-				stage = 2;
-			}
-		}
-
 		init();
-
 	}
 
 	public MainFrame(int stage){
 		MainFrame.stage = stage;
-
 		init();
 	}
 
@@ -58,8 +38,6 @@ public class MainFrame extends JFrame{
 		setTitle("Back Image to the Future ~春の青菜ソースを添えて~");
 
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
-
-
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 		GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
@@ -78,8 +56,7 @@ public class MainFrame extends JFrame{
 		pane.removeAll();
 		//validate();
 
-
-		System.out.println(stage);
+		System.out.println("stageid:" + stage);
 
 		switch(stage){
 		case 0:
