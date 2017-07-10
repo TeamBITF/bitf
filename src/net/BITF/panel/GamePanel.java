@@ -39,6 +39,9 @@ public class GamePanel extends BITFPanel implements ActionListener{
 
 		super();
 
+		/**
+		 * 3分
+		 */
 		totalTimeLimit = 3 * 60;
 
 
@@ -75,6 +78,7 @@ public class GamePanel extends BITFPanel implements ActionListener{
 		this.add(layoutPanelV);
 		init();
 
+		//1秒で更新
 		timer = new Timer(1000, this);
 		timer.setActionCommand("time");
 		timer.start();
@@ -135,7 +139,7 @@ public class GamePanel extends BITFPanel implements ActionListener{
 
 			//全体の制限時間
 			if (totalTimeLimit <= 0){
-				//nextStage = 2;
+				nextStage = 2;
 			}
 		}
 
