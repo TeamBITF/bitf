@@ -89,6 +89,7 @@ public class MainFrame extends JFrame{
  	}
 
 	public void update(){
+
 		int oldStage = stage;
 		int newStage = bitfPanel.update();
 

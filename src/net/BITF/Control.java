@@ -4,7 +4,8 @@ import net.BITF.frame.MainFrame;
 import net.BITF.util.IFps;
 
 
-public class Control implements IFps{
+public class Control implements IFps
+{
 
 	private MainFrame frame;
 
@@ -13,7 +14,6 @@ public class Control implements IFps{
 		frame.setVisible(true);
 	}
 
-	@Override
 	public void update() {
 		frame.update();
 	}
