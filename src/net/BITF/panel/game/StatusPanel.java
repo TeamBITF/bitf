@@ -34,10 +34,10 @@ public class StatusPanel extends JPanel {
 
 		statusGauge = new BufferedImage[3];
 		try{
-			statusFrame = ImageIO.read(new File("data/Game/gauge_frame.gif"));
+			statusFrame = ImageIO.read(new File("resource/data/Game/gauge_frame.gif"));
 
 			for (int i = 0; i < 3; i++){
-				statusGauge[i] = ImageIO.read(new File("data/Game/gauge_" + Integer.toString(i) + ".jpg"));
+				statusGauge[i] = ImageIO.read(new File("resource/data/Game/gauge_" + Integer.toString(i) + ".jpg"));
 			}
 		}
 		catch (Exception e){

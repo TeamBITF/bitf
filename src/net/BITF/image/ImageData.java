@@ -16,7 +16,7 @@ public class ImageData {
 
 		System.out.println("Lead for \"" + fileName + "\"");
 		try {
-			setImage(ImageIO.read(new File("data/game/background/" + fileName)));
+			setImage(ImageIO.read(new File("resource/data/game/background/" + fileName)));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

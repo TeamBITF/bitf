@@ -38,29 +38,29 @@ public class StartPanel extends BITFPanel implements ActionListener{
 
 		//this.setPreferredSize(new Dimension(1366, 768));
 
-		ImageIcon icon = new ImageIcon("data/Start/fire.gif");
+		ImageIcon icon = new ImageIcon("resource/data/Start/fire.gif");
 		image = new JLabel(icon);
 		image.setBounds(0,0,icon.getIconWidth(),icon.getIconHeight());
-		
-		icon = new ImageIcon("data/Start/warp.gif");
+
+		icon = new ImageIcon("resource/data/Start/warp.gif");
 		fire = new JLabel(icon);
 		fire.setBounds(0,0,icon.getIconWidth(),icon.getIconHeight());
 
-		icon=new ImageIcon("data/Start/car.png");
+		icon=new ImageIcon("resource/data/Start/car.png");
 		car= new JLabel(icon);
 		car.setBounds(300,50,icon.getIconWidth(),icon.getIconHeight());
 
-		icon=new ImageIcon("data/Start/Title.png");
+		icon=new ImageIcon("resource/data/Start/Title.png");
 		title= new JLabel(icon);
 		title.setBounds(380,20,icon.getIconWidth(),icon.getIconHeight());
 
-		ImageIcon btn1 = new ImageIcon("data/Start/startbutton.png");
+		ImageIcon btn1 = new ImageIcon("resource/data/Start/startbutton.png");
 		JButton button1 = new JButton(btn1);
 	    button1.setBounds(610, 540, 150,60 );
 	    button1.setContentAreaFilled(false);
 	    button1.setBorderPainted(false);
 
-	    ImageIcon btn2 = new ImageIcon("data/Start/rankingbutton.png");
+	    ImageIcon btn2 = new ImageIcon("resource/data/Start/rankingbutton.png");
 	    JButton button2 = new JButton(btn2);
 	    button2.setBounds(610, 620, 150,60 );
 	    button2.setContentAreaFilled(false);
