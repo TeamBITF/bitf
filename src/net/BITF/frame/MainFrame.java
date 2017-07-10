@@ -25,7 +25,6 @@ public class MainFrame extends JFrame{
 	public MainFrame(){
 
 		stage = 0;
-		name = "";
 
 		//チート用
 		bitfPanel = new GamePanel();
@@ -42,6 +41,19 @@ public class MainFrame extends JFrame{
 			}
 		}
 
+		init();
+
+	}
+
+	public MainFrame(int stage){
+		MainFrame.stage = stage;
+
+		init();
+	}
+
+	private void init(){
+		name = "";
+
 		setName("net.bitf.GameFrame");
 		setTitle("Back Image to the Future ~春の青菜ソースを添えて~");
 
@@ -50,20 +62,13 @@ public class MainFrame extends JFrame{
 
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-		init();
-
-		nextStage();
-
-	}
-
-	private void init(){
-		bitfPanel = null;
-
 		GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
         Rectangle rect = env.getMaximumWindowBounds();
 		setBounds(rect);
 
 		setLocationRelativeTo(this);
+
+		nextStage();
 	}
 
 	public void nextStage(){
