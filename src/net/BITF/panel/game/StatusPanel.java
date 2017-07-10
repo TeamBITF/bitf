@@ -53,16 +53,21 @@ public class StatusPanel extends JPanel {
 
 		int w = statusGauge[0].getWidth();
 		int h = statusGauge[0].getHeight();
-		System.out.println(gamePanel.getTime());
 
-//		for (int i = 0; (double)i < 38 / (double)(gamePanel.getTime() / GamePanel.TIME_LIMIT_PER_IMAGE); i++){
-//
+		int count = (int) (38 / getPersentage());
+		System.out.println(count);
+		for (int i = 0; i < count; i++){
 //			g2.drawImage(statusGauge[0], i * w + 4, 4, this);
-//		}
+		}
 
 		g2.drawImage(statusFrame, 0, 0, this);
 
 		g2.drawRect(0, 0, getWidth() - 1, getHeight() - 1);
 
 	}
+
+	private double getPersentage(){
+		return gamePanel.getTime() / GamePanel.TIME_LIMIT_PER_IMAGE;
+	}
+
 }
