@@ -17,7 +17,7 @@ import net.BITF.Circle.Circle;
 import net.BITF.Circle.ListCircle;
 import net.BITF.util.ImageManager;
 
-public class TestPanel extends JPanel implements MouseListener{
+public class MainPanel extends JPanel implements MouseListener{
 
 	private boolean flag;
 
@@ -32,11 +32,11 @@ public class TestPanel extends JPanel implements MouseListener{
 
 	private static final int IMAGE_MAX_WIDTH = 800;
 
-	public TestPanel(){
+	public MainPanel(){
 		changeImage(-1);
 	}
 
-	public TestPanel(int select){
+	public MainPanel(int select){
 		init(select);
 	}
 

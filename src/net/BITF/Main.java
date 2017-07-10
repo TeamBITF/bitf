@@ -18,7 +18,6 @@ public class Main{
 		Main.args = args;
 
 		for (int i = 0; i < args.length; i++){
-			System.out.println(args[i]);
 			if (args[i].equals("-d")){
 				isDebugMode = true;
 				System.out.println("DebugMode:true");

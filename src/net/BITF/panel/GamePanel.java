@@ -10,8 +10,8 @@ import javax.swing.Timer;
 
 import net.BITF.Circle.ListCircle;
 import net.BITF.panel.game.AnswerPanel;
+import net.BITF.panel.game.MainPanel;
 import net.BITF.panel.game.StatusPanel;
-import net.BITF.panel.game.TestPanel;
 public class GamePanel extends BITFPanel implements ActionListener{
 
 	/**
@@ -26,7 +26,7 @@ public class GamePanel extends BITFPanel implements ActionListener{
 	public static int TIME_LIMIT_PER_IMAGE = 60;
 
 	private AnswerPanel answerPanel;
-	private TestPanel testPanel;
+	private MainPanel testPanel;
 	private StatusPanel statusPanel;
 
 	private JPanel layoutPanelH;
@@ -63,7 +63,7 @@ public class GamePanel extends BITFPanel implements ActionListener{
 
 		result = 2;
 
-		testPanel = new TestPanel(result);
+		testPanel = new MainPanel(result);
 		testPanel.setBounds(0, 48, this.getWidth(), this.getHeight());	//表示サイズを設定
 
 		statusPanel = new StatusPanel(this);
@@ -115,11 +115,8 @@ public class GamePanel extends BITFPanel implements ActionListener{
 	public int update() {
 		testPanel.updateUI();
 
-
 		ListCircle.getInstance().update();
-
 		return nextStage;
-
 	}
 
 	@Override
