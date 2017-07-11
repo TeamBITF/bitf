@@ -86,7 +86,7 @@ public class GamePanel extends BITFPanel implements ActionListener{
 	    button1.setBounds(900, 540, 150,60 );
 	    
 	    JComboBox combo = new JComboBox();
-	    combo.setBounds(900, 80, 200,40 );
+	    combo.setBounds(900, 80, 300,40 );
 	    
 	    ImageIcon icon2 =new ImageIcon("resource/data/Game/gauge_frame.gif");
 	    stu = new JLabel(icon2);
