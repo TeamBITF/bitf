@@ -21,7 +21,7 @@ public class HelloMyo implements Runnable{
 
 	@Override
 	public void run() {
-
+		
 		try {
 			Hub hub = new Hub("com.example.hello-myo");
 

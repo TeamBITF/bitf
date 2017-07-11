@@ -41,7 +41,7 @@ public class AnswerPanel extends JPanel{
 
 		pass = new NextButton(gamePanel);
 		comboBox = new JComboBox(model);
-	    comboBox.setPreferredSize(new Dimension(200, 40));
+	    comboBox.setPreferredSize(new Dimension(500, 40));
 	    comboBox.setFont(new Font("ＭＳ ゴシック", Font.BOLD, 30));
 
 		add(pass);
