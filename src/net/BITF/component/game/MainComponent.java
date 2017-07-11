@@ -1,4 +1,4 @@
-﻿package net.BITF.panel.game;
+﻿package net.BITF.component.game;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -17,7 +17,7 @@ import net.BITF.Circle.Circle;
 import net.BITF.Circle.ListCircle;
 import net.BITF.util.ImageManager;
 
-public class MainPanel extends JPanel implements MouseListener{
+public class MainComponent extends JPanel implements MouseListener{
 
 	private boolean flag;
 
@@ -32,11 +32,11 @@ public class MainPanel extends JPanel implements MouseListener{
 
 	private static final int IMAGE_MAX_WIDTH = 800;
 
-	public MainPanel(){
+	public MainComponent(){
 		changeImage(-1);
 	}
 
-	public MainPanel(int select){
+	public MainComponent(int select){
 		init(select);
 	}
 
@@ -113,7 +113,7 @@ public class MainPanel extends JPanel implements MouseListener{
 		mask = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
 		resetMask();
 
-		 setPreferredSize(new Dimension(image.getWidth(), image.getHeight()));
+		 setPreferredSize(new Dimension(image.getWidth() + 100, image.getHeight()));
 	}
 
 	@Override

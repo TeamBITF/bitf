@@ -44,6 +44,9 @@ public class Main{
 				if (myo == null) {
 					throw new RuntimeException("Unable to find a Myo!");
 				}
+				else {
+					System.out.println("Connected to Myo");
+				}
 			}
 		}
 
