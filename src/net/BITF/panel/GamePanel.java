@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import net.BITF.Circle.ListCircle;
@@ -29,8 +28,8 @@ public class GamePanel extends BITFPanel implements ActionListener{
 	private MainPanel testPanel;
 	private StatusPanel statusPanel;
 
-	private JPanel layoutPanelH;
-	private JPanel layoutPanelV;
+//	private JPanel layoutPanelH;
+//	private JPanel layoutPanelV;
 
 	private JLabel warp;
 
@@ -51,7 +50,7 @@ public class GamePanel extends BITFPanel implements ActionListener{
 //		FlowLayout layout = new FlowLayout();
 //		layout.setAlignment(FlowLayout.LEFT);
 //		setLayout(layout);
-		this.setLayout(null);
+		setLayout(null);
 
 
 //		layoutPanelH = new JPanel();
@@ -62,17 +61,20 @@ public class GamePanel extends BITFPanel implements ActionListener{
 
 
 		answerPanel = new AnswerPanel(this);
-		//answerPanel.setBounds(0, 0,this.getWidth() , this.getHeight());
-
+		answerPanel.setBounds(0, 0,this.getWidth() , this.getHeight());
+		//answerPanel.setLocation(10,50);
+		
 		result = 2;
 
 		testPanel = new MainPanel(result);
 		//testPanel.setBounds(0, 0, this.getWidth(), this.getHeight());	//表示サイズを設定
-
+		testPanel.setLocation(10,50);
+		
 		statusPanel = new StatusPanel(this);
 		//statusPanel.setBounds(0, 0, statusPanel.getWidth(), statusPanel.getHeight());
-
-		ImageIcon icon = new ImageIcon("resource/data/Start/warp.gif");
+		statusPanel.setLocation(10,50);
+		
+		ImageIcon icon = new ImageIcon("data/Game/雷.jpg");
 		warp = new JLabel(icon);
 		warp.setBounds(0,0,icon.getIconWidth(),icon.getIconHeight());
 
@@ -84,12 +86,14 @@ public class GamePanel extends BITFPanel implements ActionListener{
 //		layoutPanelV.add(layoutPanelH);
 //		layoutPanelV.add(answerPanel);
 
-		//this.add(layoutPanelV);
+//		this.add(layoutPanelV);
 
-		add(statusPanel);
-		add(testPanel);
-		add(answerPanel);
-		//add(warp);
+		this.add(warp);
+
+		warp.add(testPanel);
+		warp.add(answerPanel);
+		warp.add(statusPanel);
+				
 
 
 
@@ -130,7 +134,8 @@ public class GamePanel extends BITFPanel implements ActionListener{
 	@Override
 	public int update() {
 		testPanel.updateUI();
-
+	
+		
 		ListCircle.getInstance().update();
 		return nextStage;
 	}
