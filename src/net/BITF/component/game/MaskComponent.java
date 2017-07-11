@@ -1,4 +1,4 @@
-﻿package net.BITF.panel.game;
+﻿package net.BITF.component.game;
 
 import java.awt.AlphaComposite;
 import java.awt.Color;
@@ -13,10 +13,10 @@ import javax.swing.JPanel;
 import net.BITF.Circle.Circle;
 import net.BITF.Circle.ListCircle;
 
-public class MaskPanel extends JPanel implements MouseListener
+public class MaskComponent extends JPanel implements MouseListener
 {
 
-	public MaskPanel(){
+	public MaskComponent(){
 		addMouseListener(this);
 		setOpaque(false);
 	}
