@@ -62,7 +62,7 @@ public class GamePanel extends BITFPanel implements ActionListener{
 
 		answerPanel = new AnswerPanel(this);
 		answerPanel.setBounds(0, 0,this.getWidth() , this.getHeight());
-		//answerPanel.setLocation(10,50);
+		answerPanel.setLocation(100,50);
 		
 		result = 2;
 
@@ -74,9 +74,9 @@ public class GamePanel extends BITFPanel implements ActionListener{
 		//statusPanel.setBounds(0, 0, statusPanel.getWidth(), statusPanel.getHeight());
 		statusPanel.setLocation(10,50);
 		
-		ImageIcon icon = new ImageIcon("data/Game/雷.jpg");
+		ImageIcon icon = new ImageIcon("resource/data/Game/雷.jpg");
 		warp = new JLabel(icon);
-//		warp.setBounds(0,0,icon.getIconWidth(),icon.getIconHeight());
+		warp.setBounds(0,0,icon.getIconWidth(),icon.getIconHeight());
 
 
 		//BoxLayout
