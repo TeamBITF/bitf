@@ -92,16 +92,18 @@ public class GamePanel extends BITFPanel implements ActionListener{
 	    stu = new JLabel(icon2);
 	    stu.setBounds(10, 10, icon2.getIconWidth(),icon2.getIconHeight() );
 	    
+	    ImageIcon[] icons = new ImageIcon[3];
+	    for (int i = 0; i < 3; i++){
 	    
+	    	icons[i] = new ImageIcon("resource/data/Game/gauge_" + i + ".jpg");
+	    	//label[i]=new JLabel(icons[i]);
+	    	//label[i].setBounds(840 - i * 40,265+a*70,icons[i].getIconWidth(),icons[i].getIconHeight());
+		}
+	    for(int i=0,a=0;i<40;i++,a=a+21){
+	    	//add(icons[1]);
+	    }
 		
-		//BoxLayout
-//		layoutPanelH.add(statusPanel);
-//		layoutPanelH.add(testPanel);
-//
-//		layoutPanelV.add(layoutPanelH);
-//		layoutPanelV.add(answerPanel);
 
-//		this.add(layoutPanelV);
 
 		
 		add(testPanel);
