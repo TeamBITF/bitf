@@ -1,17 +1,25 @@
 ﻿package net.BITF.panel;
 
+<<<<<<< HEAD
+import java.awt.Color;
+import java.awt.FlowLayout;
+=======
+>>>>>>> 746b116e5a8beaf58e34e992f4df58d454632c5a
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.Timer;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 
 import net.BITF.Circle.ListCircle;
-import net.BITF.panel.game.AnswerPanel;
-import net.BITF.panel.game.MainPanel;
-import net.BITF.panel.game.StatusPanel;
+import net.BITF.component.game.AnswerComponent;
+import net.BITF.component.game.MainComponent;
+import net.BITF.component.game.StatusComponent;
 public class GamePanel extends BITFPanel implements ActionListener{
 
 	/**
@@ -25,15 +33,27 @@ public class GamePanel extends BITFPanel implements ActionListener{
 	 */
 	public static int TIME_LIMIT_PER_IMAGE = 60;
 
-	private AnswerPanel answerPanel;
-	private MainPanel testPanel;
-	private StatusPanel statusPanel;
+<<<<<<< HEAD
+	private AnswerComponent answerComponent;
+	private MainComponent mainComponent;
+	private StatusComponent statusComponent;
 
 	private JPanel layoutPanelH;
 	private JPanel layoutPanelV;
 
-	private JLabel warp;
+=======
+	private AnswerPanel answerPanel;
+	private MainPanel testPanel;
+	private StatusPanel statusPanel;
+	private JComboBox comboBox;
+	
+//	private JPanel layoutPanelH;
+//	private JPanel layoutPanelV;
 
+	private JLabel warp;
+	private JLabel stu;
+	
+>>>>>>> 746b116e5a8beaf58e34e992f4df58d454632c5a
 	protected Timer timer;
 	protected int totalTimeLimit;
 	private int time;
@@ -48,35 +68,92 @@ public class GamePanel extends BITFPanel implements ActionListener{
 		totalTimeLimit = 3 * 60;
 
 
+<<<<<<< HEAD
+		FlowLayout layout = new FlowLayout();
+		layout.setAlignment(FlowLayout.CENTER);
+
+		this.setLayout(layout);
+		//this.setBackground(new Color(0));
+
+
+		JPanel[] panels = new JPanel[3];
+		for(int i = 0; i < panels.length; i++){
+			panels[i] = new JPanel();
+		}
+
+
+		answerComponent = new AnswerComponent(this);
+		answerComponent.setBounds(0, 0, 300, this.getHeight());
+=======
 //		FlowLayout layout = new FlowLayout();
 //		layout.setAlignment(FlowLayout.LEFT);
 //		setLayout(layout);
-		this.setLayout(null);
+		setLayout(null);
 
 
 //		layoutPanelH = new JPanel();
 //		layoutPanelH.setLayout(new BoxLayout(layoutPanelH, BoxLayout.Y_AXIS));
+>>>>>>> 746b116e5a8beaf58e34e992f4df58d454632c5a
 
 //		layoutPanelV = new JPanel();
 //		layoutPanelV.setLayout(new BoxLayout(layoutPanelV, BoxLayout.X_AXIS));
 
+<<<<<<< HEAD
+		layoutPanelH = new JPanel();
+		layoutPanelH.setLayout(new BoxLayout(layoutPanelH, BoxLayout.Y_AXIS));
+		layoutPanelH.setBorder(new EmptyBorder(0, 0, 0, 20));
 
-		answerPanel = new AnswerPanel(this);
+
+		layoutPanelV = new JPanel();
+		layoutPanelV.setLayout(new BoxLayout(layoutPanelV, BoxLayout.X_AXIS));
+		layoutPanelV.setBorder(new LineBorder(new Color(-1, true), 10));
+=======
+>>>>>>> 746b116e5a8beaf58e34e992f4df58d454632c5a
+
+//		answerPanel = new AnswerPanel(this);
 //		answerPanel.setBounds(0, 0,this.getWidth() , this.getHeight());
-
+//		answerPanel.setLocation(100,50);
+		
 		result = 2;
 
+<<<<<<< HEAD
+		mainComponent = new MainComponent(result);
+		mainComponent.setBounds(0, 48, this.getWidth(), this.getHeight());	//表示サイズを設定
+
+		statusComponent = new StatusComponent(this);
+		statusComponent.setBounds(0, 0, statusComponent.getWidth(), statusComponent.getHeight());
+
+		//BoxLayout
+		layoutPanelH.add(statusComponent);
+		layoutPanelH.add(mainComponent);
+
+		layoutPanelV.add(layoutPanelH);
+		layoutPanelV.add(answerComponent);
+=======
 		testPanel = new MainPanel(result);
-		//testPanel.setBounds(0, 0, this.getWidth(), this.getHeight());	//表示サイズを設定
-
-		statusPanel = new StatusPanel(this);
+		testPanel.setLocation(10,80);
+		
+//		statusPanel = new StatusPanel(this);
 //		statusPanel.setBounds(0, 0, statusPanel.getWidth(), statusPanel.getHeight());
-
-		ImageIcon icon = new ImageIcon("resource/data/Start/warp.gif");
+//		statusPanel.setLocation(0,0);
+		
+		ImageIcon icon = new ImageIcon("resource/data/Game/雷.jpg");
 		warp = new JLabel(icon);
 		warp.setBounds(0,0,icon.getIconWidth(),icon.getIconHeight());
 
-
+		ImageIcon btn1 = new ImageIcon("resource/data/Start/startbutton.png");
+		JButton button1 = new JButton(btn1);
+	    button1.setBounds(900, 540, 150,60 );
+	    
+	    JComboBox combo = new JComboBox();
+	    combo.setBounds(900, 80, 200,40 );
+	    
+	    ImageIcon icon2 =new ImageIcon("resource/data/Game/gauge_frame.gif");
+	    stu = new JLabel(icon2);
+	    stu.setBounds(10, 10, icon2.getIconWidth(),icon2.getIconHeight() );
+	    
+	    
+		
 		//BoxLayout
 //		layoutPanelH.add(statusPanel);
 //		layoutPanelH.add(testPanel);
@@ -86,13 +163,18 @@ public class GamePanel extends BITFPanel implements ActionListener{
 
 //		this.add(layoutPanelV);
 
-		add(statusPanel);
+		
 		add(testPanel);
-		add(answerPanel);
-		//add(warp);
+		
+//		add(answerPanel);
+//		add(statusPanel);
+		add(button1);
+		add(combo);
+		add(stu);
+		add(warp);
 
 
-
+>>>>>>> 746b116e5a8beaf58e34e992f4df58d454632c5a
 
 		init();
 
@@ -120,19 +202,24 @@ public class GamePanel extends BITFPanel implements ActionListener{
 	}
 
 	public void changeImage(){
-		testPanel.changeImage();
+		mainComponent.changeImage();
 	}
 
 	public void changeImage(int index){
-		testPanel.changeImage(index);
+		mainComponent.changeImage(index);
 	}
 
 
 	@Override
 	public int update() {
+<<<<<<< HEAD
+		mainComponent.updateUI();
+
+=======
 		testPanel.updateUI();
-
-
+	
+		
+>>>>>>> 746b116e5a8beaf58e34e992f4df58d454632c5a
 		ListCircle.getInstance().update();
 		return nextStage;
 	}
@@ -146,7 +233,11 @@ public class GamePanel extends BITFPanel implements ActionListener{
 			//1枚にかける時間
 			if (time > 0){
 				time--;
-				statusPanel.updateUI();
+<<<<<<< HEAD
+				statusComponent.updateUI();
+=======
+			//	statusPanel.updateUI(); 
+>>>>>>> 746b116e5a8beaf58e34e992f4df58d454632c5a
 			}
 			else {
 				System.out.println("Timed out");
@@ -159,6 +250,5 @@ public class GamePanel extends BITFPanel implements ActionListener{
 				nextStage = 2;
 			}
 		}
-
 	}
 }

@@ -1,5 +1,6 @@
-﻿package net.BITF.panel.game;
+﻿package net.BITF.component.game;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -11,7 +12,7 @@ import javax.swing.JPanel;
 
 import net.BITF.panel.GamePanel;
 
-public class StatusPanel extends JPanel {
+public class StatusComponent extends JPanel {
 
 	private GamePanel gamePanel;
 
@@ -29,7 +30,7 @@ public class StatusPanel extends JPanel {
 	 */
 	private BufferedImage[] statusGauge;
 
-	public StatusPanel(GamePanel gamePanel){
+	public StatusComponent(GamePanel gamePanel){
 		this.gamePanel = gamePanel;
 
 		statusGauge = new BufferedImage[3];
@@ -51,6 +52,9 @@ public class StatusPanel extends JPanel {
 	public void paintComponent(Graphics g){
 		Graphics2D g2 = (Graphics2D) g;
 
+		g2.setColor(Color.WHITE);
+		g2.drawRect(0, 0, getWidth(), getHeight());
+
 		int w = statusGauge[0].getWidth();
 		int h = statusGauge[0].getHeight();
 
@@ -62,7 +66,7 @@ public class StatusPanel extends JPanel {
 
 		g2.drawImage(statusFrame, 0, 0, this);
 
-		g2.drawRect(0, 0, getWidth() - 1, getHeight() - 1);
+//		g2.drawRect(0, 0, getWidth() - 1, getHeight() - 1);
 
 	}
 

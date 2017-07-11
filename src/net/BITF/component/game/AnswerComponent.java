@@ -1,4 +1,4 @@
-﻿package net.BITF.panel.game;
+﻿package net.BITF.component.game;
 
 import java.awt.Dimension;
 import java.awt.Font;
@@ -15,13 +15,13 @@ import net.BITF.component.NextButton;
 import net.BITF.panel.GamePanel;
 import net.BITF.util.ImageManager;
 
-public class AnswerPanel extends JPanel{
+public class AnswerComponent extends JPanel{
 
 	private NextButton pass;
 	private JComboBox comboBox;
 	private DefaultComboBoxModel model;
 
-	public AnswerPanel(GamePanel gamePanel){
+	public AnswerComponent(GamePanel gamePanel){
 
 		ImageManager images = ImageManager.getInstance();
 		String[] strings = { "選択なし" };
