@@ -76,7 +76,7 @@ public class GamePanel extends BITFPanel implements ActionListener{
 		
 		ImageIcon icon = new ImageIcon("data/Game/雷.jpg");
 		warp = new JLabel(icon);
-		warp.setBounds(0,0,icon.getIconWidth(),icon.getIconHeight());
+//		warp.setBounds(0,0,icon.getIconWidth(),icon.getIconHeight());
 
 
 		//BoxLayout
@@ -88,12 +88,12 @@ public class GamePanel extends BITFPanel implements ActionListener{
 
 //		this.add(layoutPanelV);
 
-		this.add(warp);
-
-		warp.add(testPanel);
-		warp.add(answerPanel);
-		warp.add(statusPanel);
+		
+		add(testPanel);
+		add(answerPanel);
+		add(statusPanel);
 				
+		add(warp);
 
 
 
