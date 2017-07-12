@@ -10,6 +10,7 @@ import com.thalmic.myo.Myo;
 public class Main{
 
 	public static boolean isDebugMode = false;
+	public static boolean isConnectingMyo = false;
 
 	public static Fps fps;
 	public static int stage = 0;
@@ -45,6 +46,7 @@ public class Main{
 				}
 				else {
 					System.out.println("Connected to Myo");
+					isConnectingMyo = true;
 				}
 			}
 		}

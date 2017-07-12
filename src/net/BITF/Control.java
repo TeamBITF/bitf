@@ -2,7 +2,7 @@
 
 import net.BITF.frame.DebugFrame;
 import net.BITF.frame.MainFrame;
-import net.BITF.myo.HelloMyo;
+import net.BITF.myo.MyoControl;
 import net.BITF.util.IFps;
 
 
@@ -11,7 +11,7 @@ public class Control implements IFps
 	private MainFrame mainFrame;
 	private DebugFrame debugFrame;
 
-	private HelloMyo myo;
+	private MyoControl myo;
 
 	public Control(){
 
@@ -20,12 +20,14 @@ public class Control implements IFps
 		mainFrame = new MainFrame(Main.stage);
 		mainFrame.setVisible(true);
 
-		if(Main.isDebugMode){
-			debugFrame = new DebugFrame(mainFrame);
-			debugFrame.setVisible(true);
+		if(Main.isConnectingMyo){
+			myo = new MyoControl();
 		}
 
-		//myo = new HelloMyo();
+		if(Main.isDebugMode){
+			debugFrame = new DebugFrame(mainFrame, myo);
+			debugFrame.setVisible(true);
+		}
 	}
 
 	public void update() {
@@ -33,6 +35,10 @@ public class Control implements IFps
 
 		if(Main.isDebugMode){
 			debugFrame.update();
+		}
+
+		if(Main.isConnectingMyo){
+			myo.update();
 		}
 	}
 

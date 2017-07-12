@@ -5,6 +5,8 @@ import javax.swing.JFrame;
 import javax.swing.JTextPane;
 
 import net.BITF.FrameRate;
+import net.BITF.Main;
+import net.BITF.myo.MyoControl;
 import net.BITF.panel.GamePanel;
 
 public class DebugFrame extends JFrame{
@@ -12,10 +14,13 @@ public class DebugFrame extends JFrame{
 	private String message;
 
 	private MainFrame mainFrame;
+	private MyoControl myo;
+
 	private JTextPane text;
 
-	public DebugFrame(MainFrame mainFrame){
+	public DebugFrame(MainFrame mainFrame, MyoControl myo){
 		this.mainFrame = mainFrame;
+		this.myo = myo;
 
 		setResizable(false);
 		setAlwaysOnTop(true);
@@ -42,7 +47,9 @@ public class DebugFrame extends JFrame{
 		FrameRate.getInstance().count();
 		addText(Float.toString(FrameRate.getInstance().getFrameRate()));
 
-
+		if(Main.isConnectingMyo){
+			addText(myo.toString());
+		}
 
 		text.setText(message);
 
