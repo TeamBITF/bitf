@@ -1,5 +1,8 @@
 package net.BITF.myo;
 
+import java.awt.AWTException;
+import java.awt.Robot;
+
 import net.BITF.Main;
 
 import com.thalmic.myo.Hub;
@@ -18,7 +21,7 @@ public class MyoControl {
 		 * Myoの初期化
 		 */
 
-		System.out.println(myo);
+		System.out.println("Myo" + myo);
 
 		myo = Main.myo;
 		hub = Main.hub;
@@ -37,16 +40,19 @@ public class MyoControl {
 		return dataCollector;
 	}
 	public void myocon(){
-//		try{
-//			Robot r = new Robot();  //インスタンス生成
-//			  r.mouseMove(x,y ); //座標(mouseX, mouseY)にカーソルを移動
-//			}catch(AWTException e){
-//			  e.printStackTrace();
-//			}
-//
-//		if (roll_w < 8 && 4 < roll_w ){ //右
-//			x++;                       // 右へ移動
-//		}
+		try{
+			Robot r = new Robot();  //インスタンス生成
+			  r.mouseMove(x,y ); //座標(mouseX, mouseY)にカーソルを移動
+			}catch(AWTException e){
+			  e.printStackTrace();
+			}
+
+		double roll_w = dataCollector.getRollW();
+
+		if (roll_w < 8 && 4 < roll_w ){ //右
+			x++;                        // 右へ移動
+			System.out.println(x);
+		}
 
 	}
 }

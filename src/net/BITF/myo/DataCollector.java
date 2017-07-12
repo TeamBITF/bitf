@@ -13,6 +13,8 @@ import com.thalmic.myo.enums.XDirection;
 public class DataCollector extends AbstractDeviceListener {
 	private static final int SCALE = 18;
 	private double rollW;
+
+
 	private double pitchW;
 	private double yawW;
 	private Pose currentPose;
@@ -91,5 +93,32 @@ public class DataCollector extends AbstractDeviceListener {
 			builder.append(character);
 		}
 		return builder.toString();
+	}
+
+
+
+
+	public double getRollW() {
+		return rollW;
+	}
+
+	public void setRollW(double rollW) {
+		this.rollW = rollW;
+	}
+
+	public double getPitchW() {
+		return pitchW;
+	}
+
+	public void setPitchW(double pitchW) {
+		this.pitchW = pitchW;
+	}
+
+	public double getYawW() {
+		return yawW;
+	}
+
+	public void setYawW(double yawW) {
+		this.yawW = yawW;
 	}
 }
