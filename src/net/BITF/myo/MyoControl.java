@@ -17,6 +17,9 @@ public class MyoControl {
 		/*
 		 * Myoの初期化
 		 */
+
+		System.out.println(myo);
+
 		myo = Main.myo;
 		hub = Main.hub;
 
