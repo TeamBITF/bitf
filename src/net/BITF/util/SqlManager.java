@@ -24,7 +24,7 @@ public class SqlManager {
 
 
 			while(result.next()){
-				System.out.println(result.getString("name" + " : " + result.getString("score")));
+				System.out.println(result.getString("name") + " : " + result.getInt("score"));
 			}
 
 			result.close();
