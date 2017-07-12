@@ -75,8 +75,6 @@ public class StatusComponent extends JPanel {
 		}
 
 		g2.drawImage(statusFrame, 0, 0, this);
-
-
 	}
 
 	private double getPersentage(){
