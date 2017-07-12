@@ -28,8 +28,6 @@ public class MainComponent extends JPanel implements MouseListener{
 	private BufferedImage image;
 	private BufferedImage mask;
 
-	private static int result;
-
 	private static final int IMAGE_MAX_WIDTH = 800;
 
 	public MainComponent(){
@@ -49,21 +47,16 @@ public class MainComponent extends JPanel implements MouseListener{
 	}
 
 	/**
-	 * 	画像を変更する
-	 */
-	public void changeImage(){
-		init(-1);
-	}
-
-	/**
 	 * 画像を指定したものに変更する
 	 * @param index
 	 */
-	public void changeImage(int index){
-		init(index);
+	public int changeImage(int index){
+		return init(index);
 	}
 
-	private void init(int index){
+	private int init(int index){
+		int result;
+
 		addMouseListener(this);
 		setOpaque(false);
 		//setBounds()
@@ -114,6 +107,8 @@ public class MainComponent extends JPanel implements MouseListener{
 		resetMask();
 
 		setPreferredSize(new Dimension(image.getWidth(), image.getHeight()));
+
+		return result;
 	}
 
 	@Override
@@ -196,10 +191,6 @@ public class MainComponent extends JPanel implements MouseListener{
 		g2.setColor(Color.black);
 		g2.drawString(Float.toString(FrameRate.getInstance().getFrameRate()), 16, 16);
 
-	}
-
-	public static int getResult(){
-		return result;
 	}
 
 	private int p2(int value){

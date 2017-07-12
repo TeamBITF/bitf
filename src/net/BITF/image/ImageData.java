@@ -8,11 +8,11 @@ import javax.imageio.ImageIO;
 
 public class ImageData {
 
-	private String[] name;
+	private String name;
 	private BufferedImage image;
 
-	public ImageData(String fileName, String...names){
-		this.setName(names);
+	public ImageData(String fileName, String name){
+		this.setName(name);
 
 		System.out.println("Lead for \"" + fileName + "\"");
 		try {
@@ -22,18 +22,11 @@ public class ImageData {
 		}
 	}
 
-	public String getName(int index) {
-		if (0 <= index && index < name.length){
-			return name[index];
-		}
-		return null;
-	}
-
-	public String[] getNameList(){
+	public String getName() {
 		return name;
 	}
 
-	public void setName(String[] name) {
+	public void setName(String name) {
 		this.name = name;
 	}
 

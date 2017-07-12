@@ -10,9 +10,12 @@ import net.BITF.frame.MainFrame;
  */
 public class BITFPanel extends JPanel{
 
+	protected boolean isLoading;
+
 	protected int nextStage;
 
 	public BITFPanel(){
+		isLoading = true;
 		nextStage = MainFrame.stage;
 		//setPreferredSize(new Dimension(500, 500));
 	}
@@ -28,5 +31,13 @@ public class BITFPanel extends JPanel{
 	 */
 	public int update(){
 		return MainFrame.stage;
+	}
+
+	protected void setLoading(boolean flag){
+		isLoading = flag;
+	}
+
+	public boolean isLoading() {
+		return isLoading;
 	}
 }

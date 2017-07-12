@@ -96,6 +96,9 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 			}
 
 			list.clear();
+
+
+			setLoading(false);
 		}
 
 
