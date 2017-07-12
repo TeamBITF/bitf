@@ -11,7 +11,7 @@ public class Control implements IFps
 	private MainFrame mainFrame;
 	private DebugFrame debugFrame;
 
-	private MyoControl myo;
+	private MyoControl myoControl;
 
 	public Control(){
 
@@ -21,11 +21,11 @@ public class Control implements IFps
 		mainFrame.setVisible(true);
 
 		if(Main.isConnectingMyo){
-			myo = new MyoControl();
+			myoControl = new MyoControl();
 		}
 
 		if(Main.isDebugMode){
-			debugFrame = new DebugFrame(mainFrame, myo);
+			debugFrame = new DebugFrame(mainFrame, myoControl);
 			debugFrame.setVisible(true);
 		}
 	}
@@ -38,7 +38,7 @@ public class Control implements IFps
 		}
 
 		if(Main.isConnectingMyo){
-			myo.update();
+			myoControl.update();
 		}
 	}
 

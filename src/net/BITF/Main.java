@@ -36,10 +36,10 @@ public class Main{
 				stage = Integer.valueOf(args[++i]);
 			}
 			else if(args[i].equals("-m")){
-				Hub hub = new Hub("com.example.hello-myo");
+				hub = new Hub("com.example.hello-myo");
 
 				System.out.println("Attempting to find a Myo...");
-				Myo myo = hub.waitForMyo(10000);
+				myo = hub.waitForMyo(10000);
 
 				if (myo == null) {
 					throw new RuntimeException("Unable to find a Myo!");
