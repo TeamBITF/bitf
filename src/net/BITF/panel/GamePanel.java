@@ -29,7 +29,7 @@ public class GamePanel extends BITFPanel implements ActionListener{
 	 * 1枚最大1分
 	 * value = 60
 	 */
-	public static int TIME_LIMIT_PER_IMAGE = 60;
+	public static int TIME_LIMIT_PER_IMAGE = 60 * 1000;
 
 	private AnswerComponent answerComponent;
 	private MainComponent mainComponent;
@@ -51,7 +51,7 @@ public class GamePanel extends BITFPanel implements ActionListener{
 		/**
 		 * 3分
 		 */
-		totalTimeLimit = 3 * 60;
+		totalTimeLimit = 3 * 60 * 1000;
 
 
 		/* ================================================================
@@ -118,13 +118,13 @@ public class GamePanel extends BITFPanel implements ActionListener{
 		/* ================================================================
 		 * Timerの設定
 		 * ================================================================*/
-		timer = new Timer(1000, this);
+		timer = new Timer(1, this);
 		timer.setActionCommand("time");
 		timer.start();
 	}
 
 	private void init(){
-		time = (60 < totalTimeLimit) ? GamePanel.TIME_LIMIT_PER_IMAGE : totalTimeLimit;
+		time = (60 * 1000 < totalTimeLimit) ? GamePanel.TIME_LIMIT_PER_IMAGE : totalTimeLimit;
 	}
 
 	public int getTime(){
