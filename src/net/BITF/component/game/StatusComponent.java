@@ -39,9 +39,6 @@ public class StatusComponent extends JPanel {
 		setLayout(new FlowLayout(FlowLayout.LEFT));
 		setBackground(new Color(0xFF000000, true));
 
-//		ImageIcon image = new ImageIcon("resource/data/Game/gauge_frame.gif");
-//		JLabel frame = new JLabel(image);
-
 		//ゲージの画像読み込み
 		statusGauge = new BufferedImage[3];
 		try{
@@ -55,8 +52,7 @@ public class StatusComponent extends JPanel {
 			e.printStackTrace();
 		}
 
-//		add(frame);
-		this.setPreferredSize(new Dimension(statusFrame.getWidth(), statusFrame.getHeight()));
+		setPreferredSize(new Dimension(statusFrame.getWidth(), statusFrame.getHeight()));
 	}
 
 	@Override
@@ -66,12 +62,12 @@ public class StatusComponent extends JPanel {
 		g2.drawRect(0, 0, getWidth(), getHeight());
 
 		int w = statusGauge[0].getWidth();
-		int h = statusGauge[0].getHeight();
 
-		int count = (int) (38 * getPersentage());
+		//int count = (int) (38 * getPersentage());
+		int count = (int) (57);
 
 		for (int i = 0; i < count; i++){
-			g2.drawImage(statusGauge[0], i * w + 4, 4, this);
+			g2.drawImage(statusGauge[0], i * w + 5, 3, this);
 		}
 
 		g2.drawImage(statusFrame, 0, 0, this);
