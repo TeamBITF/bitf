@@ -37,17 +37,28 @@ public class DebugFrame extends JFrame{
 	public void update(){
 		init();
 
+		//=========
+
 		addText(mainFrame.bitfPanel.toString());
 
 		if (mainFrame.bitfPanel instanceof GamePanel){
 			GamePanel panel = (GamePanel) mainFrame.bitfPanel;
-			addText(Integer.toString(panel.getTime()) + " / " + Integer.toString(GamePanel.TIME_LIMIT_PER_IMAGE));
+			addText("Left time:" + Integer.toString(panel.getTime()) + " / " + Integer.toString(GamePanel.TIME_LIMIT_PER_IMAGE));
 		}
+
+		//=========
 
 		FrameRate.getInstance().count();
 		addText(Float.toString(FrameRate.getInstance().getFrameRate()));
 
+		//==========
+
+		addText("PlayerName:" + mainFrame.userName);
+
+		//==========
+
 		if(Main.isConnectingMyo){
+			addText("MyoState:" + ((myo != null) ? "Connected" : "Disconnected"));
 			addText(myo.getDataCollector().toString());
 		}
 

@@ -82,15 +82,10 @@ public class StartPanel extends BITFPanel implements ActionListener{
 	    add(fire);
 		fire.add(image);
 
-
-
-
 	    button1.setActionCommand("game");
 	    button1.addActionListener(this);
 	    button2.setActionCommand("end");
 	    button2.addActionListener(this);
-
-
 	}
 
 
@@ -109,7 +104,7 @@ public class StartPanel extends BITFPanel implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		MainFrame.name = name.getText();
+		MainFrame.userName = name.getText();
 		if(e.getActionCommand().equals("game")){
 			this.nextStage = 1;
 		}

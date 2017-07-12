@@ -17,7 +17,7 @@ public class MainFrame extends JFrame{
 	public static final MainFrame instance = new MainFrame();
 
 	public static int stage;
-	public static String name;
+	public static String userName;
 
 	protected BITFPanel bitfPanel;
 
@@ -32,7 +32,7 @@ public class MainFrame extends JFrame{
 	}
 
 	private void init(){
-		name = "";
+		userName = "";
 
 		setName("net.bitf.GameFrame");
 		setTitle("Back Image to the Future ~春の青菜ソースを添えて~");

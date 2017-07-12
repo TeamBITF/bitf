@@ -28,7 +28,7 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 
 		this.setLayout(null);
 
-		JLabel names = new JLabel(MainFrame.name);
+		JLabel names = new JLabel(MainFrame.userName);
 		names.setForeground(Color.red);
 		names.setBounds(500,250,200,100);
 		names.setFont(new Font("Arial", Font.PLAIN, 40));
@@ -38,11 +38,11 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 		ImageIcon icon = new ImageIcon("resource/data/End/utyu.jpg");
 		utyu = new JLabel(icon);
 		utyu.setBounds(0,0,icon.getIconWidth(),icon.getIconHeight());
-		
+
 		icon = new ImageIcon("resource/data/End/result.png");
 		result= new JLabel(icon);
 		result.setBounds(0,0,icon.getIconWidth(),icon.getIconHeight());
-		
+
 		icon=new ImageIcon("resource/data/End/1_cong.png");
 		praise= new JLabel(icon);
 		praise.setBounds(400,00,icon.getIconWidth(),icon.getIconHeight());
@@ -122,7 +122,7 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 			add(Rank[i]); //マリカみたいな枠
 		}
 		add(praise);//順位によって変わる褒め言葉
-		add(result); 
+		add(result);
 		add(utyu); //背景
 
 
