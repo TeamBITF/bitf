@@ -1,7 +1,5 @@
 package net.BITF.myo;
 
-import net.BITF.Main;
-
 import com.thalmic.myo.Hub;
 import com.thalmic.myo.Myo;
 
@@ -12,15 +10,15 @@ public class MyoControl {
 
 	private DataCollector dataCollector;
 
-	public MyoControl(){
+	public MyoControl(Myo myo, Hub hub){
 		/*
 		 * Myoの初期化
 		 */
 
-		System.out.println(myo);
+		System.out.println("MyoControll" + myo);
 
-		myo = Main.myo;
-		hub = Main.hub;
+		this.myo = myo;
+		this.hub = hub;
 
 		dataCollector = new DataCollector();
 		hub.addListener(dataCollector);
