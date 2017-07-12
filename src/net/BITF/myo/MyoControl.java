@@ -27,12 +27,13 @@ public class MyoControl {
 		dataCollector = new DataCollector();
 		hub.addListener(dataCollector);
 
-
-		myocon(); //実処理
 	}
 
 	public void update(){
 		hub.run(1000/20);
+
+		myocon();	//実処理
+
 	}
 	public DataCollector getDataCollector(){
 		return dataCollector;
@@ -46,11 +47,38 @@ public class MyoControl {
 			}
 
 		double roll_w = dataCollector.getRollW();
-
+		double pitch_w = dataCollector.getPitchW();
+		
 		if (roll_w < 8 && 4 < roll_w ){ //右
 			x++;                        // 右へ移動
-			System.out.println(x);
 		}
-
+		if (pitch_w < 8 && 4 < pitch_w ){ // 下キーが押されていたら
+			y++;  // 下へ移動
+			
+		}
+		if (roll_w > 8 && 12 > roll_w && x > 0){ // 左キーが押されていたら
+			x--;                       // 左へ移動
+			
+		}
+		if (pitch_w > 8 && 12 > pitch_w && y > 0){ // 上キーが押されていたら
+			y--;                       // 上へ移動
+			
+		}
+		if (roll_w <= 4 && 0 < roll_w ){ // 右キーが押されていたら
+			x = x + 2;                       // 右へ移動
+		
+		}
+		if (pitch_w <= 4 && 0 < pitch_w ){ // 下キーが押されていたら
+			y = y + 2;                       // 下へ移動
+		
+		}
+		if (roll_w >= 12 && 16 > roll_w && x > 0){ // 左キーが押されていたら
+			x -= 2;                       // 左へ移動
+		
+		}
+		if (pitch_w >= 12 && 16 > pitch_w && y > 0 ){ // 上キーが押されていたら
+			y -= 2;                       // 上へ移動
+			
+		}
 	}
 }
