@@ -125,11 +125,6 @@ public class GamePanel extends BITFPanel implements ActionListener{
 
 	private void init(){
 		time = (60 < totalTimeLimit) ? GamePanel.TIME_LIMIT_PER_IMAGE : totalTimeLimit;
-
-		/*
-		 * TODO
-		 * 画像の初期化処理を組み込む
-		 */
 	}
 
 	public int getTime(){
