@@ -3,8 +3,6 @@ package net.BITF.myo;
 import java.awt.AWTException;
 import java.awt.Robot;
 
-import net.BITF.Main;
-
 import com.thalmic.myo.Hub;
 import com.thalmic.myo.Myo;
 
@@ -16,15 +14,15 @@ public class MyoControl {
 	private DataCollector dataCollector;
 
 	private int x=600,y=600;//マウス初期位置
-	public MyoControl(){
+	public MyoControl(Myo myo, Hub hub){
 		/*
 		 * Myoの初期化
 		 */
 
-		System.out.println("Myo" + myo);
+		System.out.println("MyoControll:" + myo);
 
-		myo = Main.myo;
-		hub = Main.hub;
+		this.myo = myo;
+		this.hub = hub;
 
 		dataCollector = new DataCollector();
 		hub.addListener(dataCollector);
