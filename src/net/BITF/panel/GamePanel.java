@@ -1,27 +1,25 @@
 ﻿package net.BITF.panel;
 
-<<<<<<< HEAD
-import java.awt.Color;
 import java.awt.FlowLayout;
-=======
->>>>>>> 746b116e5a8beaf58e34e992f4df58d454632c5a
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
+import javax.imageio.ImageIO;
+import javax.swing.BoxLayout;
+import javax.swing.JPanel;
 import javax.swing.Timer;
-import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
 
 import net.BITF.Circle.ListCircle;
 import net.BITF.component.game.AnswerComponent;
 import net.BITF.component.game.MainComponent;
 import net.BITF.component.game.StatusComponent;
-public class GamePanel extends BITFPanel implements ActionListener{
 
+public class GamePanel extends BITFPanel implements ActionListener{
 	/**
 	 * 正解を格納する変数
 	 */
@@ -33,7 +31,6 @@ public class GamePanel extends BITFPanel implements ActionListener{
 	 */
 	public static int TIME_LIMIT_PER_IMAGE = 60;
 
-<<<<<<< HEAD
 	private AnswerComponent answerComponent;
 	private MainComponent mainComponent;
 	private StatusComponent statusComponent;
@@ -41,19 +38,8 @@ public class GamePanel extends BITFPanel implements ActionListener{
 	private JPanel layoutPanelH;
 	private JPanel layoutPanelV;
 
-=======
-	private AnswerPanel answerPanel;
-	private MainPanel testPanel;
-	private StatusPanel statusPanel;
-	private JComboBox comboBox;
-	
-//	private JPanel layoutPanelH;
-//	private JPanel layoutPanelV;
+	private BufferedImage bg;
 
-	private JLabel warp;
-	private JLabel stu;
-	
->>>>>>> 746b116e5a8beaf58e34e992f4df58d454632c5a
 	protected Timer timer;
 	protected int totalTimeLimit;
 	private int time;
@@ -68,119 +54,70 @@ public class GamePanel extends BITFPanel implements ActionListener{
 		totalTimeLimit = 3 * 60;
 
 
-<<<<<<< HEAD
-		FlowLayout layout = new FlowLayout();
-		layout.setAlignment(FlowLayout.CENTER);
+		/* ================================================================
+		 * 初期化
+		 * ================================================================*/
 
-		this.setLayout(layout);
-		//this.setBackground(new Color(0));
+		/*
+		 * GamePanelの初期化
+		 */
 
+		//レイアウト
+		setLayout(new FlowLayout(FlowLayout.CENTER));
 
-		JPanel[] panels = new JPanel[3];
-		for(int i = 0; i < panels.length; i++){
-			panels[i] = new JPanel();
-		}
+		/*
+		 * Layout指定したパネルの設定
+		 */
 
-
-		answerComponent = new AnswerComponent(this);
-		answerComponent.setBounds(0, 0, 300, this.getHeight());
-=======
-//		FlowLayout layout = new FlowLayout();
-//		layout.setAlignment(FlowLayout.LEFT);
-//		setLayout(layout);
-		setLayout(null);
-
-
-//		layoutPanelH = new JPanel();
-//		layoutPanelH.setLayout(new BoxLayout(layoutPanelH, BoxLayout.Y_AXIS));
->>>>>>> 746b116e5a8beaf58e34e992f4df58d454632c5a
-
-//		layoutPanelV = new JPanel();
-//		layoutPanelV.setLayout(new BoxLayout(layoutPanelV, BoxLayout.X_AXIS));
-
-<<<<<<< HEAD
+		//縦
 		layoutPanelH = new JPanel();
 		layoutPanelH.setLayout(new BoxLayout(layoutPanelH, BoxLayout.Y_AXIS));
-		layoutPanelH.setBorder(new EmptyBorder(0, 0, 0, 20));
+		layoutPanelH.setOpaque(false);
+		//layoutPanelH.setBorder(new EmptyBorder(0, 0, 0, 20));
 
-
+		//横
 		layoutPanelV = new JPanel();
 		layoutPanelV.setLayout(new BoxLayout(layoutPanelV, BoxLayout.X_AXIS));
-		layoutPanelV.setBorder(new LineBorder(new Color(-1, true), 10));
-=======
->>>>>>> 746b116e5a8beaf58e34e992f4df58d454632c5a
+		layoutPanelV.setOpaque(false);
+		//layoutPanelV.setBorder(new LineBorder(new Color(-1, true), 10));
 
-//		answerPanel = new AnswerPanel(this);
-//		answerPanel.setBounds(0, 0,this.getWidth() , this.getHeight());
-//		answerPanel.setLocation(100,50);
-		
+		//Components
 		result = 2;
-
-<<<<<<< HEAD
+		answerComponent = new AnswerComponent(this);
 		mainComponent = new MainComponent(result);
-		mainComponent.setBounds(0, 48, this.getWidth(), this.getHeight());	//表示サイズを設定
-
 		statusComponent = new StatusComponent(this);
-		statusComponent.setBounds(0, 0, statusComponent.getWidth(), statusComponent.getHeight());
 
-		//BoxLayout
+
+		/* ================================================================
+		 * Componentの配置
+		 * ================================================================*/
+
 		layoutPanelH.add(statusComponent);
-		layoutPanelH.add(mainComponent);
 
-		layoutPanelV.add(layoutPanelH);
+		layoutPanelV.add(mainComponent);
 		layoutPanelV.add(answerComponent);
-=======
-		testPanel = new MainPanel(result);
-		testPanel.setLocation(10,80);
-		
-//		statusPanel = new StatusPanel(this);
-//		statusPanel.setBounds(0, 0, statusPanel.getWidth(), statusPanel.getHeight());
-//		statusPanel.setLocation(0,0);
-		
-		ImageIcon icon = new ImageIcon("resource/data/Game/雷.jpg");
-		warp = new JLabel(icon);
-		warp.setBounds(0,0,icon.getIconWidth(),icon.getIconHeight());
 
-		ImageIcon btn1 = new ImageIcon("resource/data/Start/startbutton.png");
-		JButton button1 = new JButton(btn1);
-	    button1.setBounds(900, 540, 150,60 );
-	    
-	    JComboBox combo = new JComboBox();
-	    combo.setBounds(900, 80, 300,40 );
-	    
-	    ImageIcon icon2 =new ImageIcon("resource/data/Game/gauge_frame.gif");
-	    stu = new JLabel(icon2);
-	    stu.setBounds(10, 10, icon2.getIconWidth(),icon2.getIconHeight() );
-	    
-	    ImageIcon[] icons = new ImageIcon[3];
-	    for (int i = 0; i < 3; i++){
-	    
-	    	icons[i] = new ImageIcon("resource/data/Game/gauge_" + i + ".jpg");
-	    	//label[i]=new JLabel(icons[i]);
-	    	//label[i].setBounds(840 - i * 40,265+a*70,icons[i].getIconWidth(),icons[i].getIconHeight());
+		layoutPanelH.add(layoutPanelV);
+
+		add(layoutPanelH);
+
+
+		/*
+		 * 背景画像の読み込み
+		 */
+
+		try {
+			bg = ImageIO.read(new File("resource/data/Game/雷.jpg"));
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-	    for(int i=0,a=0;i<40;i++,a=a+21){
-	    	//add(icons[1]);
-	    }
-		
 
-
-		
-		add(testPanel);
-		
-//		add(answerPanel);
-//		add(statusPanel);
-		add(button1);
-		add(combo);
-		add(stu);
-		add(warp);
-
-
->>>>>>> 746b116e5a8beaf58e34e992f4df58d454632c5a
-
+		//その他
 		init();
 
-		//1秒で更新
+		/* ================================================================
+		 * Timerの設定
+		 * ================================================================*/
 		timer = new Timer(1000, this);
 		timer.setActionCommand("time");
 		timer.start();
@@ -214,14 +151,8 @@ public class GamePanel extends BITFPanel implements ActionListener{
 
 	@Override
 	public int update() {
-<<<<<<< HEAD
 		mainComponent.updateUI();
 
-=======
-		testPanel.updateUI();
-	
-		
->>>>>>> 746b116e5a8beaf58e34e992f4df58d454632c5a
 		ListCircle.getInstance().update();
 		return nextStage;
 	}
@@ -235,11 +166,7 @@ public class GamePanel extends BITFPanel implements ActionListener{
 			//1枚にかける時間
 			if (time > 0){
 				time--;
-<<<<<<< HEAD
 				statusComponent.updateUI();
-=======
-			//	statusPanel.updateUI(); 
->>>>>>> 746b116e5a8beaf58e34e992f4df58d454632c5a
 			}
 			else {
 				System.out.println("Timed out");
@@ -252,5 +179,14 @@ public class GamePanel extends BITFPanel implements ActionListener{
 				nextStage = 2;
 			}
 		}
+	}
+
+
+	@Override
+    public void paintComponent(Graphics g) {
+		Graphics2D g2 = (Graphics2D) g;
+
+		g2.drawImage(bg, 0, 0, this);
+
 	}
 }

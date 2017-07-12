@@ -1,7 +1,5 @@
 ﻿package net.BITF.panel;
 
-import java.awt.Dimension;
-
 import javax.swing.JPanel;
 
 import net.BITF.frame.MainFrame;
@@ -16,7 +14,7 @@ public class BITFPanel extends JPanel{
 
 	public BITFPanel(){
 		nextStage = MainFrame.stage;
-		setPreferredSize(new Dimension(500, 500));
+		//setPreferredSize(new Dimension(500, 500));
 	}
 
 	public BITFPanel getInstance(){

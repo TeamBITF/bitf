@@ -1,6 +1,5 @@
 ﻿package net.BITF.component.game;
 
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -18,8 +17,8 @@ import net.BITF.util.ImageManager;
 public class AnswerComponent extends JPanel{
 
 	private NextButton pass;
-	private JComboBox comboBox;
-	private DefaultComboBoxModel model;
+	private JComboBox<String> comboBox;
+	private DefaultComboBoxModel<String> model;
 
 	public AnswerComponent(GamePanel gamePanel){
 
@@ -41,7 +40,7 @@ public class AnswerComponent extends JPanel{
 
 		pass = new NextButton(gamePanel);
 		comboBox = new JComboBox(model);
-	    comboBox.setPreferredSize(new Dimension(500, 40));
+	    //comboBox.setPreferredSize(new Dimension(500, 40));
 	    comboBox.setFont(new Font("ＭＳ ゴシック", Font.BOLD, 30));
 
 		add(pass);

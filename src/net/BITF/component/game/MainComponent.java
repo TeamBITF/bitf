@@ -113,7 +113,7 @@ public class MainComponent extends JPanel implements MouseListener{
 		mask = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
 		resetMask();
 
-		 setPreferredSize(new Dimension(image.getWidth() + 100, image.getHeight()));
+		setPreferredSize(new Dimension(image.getWidth(), image.getHeight()));
 	}
 
 	@Override

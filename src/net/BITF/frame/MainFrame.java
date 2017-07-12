@@ -100,6 +100,4 @@ public class MainFrame extends JFrame{
 
 		FrameRate.getInstance().count();
 	}
-
-
 }
