@@ -30,7 +30,6 @@ public class Main{
 		for (int i = 0; i < args.length; i++){
 			if (args[i].equals("-d")){
 				isDebugMode = true;
-				System.out.println("DebugMode:true");
 			}
 			else if(args[i].equals("-s")){
 				stage = Integer.valueOf(args[++i]);

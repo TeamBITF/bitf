@@ -19,7 +19,7 @@ public class MainFrame extends JFrame{
 	public static int stage;
 	public static String name;
 
-	private BITFPanel bitfPanel;
+	protected BITFPanel bitfPanel;
 
 	public MainFrame(){
 		stage = 0;

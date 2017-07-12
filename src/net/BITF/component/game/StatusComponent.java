@@ -63,11 +63,11 @@ public class StatusComponent extends JPanel {
 
 		int w = statusGauge[0].getWidth();
 
-		//int count = (int) (38 * getPersentage());
-		int count = (int) (57);
+		int count = (int) (57 * getPersentage());
+		//int count = (int) (57);
 
 		for (int i = 0; i < count; i++){
-			g2.drawImage(statusGauge[0], i * w + 5, 3, this);
+			g2.drawImage(statusGauge[0], i * w + 5 , 3, this);
 		}
 
 		g2.drawImage(statusFrame, 0, 0, this);
