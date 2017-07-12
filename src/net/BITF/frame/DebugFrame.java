@@ -25,7 +25,7 @@ public class DebugFrame extends JFrame{
 		setResizable(false);
 		setAlwaysOnTop(true);
 
-		setBounds(0, 0, 200, 200);
+		setBounds(0, 0, 500, 200);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 		setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
@@ -48,7 +48,7 @@ public class DebugFrame extends JFrame{
 		addText(Float.toString(FrameRate.getInstance().getFrameRate()));
 
 		if(Main.isConnectingMyo){
-			addText(myo.toString());
+			addText(myo.getDataCollector().toString());
 		}
 
 		text.setText(message);
