@@ -12,7 +12,6 @@ import java.util.Random;
 
 import javax.swing.JPanel;
 
-import net.BITF.FrameRate;
 import net.BITF.Circle.Circle;
 import net.BITF.Circle.ListCircle;
 import net.BITF.util.ImageManager;
@@ -184,13 +183,7 @@ public class MainComponent extends JPanel implements MouseListener{
 	    	}
 	    }
 
-
-
 		g2.drawImage(mask, 0, 0, this);
-
-		g2.setColor(Color.black);
-		g2.drawString(Float.toString(FrameRate.getInstance().getFrameRate()), 16, 16);
-
 	}
 
 	private int p2(int value){
