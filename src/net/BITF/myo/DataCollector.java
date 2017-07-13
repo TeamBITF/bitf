@@ -65,6 +65,7 @@ public class DataCollector extends AbstractDeviceListener {
 			break;
 		case FINGERS_SPREAD:
 			robot.mousePress(InputEvent.BUTTON1_MASK);
+			robot.mouseRelease(InputEvent.BUTTON1_MASK);
 			break;
 
 
