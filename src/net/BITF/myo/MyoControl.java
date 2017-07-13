@@ -14,6 +14,8 @@ public class MyoControl {
 	private DataCollector dataCollector;
 
 	private int x=600,y=600;//マウス初期位置
+	private float v = 3,s = 2;
+
 	public MyoControl(Myo myo, Hub hub){
 		/*
 		 * Myoの初期化
@@ -48,37 +50,24 @@ public class MyoControl {
 
 		double roll_w = dataCollector.getRollW();
 		double pitch_w = dataCollector.getPitchW();
-		
-		if (roll_w < 8 && 4 < roll_w ){ //右
-			x++;                        // 右へ移動
+
+
+		if(x<8){
+			x=(int) (x-(((int)roll_w-8)*v)); //左
 		}
-		if (pitch_w < 8 && 4 < pitch_w ){ // 下キーが押されていたら
-			y++;  // 下へ移動
-			
+		else{
+			x=(int) (x-(((int)roll_w-8)*s));//右
 		}
-		if (roll_w > 8 && 12 > roll_w && x > 0){ // 左キーが押されていたら
-			x--;                       // 左へ移動
-			
+		y=y-(int)pitch_w+8;//上下
+
+		if (dataCollector.getCurrentPose() != null) {
+			String pose = dataCollector.getCurrentPose().getType().toString();
+			if(pose.equals("REST")){
+
+			}
 		}
-		if (pitch_w > 8 && 12 > pitch_w && y > 0){ // 上キーが押されていたら
-			y--;                       // 上へ移動
-			
-		}
-		if (roll_w <= 4 && 0 < roll_w ){ // 右キーが押されていたら
-			x = x + 2;                       // 右へ移動
-		
-		}
-		if (pitch_w <= 4 && 0 < pitch_w ){ // 下キーが押されていたら
-			y = y + 2;                       // 下へ移動
-		
-		}
-		if (roll_w >= 12 && 16 > roll_w && x > 0){ // 左キーが押されていたら
-			x -= 2;                       // 左へ移動
-		
-		}
-		if (pitch_w >= 12 && 16 > pitch_w && y > 0 ){ // 上キーが押されていたら
-			y -= 2;                       // 上へ移動
-			
-		}
+
+
+
 	}
 }

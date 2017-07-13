@@ -121,4 +121,8 @@ public class DataCollector extends AbstractDeviceListener {
 	public void setYawW(double yawW) {
 		this.yawW = yawW;
 	}
+
+	public Pose getCurrentPose() {
+		return currentPose;
+	}
 }
