@@ -59,7 +59,6 @@ public class MyoControl {
 
 		if (dataCollector.getCurrentPose() != null) {
 			String pose = dataCollector.getCurrentPose().getType().toString();
-			if(pose.equals("FINGERS_SPREAD")){
 
 			}
 		}
@@ -67,4 +66,4 @@ public class MyoControl {
 		robot.mouseMove(x, y);
 
 	}
-}
+
