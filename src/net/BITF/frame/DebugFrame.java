@@ -43,6 +43,7 @@ public class DebugFrame extends JFrame{
 
 		if (mainFrame.bitfPanel instanceof GamePanel){
 			GamePanel panel = (GamePanel) mainFrame.bitfPanel;
+			addText("ImageID:" + Integer.toString(panel.getResult()));
 			addText("Left time:" + Integer.toString(panel.getTime()) + " / " + Integer.toString(GamePanel.TIME_LIMIT_PER_IMAGE));
 		}
 
@@ -50,6 +51,8 @@ public class DebugFrame extends JFrame{
 
 		FrameRate.getInstance().count();
 		addText(Float.toString(FrameRate.getInstance().getFrameRate()));
+
+		addText("PanelState:" + (mainFrame.bitfPanel.isLoading() ? "Loading" : "Ready"));
 
 		//==========
 

@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.swing.DefaultComboBoxModel;
@@ -18,34 +19,38 @@ public class AnswerComponent extends JPanel{
 
 	private NextButton pass;
 	private JComboBox<String> comboBox;
-	private DefaultComboBoxModel<String> model;
+
+	private GamePanel gamePanel;
 
 	public AnswerComponent(GamePanel gamePanel){
-
-		ImageManager images = ImageManager.getInstance();
-		String[] strings = { "選択なし" };
-
-		List<String> list = new ArrayList<String>();
-		list.add("選択なし");
-
-		String[] nameList = images.getImageFromList(gamePanel.getResult()).getNameList();
-		for (int i = 0; i < nameList.length; i++){
-			list.add(images.getImageFromList(gamePanel.getResult()).getName(i));
-		}
-
-		//strings += images.getImageFromList(GameFrame.getResult()).getNameList();
-
-
-		model = new DefaultComboBoxModel(list.toArray());
+		this.gamePanel = gamePanel;
 
 		pass = new NextButton(gamePanel);
-		comboBox = new JComboBox(model);
+		comboBox = new JComboBox<String>();
+
+		reset();
+
 	    //comboBox.setPreferredSize(new Dimension(500, 40));
 	    comboBox.setFont(new Font("ＭＳ ゴシック", Font.BOLD, 30));
 
 		add(pass);
 		add(comboBox);
 
+	}
+
+	public void reset(){
+		ImageManager images = ImageManager.getInstance();
+
+		List<String> list = new ArrayList<String>();
+		list.add("選択なし");
+		list.addAll(Arrays.asList(images.generateRandomList(gamePanel.getResult())));
+
+		DefaultComboBoxModel<String> model = new DefaultComboBoxModel<String>();
+		for (int i = 0; i < list.size(); i++){
+			model.addElement(list.get(i));
+		}
+
+		comboBox.setModel(model);
 	}
 
 	@Override

@@ -86,6 +86,8 @@ public class StartPanel extends BITFPanel implements ActionListener{
 	    button1.addActionListener(this);
 	    button2.setActionCommand("end");
 	    button2.addActionListener(this);
+
+	    setLoading(false);
 	}
 
 

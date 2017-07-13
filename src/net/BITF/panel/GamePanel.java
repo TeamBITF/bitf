@@ -20,6 +20,7 @@ import net.BITF.component.game.MainComponent;
 import net.BITF.component.game.StatusComponent;
 
 public class GamePanel extends BITFPanel implements ActionListener{
+
 	/**
 	 * 正解を格納する変数
 	 */
@@ -45,7 +46,6 @@ public class GamePanel extends BITFPanel implements ActionListener{
 	private int time;
 
 	public GamePanel(){
-
 		super();
 
 		/**
@@ -121,6 +121,8 @@ public class GamePanel extends BITFPanel implements ActionListener{
 		timer = new Timer(1, this);
 		timer.setActionCommand("time");
 		timer.start();
+
+		setLoading(false);
 	}
 
 	private void init(){
@@ -136,11 +138,12 @@ public class GamePanel extends BITFPanel implements ActionListener{
 	}
 
 	public void changeImage(){
-		mainComponent.changeImage();
+		changeImage(-1);
+		answerComponent.reset();
 	}
 
 	public void changeImage(int index){
-		mainComponent.changeImage(index);
+		result = mainComponent.changeImage(index);
 	}
 
 
@@ -180,8 +183,6 @@ public class GamePanel extends BITFPanel implements ActionListener{
 	@Override
     public void paintComponent(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
-
 		g2.drawImage(bg, 0, 0, this);
-
 	}
 }
