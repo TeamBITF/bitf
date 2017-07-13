@@ -62,8 +62,8 @@ public class MyoControl {
 
 		if (dataCollector.getCurrentPose() != null) {
 			String pose = dataCollector.getCurrentPose().getType().toString();
-			if(pose.equals("FINGERS_SPREAD")){
-				
+			if(pose.equals("FINGERS_SPREAD")){ //クリック
+				System.out.println("クリック");
 			}
 		}
 
