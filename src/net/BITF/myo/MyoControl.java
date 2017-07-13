@@ -59,11 +59,13 @@ public class MyoControl {
 
 		if (dataCollector.getCurrentPose() != null) {
 			String pose = dataCollector.getCurrentPose().getType().toString();
-
-			}
 		}
 
 		robot.mouseMove(x, y);
 
 	}
+
+
+
+}
 
