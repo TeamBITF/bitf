@@ -1,6 +1,5 @@
 package net.BITF.myo;
 
-import java.awt.AWTException;
 import java.awt.Robot;
 
 import com.thalmic.myo.Hub;
@@ -41,12 +40,8 @@ public class MyoControl {
 		return dataCollector;
 	}
 	public void myocon(){
-		try{
-			Robot r = new Robot();  //インスタンス生成
-			  r.mouseMove(x,y ); //座標(mouseX, mouseY)にカーソルを移動
-			}catch(AWTException e){
-			  e.printStackTrace();
-			}
+
+		Robot r = dataCollector.getRobot();
 
 		double roll_w = dataCollector.getRollW();
 		double pitch_w = dataCollector.getPitchW();
@@ -63,7 +58,7 @@ public class MyoControl {
 		if (dataCollector.getCurrentPose() != null) {
 			String pose = dataCollector.getCurrentPose().getType().toString();
 			if(pose.equals("FINGERS_SPREAD")){
-				
+
 			}
 		}
 
