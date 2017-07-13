@@ -153,4 +153,5 @@ public class DataCollector extends AbstractDeviceListener {
 	public Robot getRobot() {
 		return robot;
 	}
+
 }

@@ -10,6 +10,8 @@ public class MyoControl {
 	private Hub hub;
 	private Myo myo;
 
+	private Robot robot;
+
 	private DataCollector dataCollector;
 
 	private int x=600,y=600;//マウス初期位置
@@ -28,6 +30,8 @@ public class MyoControl {
 		dataCollector = new DataCollector();
 		hub.addListener(dataCollector);
 
+		robot = dataCollector.getRobot();
+
 	}
 
 	public void update(){
@@ -40,8 +44,6 @@ public class MyoControl {
 		return dataCollector;
 	}
 	public void myocon(){
-
-		Robot r = dataCollector.getRobot();
 
 		double roll_w = dataCollector.getRollW();
 		double pitch_w = dataCollector.getPitchW();
@@ -62,7 +64,7 @@ public class MyoControl {
 			}
 		}
 
-
+		robot.mouseMove(x, y);
 
 	}
 }
