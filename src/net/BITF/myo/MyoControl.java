@@ -1,6 +1,7 @@
 package net.BITF.myo;
 
 import java.awt.Robot;
+import java.awt.event.InputEvent;
 
 import com.thalmic.myo.Hub;
 import com.thalmic.myo.Myo;
@@ -16,7 +17,9 @@ public class MyoControl {
 
 	private int x=600,y=600;//マウス初期位置
 	private float v = 3,s = 2;
-
+	
+	
+	
 	public MyoControl(Myo myo, Hub hub){
 		/*
 		 * Myoの初期化
@@ -36,7 +39,12 @@ public class MyoControl {
 
 	public void update(){
 		hub.run(1000/20);
-
+		
+		if(dataCollector.flag){
+			robot.mousePress(InputEvent.BUTTON1_MASK);
+			robot.mouseRelease(InputEvent.BUTTON1_MASK);
+		}
+		
 		myocon();	//実処理
 
 	}

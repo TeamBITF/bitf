@@ -25,7 +25,8 @@ public class DataCollector extends AbstractDeviceListener {
 	private Arm whichArm;
 
 	private Robot robot;
-
+	public boolean flag=false;
+	
 	public DataCollector() {
 		rollW = 0;
 		pitchW = 0;
@@ -59,14 +60,19 @@ public class DataCollector extends AbstractDeviceListener {
 		if (currentPose.getType() == PoseType.FIST) {
 			myo.vibrate(VibrationType.VIBRATION_MEDIUM);
 		}
-
+		
+		flag=false;
 		switch(currentPose.getType()){
 		case FIST:
-			break;
-		case FINGERS_SPREAD:
 			robot.mousePress(InputEvent.BUTTON1_MASK);
 			robot.mouseRelease(InputEvent.BUTTON1_MASK);
 			break;
+		case FINGERS_SPREAD:
+			flag=true;
+			robot.mousePress(InputEvent.BUTTON1_MASK);
+			robot.mouseRelease(InputEvent.BUTTON1_MASK);
+			break;
+			
 
 
 		default:
