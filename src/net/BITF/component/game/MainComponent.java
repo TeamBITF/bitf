@@ -29,12 +29,12 @@ public class MainComponent extends JPanel implements MouseListener{
 	private static final int IMAGE_MAX_WIDTH = 800;
 
 	public MainComponent(){
+
 		setBackground(new Color(maskColor, true));
 		changeImage(-1);
 	}
 
 	public MainComponent(int select){
-		setBackground(new Color(maskColor, true));
 		changeImage(select);
 	}
 
@@ -139,6 +139,15 @@ public class MainComponent extends JPanel implements MouseListener{
 
 					if (0 <= j && j < array.length){
 						array[j] = array[j] & 0xFFFFFF | alpha << 24;
+					}
+				}
+				else{
+					if (0 <= i &&i < array.length){
+						array[i] = array[i] & 0xFFFFFF | initialAlpha << 24;
+					}
+
+					if (0 <= j && j < array.length){
+						array[j] = array[j] & 0xFFFFFF | initialAlpha << 24;
 					}
 				}
 			}
