@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 
 import net.BITF.Circle.Circle;
 import net.BITF.Circle.ListCircle;
+import net.BITF.image.ImageData;
 import net.BITF.util.ImageManager;
 
 public class MainComponent extends JPanel implements MouseListener{
@@ -21,7 +22,7 @@ public class MainComponent extends JPanel implements MouseListener{
 	private boolean flag;
 	private int index;
 
-	private int initialAlpha = 0x22000000;
+	private int initialAlpha = 0x0;
 	private int maskColor = 0xFF5698d5;
 
 	private BufferedImage image;
@@ -79,7 +80,7 @@ public class MainComponent extends JPanel implements MouseListener{
 
 		int[] array = manager.getImageFromList(index).getRGBArray();
 		for (int i = 0; i < array.length; i++){
-			array[i] = array[i] & 0xFFFFFF | 0x22000000;
+			array[i] = array[i] & 0xFFFFFF | initialAlpha;
 		}
 
 		image.setRGB(0, 0, data.getWidth(), data.getHeight(), array, 0, data.getWidth());
@@ -95,65 +96,81 @@ public class MainComponent extends JPanel implements MouseListener{
 
 	    Iterator<Circle> it = ListCircle.getInstance().getList().iterator();
 	    if (it.hasNext()){
+	    	flag = true;
 	    	while(it.hasNext()){
 				Circle circle = it.next();
-				Color c2 = new Color(maskColor, true);
 
-				float a = circle.getAlphaFloat();
-
-//				System.out.printf("%x : %d : %f\n", c2.getRGB(), circle.getAlpha(), circle.getAlphaFloat());
-//				System.out.printf("%x\n", c2.getRGB());
-
-				//描画の開始位置(高さ)
-				int start = circle.y - circle.r;
-				int end = circle.y + circle.r;
-
-				render(circle.x - circle.r, circle.y - circle.r, circle.r, circle);
-
+				render(circle);
 		    }
-	    	flag = true;
+	    }
+	    else if(flag){
+	    	flag = false;
 	    }
 
-		//g2.drawImage(mask, 0, 0, this);
 		g2.drawImage(image, 0, 0, this);
 	}
 
 
-	private int[] render(int startX, int startY, int r, Circle circle){
+	private int[] render(Circle circle){
 
-		final int l = r * 2;
-		int alpha = circle.getAlpha();
+		final int r = circle.r;
 
-		BufferedImage data = ImageManager.getInstance().getImageFromList(index).getImage();
-		int[] array = data.getRGB(startX, startY, l, l, null, 0, l);
+		int startX = circle.x - r;
+		int startY = circle.y - r;
 
-		for (int x = 0; x < l; x++){
-			for (int y = x; y < l; y++){
-				int i = x + y * l;
-				int j = array.length - i - 1;
+		int endX = circle.x + r;
+		int endY = circle.y + r;
 
-				if((p2(x - r) + p2(y - r)) < p2(r)){
-					if (0 <= i &&i < array.length){
-						array[i] = array[i] & 0xFFFFFF | alpha << 24;
-					}
+		int w, h;
 
-					if (0 <= j && j < array.length){
-						array[j] = array[j] & 0xFFFFFF | alpha << 24;
-					}
-				}
-				else{
-					if (0 <= i &&i < array.length){
-						array[i] = array[i] & 0xFFFFFF | initialAlpha << 24;
-					}
+		//ずれ
+		//初回描画座標がマイナスのときのみ値を設定
+		int offsetX = 0;
+		int offsetY = 0;
 
-					if (0 <= j && j < array.length){
-						array[j] = array[j] & 0xFFFFFF | initialAlpha << 24;
-					}
-				}
+		//startがマイナス
+		if (startX < 0){
+			offsetX = startX;
+			startX = 0;
+		}
+		if (startY < 0){
+			offsetY = startY;
+			startY = 0;
+		}
+
+		//endが画像サイズより大きい
+		if (endX > image.getWidth() ){
+			endX = image.getWidth();
+		}
+
+		if (endY > image.getHeight()){
+			endY = image.getHeight();
+		}
+
+		w = endX - startX;
+		h = endY - startY;
+
+//		System.out.printf("r:%d\noffset\n%d\n%d\n", r, offsetX, offsetY);
+
+		//一部分の読み取り
+		ImageData data = ImageManager.getInstance().getImageFromList(index);
+		int[] array =  data.getRGBArray(startX, startY, w, h);
+
+		for (int y = 0; y < h; y++){
+			for (int x = 0; x < w; x++){
+
+				//配列のインデックス
+				int i = x + y * w;
+
+				boolean flag = (p2(x - r - offsetX) + p2(y - r - offsetY)) < p2(r);
+				int alpha = (flag) ? circle.getAlpha() : initialAlpha;
+
+				array[i] = array[i] & 0xFFFFFF | alpha << 24;
+
 			}
 		}
 
-		image.setRGB(startX, startY, l, l, array, 0, l);
+		image.setRGB(startX, startY, w, h, array, 0, w);
 		return array;
 	}
 

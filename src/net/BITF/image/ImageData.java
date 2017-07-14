@@ -22,11 +22,6 @@ public class ImageData {
 
 			int[] array = raw.getRGB(0, 0, w, h, null, 0, w);
 
-//			//α値を0にする
-//			for (int i = 0; i < array.length; i++){
-//				array[i] = array[i] & 0xFFFFFF | 0x22000000;
-//			}
-
 			image = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
 			image.setRGB(0, 0, w, h, array, 0, w);
 
