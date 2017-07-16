@@ -99,6 +99,7 @@ public class MainComponent extends JPanel implements MouseListener{
 	    	flag = true;
 	    	while(it.hasNext()){
 				Circle circle = it.next();
+//				System.out.println("Circle r:" + circle.r);
 
 				render(circle);
 		    }

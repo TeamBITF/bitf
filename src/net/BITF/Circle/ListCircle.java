@@ -45,9 +45,10 @@ public class ListCircle {
 	 * マウスのY座標
 	 */
 	public void clicked(int mouse_x, int mouse_y){
+		//なかった時
 		if(!Circle.collision(mouse_x, mouse_y)){
 			Circle c = new Circle(mouse_x, mouse_y);
-			System.out.println("ListCircle : " + c + "\nhas created");
+			System.out.println("ListCircle : " + c + "\nhas created" + c.r);
 			list.add(c);
 		}
 	}
