@@ -173,7 +173,7 @@ public class GamePanel extends BITFPanel implements ActionListener{
 			}
 
 			//全体の制限時間
-			if (totalTimeLimit <= 0){
+			if (/*totalTimeLimit*/ time <= 50000){//とりま20秒位で遷移
 				nextStage = 2;
 			}
 		}

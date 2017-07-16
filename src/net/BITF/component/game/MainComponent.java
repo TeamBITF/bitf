@@ -14,33 +14,29 @@ import javax.swing.JPanel;
 
 import net.BITF.Circle.Circle;
 import net.BITF.Circle.ListCircle;
+import net.BITF.image.ImageData;
 import net.BITF.util.ImageManager;
 
 public class MainComponent extends JPanel implements MouseListener{
 
 	private boolean flag;
+	private int index;
 
-	private int maskColor;
+	private int initialAlpha = 0x0;
+	private int maskColor = 0xFF5698d5;
 
 	private BufferedImage image;
-	private BufferedImage mask;
 
 	private static final int IMAGE_MAX_WIDTH = 800;
 
 	public MainComponent(){
+
+		setBackground(new Color(maskColor, true));
 		changeImage(-1);
 	}
 
 	public MainComponent(int select){
-		init(select);
-	}
-
-	private void resetMask(){
-		for (int i = 0; i < mask.getWidth(); i++){
-			for (int j = 0; j < mask.getHeight(); j++){
-				mask.setRGB(i, j, maskColor);
-			}
-		}
+		changeImage(select);
 	}
 
 	/**
@@ -52,6 +48,8 @@ public class MainComponent extends JPanel implements MouseListener{
 	}
 
 	private int init(int index){
+		this.index = index;
+
 		int result;
 
 		addMouseListener(this);
@@ -59,49 +57,33 @@ public class MainComponent extends JPanel implements MouseListener{
 		//setBounds()
 
 		ImageManager manager = ImageManager.getInstance();
-		maskColor = 0xFF5698d5;
 
 //		image = null;
 //		mask = null;
 
 		/*
-		 *	画像の読み込み
+		 *	画像を透明にして読み込み
 		 *	画像指定されていたらそれを
 		 *	されていなければランダム
 		 */
-		if (index >= 0){
-			result = index;
-			image = manager.getImageFromList(index).getImage();
-		}
-		else{
-			result = new Random().nextInt(manager.getSize());
-			image = manager.getImageFromList(result).getImage();
+
+		if (index < 0){
+			new Random().nextInt(manager.getSize());
 		}
 
-		//nullを返されたときの保険
-		if (image == null){
-			image = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
+		this.index = index;
+		result = index;
 
-			for (int i = 0; i < getWidth(); i++){
-				for (int j = 0; j < getHeight(); j++){
-					image.setRGB(i, j, 0xFF000000);
-				}
-			}
+		BufferedImage data = ImageManager.getInstance().getImageFromList(index).getImage();
+
+		image = new BufferedImage(data.getWidth(), data.getHeight(), BufferedImage.TYPE_INT_ARGB);
+
+		int[] array = manager.getImageFromList(index).getRGBArray();
+		for (int i = 0; i < array.length; i++){
+			array[i] = array[i] & 0xFFFFFF | initialAlpha;
 		}
 
-		/*
-		 * TODO
-		 * 画像の横幅が大きかった時に縦横比を維持して縮小する処理
-		 * 参考(?) : http://dotnsf.blog.jp/archives/1062006362.html
-		 */
-		if (image.getWidth() > IMAGE_MAX_WIDTH){
-			int newWidth = IMAGE_MAX_WIDTH;
-			int newHeight = IMAGE_MAX_WIDTH * image.getHeight() / image.getWidth();
-		}
-		setSize(image.getWidth(), image.getHeight());
-
-		mask = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
-		resetMask();
+		image.setRGB(0, 0, data.getWidth(), data.getHeight(), array, 0, data.getWidth());
 
 		setPreferredSize(new Dimension(image.getWidth(), image.getHeight()));
 
@@ -112,76 +94,84 @@ public class MainComponent extends JPanel implements MouseListener{
 	public void paintComponent(Graphics g){
 		Graphics2D g2 = (Graphics2D) g;
 
-
-		//使うパレットの選択
-		Graphics2D offset = mask.createGraphics();
-
 	    Iterator<Circle> it = ListCircle.getInstance().getList().iterator();
 	    if (it.hasNext()){
+	    	flag = true;
 	    	while(it.hasNext()){
 				Circle circle = it.next();
-				Color c2 = new Color(maskColor, true);
 
-				float a = circle.getAlphaFloat();
-
-//				System.out.printf("%x : %d : %f\n", c2.getRGB(), circle.getAlpha(), circle.getAlphaFloat());
-//				System.out.printf("%x\n", c2.getRGB());
-
-				//描画の開始位置
-				int start = circle.y - circle.r;
-				int end = circle.y + circle.r;
-
-//				System.out.printf("start:%d\nend:%d\n", start, end);
-				for (int y = start; y < end; y++){
-					double x = Math.sqrt(Math.abs(p2(circle.r) - p2(y - circle.y)));
-
-					double ox = (double)circle.x;
-
-
-					for (int i = (int) (ox - x); i < (int) (ox + x); i++){
-//						System.out.println(i);
-						if(0 <= i && 0 <= y){
-							if (i < image.getWidth() && y < image.getHeight()){
-								/*=============================================
-								 * TODO
-								 *
-								 * 高速化
-								 * ファイルの圧縮の技術を応用したらできそう?
-								 * lan-length
-								 =============================================*/
-
-								int rgb = 0xff000000;
-								Color c1 = new Color(image.getRGB(i, y) & 0xFFFFFF);
-								float temp;
-
-								//00 XX 00 00
-								temp = c1.getRed() + (c2.getRed() - c1.getRed()) * a;
-								rgb |= (int) temp << 16;
-
-								//00 00 XX 00
-								temp = c1.getGreen() + (c2.getGreen() - c1.getGreen()) * a;
-								rgb |= (int) temp << 8;
-
-								//00 00 00 XX
-								temp = c1.getBlue() + (c2.getBlue() - c1.getBlue()) * a;
-								rgb |= (int) temp;
-
-//								System.out.printf("rgb : %x\n", rgb);
-								mask.setRGB(i, y, rgb);
-							}
-						}
-					}
-				}
+				render(circle);
 		    }
-	    	flag = true;
 	    }
-	    else {
-	    	if (flag) {
-	    		resetMask();
-	    	}
+	    else if(flag){
+	    	flag = false;
 	    }
 
-		g2.drawImage(mask, 0, 0, this);
+		g2.drawImage(image, 0, 0, this);
+	}
+
+
+	private int[] render(Circle circle){
+
+		final int r = circle.r;
+
+		int startX = circle.x - r;
+		int startY = circle.y - r;
+
+		int endX = circle.x + r;
+		int endY = circle.y + r;
+
+		int w, h;
+
+		//ずれ
+		//初回描画座標がマイナスのときのみ値を設定
+		int offsetX = 0;
+		int offsetY = 0;
+
+		//startがマイナス
+		if (startX < 0){
+			offsetX = startX;
+			startX = 0;
+		}
+		if (startY < 0){
+			offsetY = startY;
+			startY = 0;
+		}
+
+		//endが画像サイズより大きい
+		if (endX > image.getWidth() ){
+			endX = image.getWidth();
+		}
+
+		if (endY > image.getHeight()){
+			endY = image.getHeight();
+		}
+
+		w = endX - startX;
+		h = endY - startY;
+
+//		System.out.printf("r:%d\noffset\n%d\n%d\n", r, offsetX, offsetY);
+
+		//一部分の読み取り
+		ImageData data = ImageManager.getInstance().getImageFromList(index);
+		int[] array =  data.getRGBArray(startX, startY, w, h);
+
+		for (int y = 0; y < h; y++){
+			for (int x = 0; x < w; x++){
+
+				//配列のインデックス
+				int i = x + y * w;
+
+				boolean flag = (p2(x - r - offsetX) + p2(y - r - offsetY)) < p2(r);
+				int alpha = (flag) ? circle.getAlpha() : initialAlpha;
+
+				array[i] = array[i] & 0xFFFFFF | alpha << 24;
+
+			}
+		}
+
+		image.setRGB(startX, startY, w, h, array, 0, w);
+		return array;
 	}
 
 	private int p2(int value){

@@ -1,5 +1,9 @@
 package net.BITF.myo;
 
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.InputEvent;
+
 import com.thalmic.myo.AbstractDeviceListener;
 import com.thalmic.myo.Myo;
 import com.thalmic.myo.Pose;
@@ -20,11 +24,21 @@ public class DataCollector extends AbstractDeviceListener {
 	private Pose currentPose;
 	private Arm whichArm;
 
+	private Robot robot;
+	public boolean flag=false;
+	
 	public DataCollector() {
 		rollW = 0;
 		pitchW = 0;
 		yawW = 0;
 		currentPose = new Pose();
+
+		try {
+			robot = new Robot();
+		} catch (AWTException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -45,6 +59,23 @@ public class DataCollector extends AbstractDeviceListener {
 		currentPose = pose;
 		if (currentPose.getType() == PoseType.FIST) {
 			myo.vibrate(VibrationType.VIBRATION_MEDIUM);
+		}
+		
+		flag=false;
+		switch(currentPose.getType()){
+		case FIST:
+			robot.mousePress(InputEvent.BUTTON1_MASK);
+			robot.mouseRelease(InputEvent.BUTTON1_MASK);
+			break;
+		case FINGERS_SPREAD:
+			flag=true;
+			robot.mousePress(InputEvent.BUTTON1_MASK);
+			robot.mouseRelease(InputEvent.BUTTON1_MASK);
+			break;
+			
+
+
+		default:
 		}
 	}
 
@@ -121,4 +152,13 @@ public class DataCollector extends AbstractDeviceListener {
 	public void setYawW(double yawW) {
 		this.yawW = yawW;
 	}
+
+	public Pose getCurrentPose() {
+		return currentPose;
+	}
+
+	public Robot getRobot() {
+		return robot;
+	}
+
 }
