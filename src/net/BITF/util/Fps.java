@@ -39,20 +39,20 @@ public class Fps implements Runnable{
 				objects.get(i).update();
 			}
 
-//			newTime = System.currentTimeMillis() << 16;
-//			long sleepTime = idealSleep - (newTime - oldTime) - error; // 休止できる時間
-//			if (sleepTime < 0x20000) sleepTime = 0x20000; // 最低でも2msは休止
-//			oldTime = newTime;
-//
-//			try {
-//				Thread.sleep(sleepTime >> 16);	 // 休止
-//			}
-//			catch (InterruptedException e) {
-//				e.printStackTrace();
-//			}
-//
-//			newTime = System.currentTimeMillis() << 16;
-//			error = newTime - oldTime - sleepTime; // 休止時間の誤差
+			newTime = System.currentTimeMillis() << 16;
+			long sleepTime = idealSleep - (newTime - oldTime) - error; // 休止できる時間
+			if (sleepTime < 0x20000) sleepTime = 0x20000; // 最低でも2msは休止
+			oldTime = newTime;
+
+			try {
+				Thread.sleep(sleepTime >> 16);	 // 休止
+			}
+			catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+
+			newTime = System.currentTimeMillis() << 16;
+			error = newTime - oldTime - sleepTime; // 休止時間の誤差
 		}
 
 		System.out.println("thread has revoked");
