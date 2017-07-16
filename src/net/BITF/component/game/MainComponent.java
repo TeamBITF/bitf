@@ -54,7 +54,6 @@ public class MainComponent extends JPanel implements MouseListener{
 
 		addMouseListener(this);
 		setOpaque(false);
-		//setBounds()
 
 		ImageManager manager = ImageManager.getInstance();
 
@@ -68,12 +67,13 @@ public class MainComponent extends JPanel implements MouseListener{
 		 */
 
 		if (index < 0){
-			new Random().nextInt(manager.getSize());
+			index = new Random().nextInt(manager.getSize());
 		}
 
 		this.index = index;
 		result = index;
 
+		System.out.println("read image for index:" + index);
 		BufferedImage data = ImageManager.getInstance().getImageFromList(index).getImage();
 
 		image = new BufferedImage(data.getWidth(), data.getHeight(), BufferedImage.TYPE_INT_ARGB);
