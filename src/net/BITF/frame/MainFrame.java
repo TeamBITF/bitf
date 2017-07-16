@@ -18,11 +18,13 @@ public class MainFrame extends JFrame{
 
 	public static int stage;
 	public static String userName;
+	public static int score;
 
 	protected BITFPanel bitfPanel;
 
 	public MainFrame(){
 		stage = 0;
+		score = 0;
 		init();
 	}
 

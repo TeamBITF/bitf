@@ -43,6 +43,10 @@ public class GamePanel extends BITFPanel implements ActionListener{
 
 	protected Timer timer;
 	protected int totalTimeLimit;
+
+	/*
+	 * 画像1枚にかける時間
+	 */
 	private int time;
 
 	public GamePanel(){
@@ -126,8 +130,29 @@ public class GamePanel extends BITFPanel implements ActionListener{
 	}
 
 	private void init(){
+		//TIME_LIMIT_PER_IMAGEで初期化
 		time = (60 * 1000 < totalTimeLimit) ? GamePanel.TIME_LIMIT_PER_IMAGE : totalTimeLimit;
 	}
+
+	public void pass(){
+		ListCircle.getInstance().removeAllCircle();
+		changeImage();
+	}
+
+	public void answer(){
+		/*
+		 * answerComponentから現在の選択を取得
+		 */
+		
+		/*
+		 * 正誤の判定
+		 * 
+		 * あってたらscoreの加算
+		 */
+		
+	}
+
+
 
 	public int getTime(){
 		return time;
@@ -167,13 +192,17 @@ public class GamePanel extends BITFPanel implements ActionListener{
 				statusComponent.updateUI();
 			}
 			else {
-				System.out.println("Timed out");
-				timer.stop();
+
+				//ペナルティ処理追加する?
+
 				init();
 			}
 
 			//全体の制限時間
-			if (/*totalTimeLimit*/ time <= 50000){//とりま20秒位で遷移
+			if (totalTimeLimit <= 0){//とりま20秒位で遷移
+				System.out.println("Timed out");
+				timer.stop();
+
 				nextStage = 2;
 			}
 		}

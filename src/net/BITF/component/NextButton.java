@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-import net.BITF.Circle.ListCircle;
 import net.BITF.panel.GamePanel;
 
 public class NextButton extends JButton implements ActionListener{
@@ -22,8 +21,6 @@ public class NextButton extends JButton implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 //		System.out.println("ButtonClicked");
-
-		ListCircle.getInstance().removeAllCircle();
-		gamePanel.changeImage();
+		gamePanel.pass();
 	}
 }
