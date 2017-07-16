@@ -131,7 +131,8 @@ public class GamePanel extends BITFPanel implements ActionListener{
 
 	private void init(){
 		//TIME_LIMIT_PER_IMAGEで初期化
-		time = (60 * 1000 < totalTimeLimit) ? GamePanel.TIME_LIMIT_PER_IMAGE : totalTimeLimit;
+		time = GamePanel.TIME_LIMIT_PER_IMAGE;
+
 	}
 
 	public void pass(){
@@ -143,13 +144,17 @@ public class GamePanel extends BITFPanel implements ActionListener{
 		/*
 		 * answerComponentから現在の選択を取得
 		 */
-		
+
 		/*
 		 * 正誤の判定
-		 * 
-		 * あってたらscoreの加算
+		 *
+		 * あってたらMainFrame.scoreの加算
+		 *
+		 * 違ったら減点
+		 * 2回まで間違えられる
+		 * ここで画像は切り替えない
 		 */
-		
+
 	}
 
 
