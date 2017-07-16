@@ -167,7 +167,7 @@ public class GamePanel extends BITFPanel implements ActionListener{
 		else if (answer.equals(manager.getImageFromList(result).getName())){
 			//正解
 			System.out.println("正解");
-			MainFrame.score += time;
+			MainFrame.score += time / 1000;
 			changeImage();
 
 		}

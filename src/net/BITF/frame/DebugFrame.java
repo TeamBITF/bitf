@@ -52,11 +52,12 @@ public class DebugFrame extends JFrame{
 		FrameRate.getInstance().count();
 		addText(Float.toString(FrameRate.getInstance().getFrameRate()));
 
-		addText("PanelState:" + (mainFrame.bitfPanel.isLoading() ? "Loading" : "Ready"));
+//		addText("PanelState:" + (mainFrame.bitfPanel.isLoading() ? "Loading" : "Ready"));
 
 		//==========
 
 		addText("PlayerName:" + mainFrame.userName);
+		addText("score:" + Integer.toString(MainFrame.score));
 
 		//==========
 
