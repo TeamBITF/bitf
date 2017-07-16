@@ -20,8 +20,6 @@ public class MainComponent extends JPanel implements MouseListener{
 
 	private boolean flag;
 
-	private String path;
-
 	private int maskColor;
 
 	private BufferedImage image;
