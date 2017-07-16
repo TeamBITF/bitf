@@ -18,6 +18,8 @@ import net.BITF.Circle.ListCircle;
 import net.BITF.component.game.AnswerComponent;
 import net.BITF.component.game.MainComponent;
 import net.BITF.component.game.StatusComponent;
+import net.BITF.frame.MainFrame;
+import net.BITF.util.ImageManager;
 
 public class GamePanel extends BITFPanel implements ActionListener{
 
@@ -136,25 +138,44 @@ public class GamePanel extends BITFPanel implements ActionListener{
 	}
 
 	public void pass(){
-		ListCircle.getInstance().removeAllCircle();
 		changeImage();
 	}
 
 	public void answer(){
+
+		ImageManager manager = ImageManager.getInstance();
+
 		/*
 		 * answerComponentから現在の選択を取得
 		 */
+		String answer = answerComponent.getAnswer();
 
 		/*
 		 * 正誤の判定
 		 *
 		 * あってたらMainFrame.scoreの加算
+		 * 画像の切り替え
 		 *
 		 * 違ったら減点
 		 * 2回まで間違えられる
 		 * ここで画像は切り替えない
 		 */
 
+		if (answer.equals("選択なし")){
+			//何もしない
+		}
+		else if (answer.equals(manager.getImageFromList(result).getName())){
+			//正解
+			System.out.println("正解");
+			MainFrame.score += time;
+			changeImage();
+
+		}
+		else {
+			//はずれ
+			System.out.println("不正解");
+			MainFrame.score -= 5;
+		}
 	}
 
 
@@ -169,10 +190,11 @@ public class GamePanel extends BITFPanel implements ActionListener{
 
 	public void changeImage(){
 		changeImage(-1);
-		answerComponent.reset();
 	}
 
 	public void changeImage(int index){
+		answerComponent.reset();
+		ListCircle.getInstance().removeAllCircle();
 		result = mainComponent.changeImage(index);
 	}
 

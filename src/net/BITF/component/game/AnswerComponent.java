@@ -53,6 +53,10 @@ public class AnswerComponent extends JPanel{
 		comboBox.setModel(model);
 	}
 
+	public String getAnswer(){
+		return (String) comboBox.getSelectedItem();
+	}
+
 	@Override
 	public void paintComponent(Graphics g){
 		Graphics2D g2 = (Graphics2D) g;

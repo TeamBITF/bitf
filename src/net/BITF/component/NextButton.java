@@ -21,6 +21,7 @@ public class NextButton extends JButton implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 //		System.out.println("ButtonClicked");
-		gamePanel.pass();
+//		gamePanel.pass();
+		gamePanel.answer();
 	}
 }
