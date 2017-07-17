@@ -97,7 +97,7 @@ public class MainComponent extends JPanel implements MouseListener{
 
 	    for (int i = 0; i < list.size(); i++){
 	    	Circle circle = list.get(i);
-			System.out.println("MainComponent>>Circle r:" + circle.r);
+//			System.out.println("MainComponent>>Circle r:" + circle.r);
 
 			render(circle);
 

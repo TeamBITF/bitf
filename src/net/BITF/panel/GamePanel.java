@@ -199,9 +199,10 @@ public class GamePanel extends BITFPanel implements ActionListener{
 
 	@Override
 	public int update() {
+		ListCircle.getInstance().update();
 		mainComponent.updateUI();
 
-		ListCircle.getInstance().update();
+
 		return nextStage;
 	}
 

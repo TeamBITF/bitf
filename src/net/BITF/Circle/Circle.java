@@ -46,12 +46,13 @@ public class Circle {
 			Circle c = it.next();
 
 			//クリックされた座標に円がある
-			if((p2(c.x - mouse_x) + p2(c.y - mouse_y) <= p2(c.r))){
+			if((p2(c.x - mouse_x) + p2(c.y - mouse_y) < p2(c.r))){
+				System.out.println(c.toString());
 				System.out.print("extend " + c.r);
 
 				c.alpha = 255;
 				c.r += INCR;
-				
+
 				System.out.println(" -> " + c.r);
 
 				collision = true;

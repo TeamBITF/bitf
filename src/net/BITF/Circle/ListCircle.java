@@ -47,6 +47,7 @@ public class ListCircle {
 		//なかった時
 		if(!Circle.collision(mouse_x, mouse_y)){
 			Circle c = new Circle(mouse_x, mouse_y);
+			System.out.println("Creation\n" + c.toString());
 			list.add(c);
 		}
 	}
