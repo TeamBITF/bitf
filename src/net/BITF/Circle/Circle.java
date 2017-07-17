@@ -26,7 +26,6 @@ public class Circle {
 		this.y = y;
 
 		r = INITIAL_R;
-		System.out.println("Constractor" + r);
 
 		alpha = 255;
 	}
@@ -48,10 +47,12 @@ public class Circle {
 
 			//クリックされた座標に円がある
 			if((p2(c.x - mouse_x) + p2(c.y - mouse_y) <= p2(c.r))){
-//				System.out.println("extend");
+				System.out.print("extend " + c.r);
 
 				c.alpha = 255;
 				c.r += INCR;
+				
+				System.out.println(" -> " + c.r);
 
 				collision = true;
 				//break;
@@ -66,8 +67,8 @@ public class Circle {
 	 */
 	public boolean update(){
 		alpha -= INCREMENT;
-
-		if(alpha <= 0){
+		if (alpha < 0){
+			alpha = 0;
 			return true;
 		}
 

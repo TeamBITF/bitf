@@ -7,6 +7,8 @@ import com.thalmic.myo.Myo;
 
 /*
  * TODO
+ *
+ * 円が大きくなっていくバグ修正
  */
 
 public class Main{
@@ -54,6 +56,6 @@ public class Main{
 		}
 
 		control = new Control();
-		fps = new Fps(60, control);
+		fps = new Fps(30, control);
 	}
 }

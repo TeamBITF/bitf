@@ -178,8 +178,6 @@ public class GamePanel extends BITFPanel implements ActionListener{
 		}
 	}
 
-
-
 	public int getTime(){
 		return time;
 	}
@@ -234,7 +232,6 @@ public class GamePanel extends BITFPanel implements ActionListener{
 			}
 		}
 	}
-
 
 	@Override
     public void paintComponent(Graphics g) {

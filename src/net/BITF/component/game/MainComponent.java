@@ -7,7 +7,7 @@ import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
-import java.util.Iterator;
+import java.util.List;
 import java.util.Random;
 
 import javax.swing.JPanel;
@@ -19,10 +19,9 @@ import net.BITF.util.ImageManager;
 
 public class MainComponent extends JPanel implements MouseListener{
 
-	private boolean flag;
 	private int index;
 
-	private int initialAlpha = 0x0;
+	private int initialAlpha = 0x55000000;
 	private int maskColor = 0xFF5698d5;
 
 	private BufferedImage image;
@@ -94,21 +93,20 @@ public class MainComponent extends JPanel implements MouseListener{
 	public void paintComponent(Graphics g){
 		Graphics2D g2 = (Graphics2D) g;
 
-	    Iterator<Circle> it = ListCircle.getInstance().getList().iterator();
-	    if (it.hasNext()){
-	    	flag = true;
-	    	while(it.hasNext()){
-				Circle circle = it.next();
-//				System.out.println("Circle r:" + circle.r);
+		List<Circle> list = ListCircle.getInstance().getList();
 
-				render(circle);
-		    }
-	    }
-	    else if(flag){
-	    	flag = false;
+	    for (int i = 0; i < list.size(); i++){
+	    	Circle circle = list.get(i);
+			System.out.println("MainComponent>>Circle r:" + circle.r);
+
+			render(circle);
+
+			if(circle.getAlpha() <= 0){
+				list.remove(i);
+			}
 	    }
 
-		g2.drawImage(image, 0, 0, this);
+	    g2.drawImage(image, 0, 0, this);
 	}
 
 
