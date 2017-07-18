@@ -1,9 +1,12 @@
 package net.BITF.util;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.Arrays;
 import java.util.List;
 
-public class Fps implements Runnable{
+public class Fps implements Runnable, KeyListener{
+
 	public int fps;
 
 	public Thread thread;
@@ -15,6 +18,7 @@ public class Fps implements Runnable{
 		o = object[0];
 
 		fps = maxFps;
+
 
 		thread = new Thread(this);
 		thread.start();
@@ -33,6 +37,7 @@ public class Fps implements Runnable{
 		long newTime = System.currentTimeMillis() << 16;
 
 		while (thread != null) {
+
 			oldTime = newTime;
 
 			for (int i = 0; i < objects.size(); i++){
@@ -56,5 +61,23 @@ public class Fps implements Runnable{
 		}
 
 		System.out.println("thread has revoked");
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO 自動生成されたメソッド・スタブ
+
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO 自動生成されたメソッド・スタブ
+
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO 自動生成されたメソッド・スタブ
+
 	}
 }

@@ -1,5 +1,6 @@
 package net.BITF.myo;
 
+import java.awt.Point;
 import java.awt.Robot;
 import java.awt.event.InputEvent;
 
@@ -12,20 +13,24 @@ public class MyoControl {
 	private Myo myo;
 
 	private Robot robot;
+	private Point point;
 
 	private DataCollector dataCollector;
 
-	private int x=600,y=600;//マウス初期位置
-	private float v = 3,s = 2;
-	
-	
-	
+	private int x, y;//マウス初期位置
+	private float v = 3, s = 2;
+
+
+
 	public MyoControl(Myo myo, Hub hub){
 		/*
 		 * Myoの初期化
 		 */
 
 		System.out.println("MyoControll:" + myo);
+
+		x = y = 100;
+		point = new Point(x, y);
 
 		this.myo = myo;
 		this.hub = hub;
@@ -39,19 +44,23 @@ public class MyoControl {
 
 	public void update(){
 		hub.run(1000/20);
-		
+
 		if(dataCollector.flag){
 			robot.mousePress(InputEvent.BUTTON1_MASK);
 			robot.mouseRelease(InputEvent.BUTTON1_MASK);
 		}
-		
+
 		myocon();	//実処理
 
 	}
+
 	public DataCollector getDataCollector(){
 		return dataCollector;
 	}
+
 	public void myocon(){
+		x = (int) point.getX();
+		y = (int) point.getY();
 
 		double roll_w = dataCollector.getRollW();
 		double pitch_w = dataCollector.getPitchW();
@@ -69,7 +78,9 @@ public class MyoControl {
 			String pose = dataCollector.getCurrentPose().getType().toString();
 		}
 
+
 		robot.mouseMove(x, y);
+		point.setLocation(x, y);
 
 	}
 

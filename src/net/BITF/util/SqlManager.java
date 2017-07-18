@@ -3,12 +3,31 @@ package net.BITF.util;
 import java.sql.Connection;
 import java.sql.Driver;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
 
 public class SqlManager {
-	public SqlManager(){
 
+	public ResultSet execute(String palam){
+
+		try {
+			Statement state = init();
+			ResultSet result = state.executeQuery(palam);
+
+			result.close();
+			state.close();
+
+			return result;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+
+	private Statement init(){
 		System.out.println("SQL Start");
 
 		try{
@@ -16,26 +35,15 @@ public class SqlManager {
 			String url = "jdbc:sqlserver://172.16.31.8/SQLEXPRESS;database=BITF;integratedSecurity=false;user=BITFkagi810;password=123456";
 
 			Connection connection = driver.connect(url, new Properties());
-
-			String select = "select name, score from ScoreBoard order by score desc";
 			Statement state = connection.createStatement();
 
-			ResultSet result = state.executeQuery(select);
-
-
-			while(result.next()){
-				System.out.println(result.getString("name") + " : " + result.getInt("score"));
-			}
-
-			result.close();
-			state.close();
+			return state;
 		}
 		catch(Exception e){
 			e.printStackTrace();
 		}
 
-		System.out.println("SQL End");
-
+		return null;
 	}
 
 }
