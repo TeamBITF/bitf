@@ -15,11 +15,13 @@ import javax.swing.JPanel;
 import net.BITF.Circle.Circle;
 import net.BITF.Circle.ListCircle;
 import net.BITF.image.ImageData;
+import net.BITF.panel.GamePanel;
 import net.BITF.util.ImageManager;
 
 public class MainComponent extends JPanel implements MouseListener{
 
 	private int index;
+	private GamePanel gamePanel;
 
 	private int initialAlpha = 0x55000000;
 	private int maskColor = 0xFF5698d5;
@@ -28,13 +30,15 @@ public class MainComponent extends JPanel implements MouseListener{
 
 	private static final int IMAGE_MAX_WIDTH = 800;
 
-	public MainComponent(){
+	public MainComponent(GamePanel gamePanel){
+		this.gamePanel = gamePanel;
 
 		setBackground(new Color(maskColor, true));
 		changeImage(-1);
 	}
 
-	public MainComponent(int select){
+	public MainComponent(GamePanel gamePanel, int select){
+		this.gamePanel = gamePanel;
 		changeImage(select);
 	}
 
@@ -197,8 +201,7 @@ public class MainComponent extends JPanel implements MouseListener{
 		if(e.getButton() == 1){		//左クリック
 
 		}
-
-		ListCircle.getInstance().clicked(e.getX(), e.getY());
+		gamePanel.click(e.getX(), e.getY());
 	}
 
 	@Override

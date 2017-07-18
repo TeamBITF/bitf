@@ -10,13 +10,16 @@ public class ImageData {
 
 	private String name;
 	private BufferedImage image;
+	private String path;
 
 	public ImageData(String fileName, String name){
 		this.setName(name);
 
+		path = "resource/data/game/img/" + fileName;
+
 		System.out.println("Lead for \"" + fileName + "\"");
 		try {
-			BufferedImage raw = ImageIO.read(new File("resource/data/game/background/" + fileName));
+			BufferedImage raw = ImageIO.read(new File(path));
 			int w = raw.getWidth();
 			int h = raw.getHeight();
 

@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
@@ -88,9 +89,9 @@ public class GamePanel extends BITFPanel implements ActionListener{
 		//layoutPanelV.setBorder(new LineBorder(new Color(-1, true), 10));
 
 		//Components
-		result = 2;
+		result = 1;
 		answerComponent = new AnswerComponent(this);
-		mainComponent = new MainComponent(result);
+		mainComponent = new MainComponent(this, new Random().nextInt(ImageManager.getInstance().getSize()));
 		statusComponent = new StatusComponent(this);
 
 
@@ -135,6 +136,10 @@ public class GamePanel extends BITFPanel implements ActionListener{
 		//TIME_LIMIT_PER_IMAGEで初期化
 		time = GamePanel.TIME_LIMIT_PER_IMAGE;
 
+	}
+
+	public void click(int x, int y){
+		ListCircle.getInstance().clicked(x, y);
 	}
 
 	public void pass(){
@@ -201,7 +206,6 @@ public class GamePanel extends BITFPanel implements ActionListener{
 	public int update() {
 		ListCircle.getInstance().update();
 		mainComponent.updateUI();
-
 
 		return nextStage;
 	}

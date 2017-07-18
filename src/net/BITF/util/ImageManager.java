@@ -1,6 +1,7 @@
 ﻿package net.BITF.util;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
@@ -18,11 +19,23 @@ public class ImageManager {
 	private List<ImageData> images;
 
 	private ImageManager(){
-		images = new ArrayList<ImageData>();
 
-		images.add(new ImageData("tower.jpg", "東京タワ-"));
-		images.add(new ImageData("dog.jpg", "犬"));
-		images.add(new ImageData("animals/elephant.jpg", "象"));
+		/*
+		 * TODO 画像データの追加
+		 *
+		 *	画像の配置場所
+		 * 		resource/data/game/img
+		 *
+		 *	インスタンス生成
+		 * 		new ImageData([ディレクトリ]/画像名.形式, "解答");
+		 */
+		ImageData[] data = {
+				new ImageData("tower.jpg", "東京タワ-"),
+				new ImageData("animals/elephant.jpg", "象")
+		};
+
+		images = new ArrayList<ImageData>(Arrays.asList(data));
+
 	}
 
 	public int getSize(){
