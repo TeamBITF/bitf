@@ -26,6 +26,7 @@ public class MyoControl {
 
 
 	public MyoControl(Myo myo, Hub hub, MainFrame mainFrame){
+
 		/*
 		 * Myoの初期化
 		 */

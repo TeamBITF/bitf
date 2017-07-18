@@ -5,14 +5,14 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
-import net.BITF.frame.MainFrame;
 import net.BITF.util.SqlManager;
 
 public class EndPanel extends BITFPanel implements ActionListener  {
@@ -29,13 +29,6 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 		super();
 
 		this.setLayout(null);
-
-		JLabel names = new JLabel(MainFrame.userName);
-		names.setForeground(Color.red);
-		names.setBounds(500,250,200,100);
-		names.setFont(new Font("Arial", Font.PLAIN, 40));
-
-		add(names);
 
 		ImageIcon icon = new ImageIcon("resource/data/End/utyu.jpg");
 		utyu = new JLabel(icon);
@@ -72,17 +65,36 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 
 
 		SqlManager sql = new SqlManager();
-		ResultSet result = sql.execute("select score from scoreboard order by desc");
 
-		List<Integer> list = new ArrayList<Integer>();
-		int tens[]={983,546,323,256,123,100};
+		ArrayList<String> names = new ArrayList<>();
+		ArrayList<Integer> scores = new ArrayList<>();
 
-		for(int a = 0; a < 6; a++){
-			int temp = tens[a];
+		//SQLから点数を取得
+		try {
+			Statement state = sql.init();
+			ResultSet select = state.executeQuery("select name, score from ScoreBoard order by score desc");
+
+			while (select.next()){
+				names.add(select.getString("name"));
+				scores.add(select.getInt("score"));
+			}
+
+			state.close();
+			select.close();
+
+			System.out.println("SQL End");
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		for(int a = 0; a < scores.size(); a++){
+			int temp = scores.get(a);
 
 			System.out.println(temp);
 			int digit;
 
+			ArrayList<Integer> list = new ArrayList<Integer>();
 			for(digit=0; temp > 0; digit++, temp/=10){
 				list.add(temp % 10);
 			}
@@ -105,12 +117,6 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 			setLoading(false);
 		}
 
-
-
-
-
-
-
 		for(int i = 0, a = 0;i <= 2;i++){
 			icon=new ImageIcon("resource/data/End/ran"+(i+4)+".png");
 			Ranks[i] = new JLabel(icon);
@@ -122,10 +128,19 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 		add(first);add(second);add(third);//1.2.3位
 
 		ImageIcon waku=new ImageIcon("resource/data/End/ran_waku.png");
-		for(int i = 0, a = 0;i <=5 ;i++){
+		for(int i = 0, a = 0; i < 6 ;i++, a += 70){
 			Rank[i]= new JLabel(waku);
 			Rank[i].setBounds(400,250+a,waku.getIconWidth(),waku.getIconHeight());
-			a += 70;
+
+			if (i < names.size()){
+				JLabel label = new JLabel(names.get(i));
+				label.setForeground(Color.red);
+				label.setBounds(500,250 + a, 200, 100);
+				label.setFont(new Font("Arial", Font.PLAIN, 40));
+
+				add(label);
+			}
+
 			add(Rank[i]); //マリカみたいな枠
 		}
 		add(praise);//順位によって変わる褒め言葉
