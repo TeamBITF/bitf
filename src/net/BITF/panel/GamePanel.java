@@ -89,9 +89,9 @@ public class GamePanel extends BITFPanel implements ActionListener{
 		//layoutPanelV.setBorder(new LineBorder(new Color(-1, true), 10));
 
 		//Components
-		result = 1;
+		result = new Random().nextInt(ImageManager.getInstance().getSize());
 		answerComponent = new AnswerComponent(this);
-		mainComponent = new MainComponent(this, new Random().nextInt(ImageManager.getInstance().getSize()));
+		mainComponent = new MainComponent(this, result);
 		statusComponent = new StatusComponent(this);
 
 
