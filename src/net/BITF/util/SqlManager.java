@@ -16,8 +16,7 @@ public class SqlManager {
 			ResultSet result = state.executeQuery(palam);
 
 			state.close();
-
-			System.out.println("SQL End");
+;
 			return result;
 
 		} catch (SQLException e) {
