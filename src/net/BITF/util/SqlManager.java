@@ -45,5 +45,4 @@ public class SqlManager {
 
 		return null;
 	}
-
 }

@@ -4,10 +4,13 @@ import java.awt.Point;
 import java.awt.Robot;
 import java.awt.event.InputEvent;
 
+import net.BITF.frame.MainFrame;
+
 import com.thalmic.myo.Hub;
 import com.thalmic.myo.Myo;
 
 public class MyoControl {
+	private MainFrame frame;
 
 	private Hub hub;
 	private Myo myo;
@@ -22,11 +25,12 @@ public class MyoControl {
 
 
 
-	public MyoControl(Myo myo, Hub hub){
+	public MyoControl(Myo myo, Hub hub, MainFrame mainFrame){
 		/*
 		 * Myoの初期化
 		 */
 
+		frame = mainFrame;
 		System.out.println("MyoControll:" + myo);
 
 		x = y = 100;

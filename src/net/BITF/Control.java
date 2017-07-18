@@ -21,7 +21,7 @@ public class Control implements IFps
 		mainFrame.setVisible(true);
 
 		if(Main.isConnectingMyo){
-			myoControl = new MyoControl(Main.myo, Main.hub);
+			myoControl = new MyoControl(Main.myo, Main.hub, mainFrame);
 		}
 
 		if(Main.isDebugMode){

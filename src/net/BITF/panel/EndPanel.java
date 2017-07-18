@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 
 import net.BITF.frame.MainFrame;
+import net.BITF.util.SqlManager;
 
 public class EndPanel extends BITFPanel implements ActionListener  {
 
@@ -69,17 +71,19 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 		bttn.addActionListener(this);
 
 
+		SqlManager sql = new SqlManager();
+		ResultSet result = sql.execute("select score from scoreboard order by desc");
 
 		List<Integer> list = new ArrayList<Integer>();
 		int tens[]={983,546,323,256,123,100};
 
-		for(int a=0;a<6;a++){
-			int temp=tens[a];
+		for(int a = 0; a < 6; a++){
+			int temp = tens[a];
 
 			System.out.println(temp);
 			int digit;
 
-			for(digit=0;temp>0;digit++,temp/=10){
+			for(digit=0; temp > 0; digit++, temp/=10){
 				list.add(temp % 10);
 			}
 
@@ -87,7 +91,7 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 			ImageIcon[] icons = new ImageIcon[digit];
 
 
-			for(int i=0;i<digit;i++){
+			for(int i=0; i < digit; i++){
 				icons[i] = new ImageIcon("resource/data/End/Dnumber/no"+list.get(i)+".png");
 				label[i]=new JLabel(icons[i]);
 
