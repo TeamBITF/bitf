@@ -18,7 +18,7 @@ import net.BITF.util.SqlManager;
 public class EndPanel extends BITFPanel implements ActionListener  {
 
 	private JLabel utyu;
-	private JLabel result;
+	private JLabel results;
 	private JLabel praise;
 	private JLabel first,second,third;
 	private JLabel Rank[] = new JLabel[100];
@@ -42,8 +42,8 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 		utyu.setBounds(0,0,icon.getIconWidth(),icon.getIconHeight());
 
 		icon = new ImageIcon("resource/data/End/result.png");
-		result= new JLabel(icon);
-		result.setBounds(0,0,icon.getIconWidth(),icon.getIconHeight());
+		results= new JLabel(icon);
+		results.setBounds(0,0,icon.getIconWidth(),icon.getIconHeight());
 
 		icon=new ImageIcon("resource/data/End/1_cong.png");
 		praise= new JLabel(icon);
@@ -129,7 +129,7 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 			add(Rank[i]); //マリカみたいな枠
 		}
 		add(praise);//順位によって変わる褒め言葉
-		add(result);
+		add(results);
 		add(utyu); //背景
 
 
