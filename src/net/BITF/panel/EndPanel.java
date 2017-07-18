@@ -91,7 +91,6 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 		for(int a = 0; a < scores.size(); a++){
 			int temp = scores.get(a);
 
-			System.out.println(temp);
 			int digit;
 
 			ArrayList<Integer> list = new ArrayList<Integer>();
@@ -121,11 +120,13 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 			icon=new ImageIcon("resource/data/End/ran"+(i+4)+".png");
 			Ranks[i] = new JLabel(icon);
 			Ranks[i].setBounds(420,480+a,icon.getIconWidth(),icon.getIconHeight());
-			a=a+70;
+			a = a + 70;
 			add(Ranks[i]);//4.5.6位
 		}
 
-		add(first);add(second);add(third);//1.2.3位
+		add(first);
+		add(second);
+		add(third);//1.2.3位
 
 		ImageIcon waku=new ImageIcon("resource/data/End/ran_waku.png");
 		for(int i = 0, a = 0; i < 6 ;i++, a += 70){
@@ -136,7 +137,9 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 				JLabel label = new JLabel(names.get(i));
 				label.setForeground(Color.red);
 				label.setBounds(500,250 + a, 200, 100);
-				label.setFont(new Font("Arial", Font.PLAIN, 40));
+
+				//TODO フォント
+				label.setFont(new Font("ＭＳ ゴシック", Font.BOLD, 40));
 
 				add(label);
 			}
