@@ -102,4 +102,8 @@ public class MainFrame extends JFrame{
 
 		FrameRate.getInstance().count();
 	}
+
+	public BITFPanel getPanel(){
+		return bitfPanel;
+	}
 }
