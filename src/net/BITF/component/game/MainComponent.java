@@ -51,8 +51,6 @@ public class MainComponent extends JPanel implements MouseListener{
 	}
 
 	private int init(int index){
-		this.index = index;
-
 		int result;
 
 		addMouseListener(this);

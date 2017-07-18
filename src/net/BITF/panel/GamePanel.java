@@ -196,9 +196,9 @@ public class GamePanel extends BITFPanel implements ActionListener{
 	}
 
 	public void changeImage(int index){
-		answerComponent.reset();
 		ListCircle.getInstance().removeAllCircle();
 		result = mainComponent.changeImage(index);
+		answerComponent.reset();
 	}
 
 
