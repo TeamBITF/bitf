@@ -32,7 +32,9 @@ public class DataCollector extends AbstractDeviceListener {
 
 	private Robot robot;
 	public boolean flag=false;
-
+	
+	public boolean pullflag=false;
+	
 	public DataCollector(MainFrame mainFrame) {
 		
 		this.mainFrame = mainFrame;
@@ -85,27 +87,39 @@ public class DataCollector extends AbstractDeviceListener {
 			robot.mouseRelease(InputEvent.BUTTON1_MASK);
 			break;
 		case WAVE_OUT:
+			if(mainFrame.stage == 1 && pullflag == false){
 			MyoControl.x=1200;
 			MyoControl.y=70;
 			robot.mouseMove(1200, 70);
 			MyoControl.point.setLocation(1200, 70);
 			robot.mousePress(InputEvent.BUTTON1_MASK);
 			robot.mouseRelease(InputEvent.BUTTON1_MASK);
+			pullflag=true;
+			}
+			break;
 		case REST:
-			if(mainFrame.stage == 1 && "WAVE_OUT" == oldPose.getType().toString()){
+			if(mainFrame.stage == 1 && pullflag == false){
+				GamePanel panel = (GamePanel) mainFrame.getPanel();
+//				robot.mousePress(InputEvent.BUTTON1_MASK);
+//				robot.mouseRelease(InputEvent.BUTTON1_MASK);
+				panel.answer();
+				}
+			break;
+		case WAVE_IN:
+			if(mainFrame.stage == 1 && pullflag == true){
 				GamePanel panel = (GamePanel) mainFrame.getPanel();
 				robot.mousePress(InputEvent.BUTTON1_MASK);
 				robot.mouseRelease(InputEvent.BUTTON1_MASK);
 				
-				panel.answer();
 				
 				MyoControl.x=683;
 				MyoControl.y=384;
 				robot.mouseMove(683, 384);
 				MyoControl.point.setLocation(683, 384);
-				
-				
+				pullflag= false;
 			}
+			break;
+		
 		default:
 		}
 	}

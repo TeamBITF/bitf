@@ -6,13 +6,12 @@ import java.awt.event.InputEvent;
 
 import net.BITF.frame.MainFrame;
 import net.BITF.panel.BITFPanel;
-import net.BITF.panel.GamePanel;
 
 import com.thalmic.myo.Hub;
 import com.thalmic.myo.Myo;
 
 public class MyoControl {
-	private MainFrame frame;
+	private MainFrame mainFrame;
 
 	private Hub hub;
 	private Myo myo;
@@ -26,13 +25,16 @@ public class MyoControl {
 	public static int y,x;//マウス初期位置
 	private float v = 3, s = 2;
 
+
+
 	public MyoControl(Myo myo, Hub hub, MainFrame mainFrame){
+
 
 		/*
 		 * Myoの初期化
 		 */
 
-		frame = mainFrame;
+		this.mainFrame = mainFrame;
 		System.out.println("MyoControll:" + myo);
 
 		x = y = 100;
@@ -65,7 +67,7 @@ public class MyoControl {
 	}
 
 	public void myocon(){
-		BITFPanel panel = frame.getPanel();
+		BITFPanel panel = mainFrame.getPanel();
 
 		x = (int) point.getX();
 		y = (int) point.getY();
@@ -73,7 +75,7 @@ public class MyoControl {
 		double roll_w = dataCollector.getRollW();
 		double pitch_w = dataCollector.getPitchW();
 
-		if (panel instanceof GamePanel &&  "WAVE_OUT" != dataCollector.getCurrentPose().getType().toString()){
+		if (dataCollector.pullflag == false){
 		if(x<8){
 			x=(int) (x-(((int)roll_w-8)*v)); //左
 		}
@@ -83,8 +85,15 @@ public class MyoControl {
 		y=y-(int)pitch_w+8;//上下
 		}
 		else{
-		y=y-(int)pitch_w+8;//上下
+			if( y >= 70 && y <= 283){
+			y=y-(int)pitch_w+8;//上下
+			}else if(y < 70){
+				y=70;
+			}else if(y > 283){
+			y=283;
+			}
 		}
+
 		if (dataCollector.getCurrentPose() != null) {
 			String  pose= dataCollector.getCurrentPose().getType().toString();
 		}
