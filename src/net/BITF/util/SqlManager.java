@@ -10,7 +10,6 @@ import java.util.Properties;
 public class SqlManager {
 
 	public ResultSet execute(String palam){
-		System.out.println("SQL Start");
 
 		try {
 			Statement state = init();

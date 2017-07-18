@@ -4,6 +4,9 @@ import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.InputEvent;
 
+import net.BITF.frame.MainFrame;
+import net.BITF.panel.GamePanel;
+
 import com.thalmic.myo.AbstractDeviceListener;
 import com.thalmic.myo.Myo;
 import com.thalmic.myo.Pose;
@@ -16,6 +19,9 @@ import com.thalmic.myo.enums.XDirection;
 
 public class DataCollector extends AbstractDeviceListener {
 	private static final int SCALE = 18;
+	
+	protected MainFrame mainFrame;
+	
 	private double rollW;
 
 
@@ -26,8 +32,11 @@ public class DataCollector extends AbstractDeviceListener {
 
 	private Robot robot;
 	public boolean flag=false;
-	
-	public DataCollector() {
+
+	public DataCollector(MainFrame mainFrame) {
+		
+		this.mainFrame = mainFrame;
+		
 		rollW = 0;
 		pitchW = 0;
 		yawW = 0;
@@ -56,11 +65,14 @@ public class DataCollector extends AbstractDeviceListener {
 
 	@Override
 	public void onPose(Myo myo, long timestamp, Pose pose) {
+
+		Pose oldPose = currentPose;
 		currentPose = pose;
+
 		if (currentPose.getType() == PoseType.FIST) {
 			myo.vibrate(VibrationType.VIBRATION_MEDIUM);
 		}
-		
+
 		flag=false;
 		switch(currentPose.getType()){
 		case FIST:
@@ -72,9 +84,28 @@ public class DataCollector extends AbstractDeviceListener {
 			robot.mousePress(InputEvent.BUTTON1_MASK);
 			robot.mouseRelease(InputEvent.BUTTON1_MASK);
 			break;
-			
-
-
+		case WAVE_OUT:
+			MyoControl.x=1200;
+			MyoControl.y=70;
+			robot.mouseMove(1200, 70);
+			MyoControl.point.setLocation(1200, 70);
+			robot.mousePress(InputEvent.BUTTON1_MASK);
+			robot.mouseRelease(InputEvent.BUTTON1_MASK);
+		case REST:
+			if(mainFrame.stage == 1 && "WAVE_OUT" == oldPose.getType().toString()){
+				GamePanel panel = (GamePanel) mainFrame.getPanel();
+				robot.mousePress(InputEvent.BUTTON1_MASK);
+				robot.mouseRelease(InputEvent.BUTTON1_MASK);
+				
+				panel.answer();
+				
+				MyoControl.x=683;
+				MyoControl.y=384;
+				robot.mouseMove(683, 384);
+				MyoControl.point.setLocation(683, 384);
+				
+				
+			}
 		default:
 		}
 	}

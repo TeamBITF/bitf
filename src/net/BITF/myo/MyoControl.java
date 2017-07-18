@@ -5,6 +5,8 @@ import java.awt.Robot;
 import java.awt.event.InputEvent;
 
 import net.BITF.frame.MainFrame;
+import net.BITF.panel.BITFPanel;
+import net.BITF.panel.GamePanel;
 
 import com.thalmic.myo.Hub;
 import com.thalmic.myo.Myo;
@@ -16,14 +18,13 @@ public class MyoControl {
 	private Myo myo;
 
 	private Robot robot;
-	private Point point;
+	public static Point point;
 
 	private DataCollector dataCollector;
 
-	private int x, y;//マウス初期位置
+
+	public static int y,x;//マウス初期位置
 	private float v = 3, s = 2;
-
-
 
 	public MyoControl(Myo myo, Hub hub, MainFrame mainFrame){
 
@@ -40,7 +41,7 @@ public class MyoControl {
 		this.myo = myo;
 		this.hub = hub;
 
-		dataCollector = new DataCollector();
+		dataCollector = new DataCollector(mainFrame);
 		hub.addListener(dataCollector);
 
 		robot = dataCollector.getRobot();
@@ -64,13 +65,15 @@ public class MyoControl {
 	}
 
 	public void myocon(){
+		BITFPanel panel = frame.getPanel();
+
 		x = (int) point.getX();
 		y = (int) point.getY();
 
 		double roll_w = dataCollector.getRollW();
 		double pitch_w = dataCollector.getPitchW();
 
-
+		if (panel instanceof GamePanel &&  "WAVE_OUT" != dataCollector.getCurrentPose().getType().toString()){
 		if(x<8){
 			x=(int) (x-(((int)roll_w-8)*v)); //左
 		}
@@ -78,12 +81,15 @@ public class MyoControl {
 			x=(int) (x-(((int)roll_w-8)*s));//右
 		}
 		y=y-(int)pitch_w+8;//上下
-
+		}
+		else{
+		y=y-(int)pitch_w+8;//上下
+		}
 		if (dataCollector.getCurrentPose() != null) {
-			String pose = dataCollector.getCurrentPose().getType().toString();
+			String  pose= dataCollector.getCurrentPose().getType().toString();
 		}
 
-
+		System.out.println(x+","+y);
 		robot.mouseMove(x, y);
 		point.setLocation(x, y);
 
