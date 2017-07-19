@@ -16,6 +16,7 @@ public class MainFrame extends JFrame{
 
 	public static final MainFrame instance = new MainFrame();
 
+	public static int oldStage;
 	public static int stage;
 	public static String userName;
 	public static int score;
@@ -92,7 +93,7 @@ public class MainFrame extends JFrame{
 
 	public void update(){
 
-		int oldStage = stage;
+		oldStage = stage;
 		int newStage = bitfPanel.update();
 
 		if (oldStage != newStage){

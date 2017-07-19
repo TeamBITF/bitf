@@ -74,13 +74,12 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 		//SQLから点数を取得
 		try {
 			Statement state = sql.init();
-			String insert =
-					"INSERT INTO ScoreBoard VALUES ('" +
-					MainFrame.userName +
-					"',"+
-					Integer.toString(MainFrame.score) +
-					")";
-			state.executeQuery(insert);
+
+			//直前の画面がゲーム画面だった場合
+			if (MainFrame.oldStage == 1){
+				state.executeUpdate("INSERT INTO ScoreBoard VALUES ('" + MainFrame.userName + "'," + MainFrame.score + ")");
+			}
+
 			ResultSet select = state.executeQuery("select name, score from ScoreBoard order by score desc");
 
 			while (select.next()){
