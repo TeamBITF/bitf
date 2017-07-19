@@ -13,6 +13,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
+import net.BITF.frame.MainFrame;
 import net.BITF.util.ResourceLoader;
 import net.BITF.util.SqlManager;
 
@@ -58,7 +59,7 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 //		ImageIcon btn = new ImageIcon("./img/sample.png");
 		JButton bttn = new JButton();
 		bttn.setText("タイトルへもどる");
-		bttn.setBounds(610, 610, 100,30 );
+		bttn.setBounds(900, 610, 100,30 );
 
 		add(bttn);
 		bttn.setActionCommand("start");
@@ -73,6 +74,13 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 		//SQLから点数を取得
 		try {
 			Statement state = sql.init();
+			String insert =
+					"INSERT INTO ScoreBoard VALUES ('" +
+					MainFrame.userName +
+					"',"+
+					Integer.toString(MainFrame.score) +
+					")";
+			state.executeQuery(insert);
 			ResultSet select = state.executeQuery("select name, score from ScoreBoard order by score desc");
 
 			while (select.next()){

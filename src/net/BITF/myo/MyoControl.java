@@ -75,14 +75,17 @@ public class MyoControl {
 		double roll_w = dataCollector.getRollW();
 		double pitch_w = dataCollector.getPitchW();
 
-		if (dataCollector.pullflag == false){
+		if (dataCollector.pullflag == false && dataCollector.nameflag == false){
 		if(x<8){
 			x=(int) (x-(((int)roll_w-8)*v)); //左
 		}
 		else{
 			x=(int) (x-(((int)roll_w-8)*s));//右
 		}
-		y=y-(int)pitch_w+8;//上下
+		y = (int) (y-(((int)pitch_w - 8)*s));//上下
+		}
+		else if(dataCollector.nameflag == true){
+		; //なんもしない
 		}
 		else{
 			if( y >= 70 && y <= 283){

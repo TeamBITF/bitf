@@ -34,6 +34,7 @@ public class DataCollector extends AbstractDeviceListener {
 	public boolean flag=false;
 	
 	public boolean pullflag=false;
+	public boolean nameflag=false;
 	
 	public DataCollector(MainFrame mainFrame) {
 		
@@ -78,8 +79,8 @@ public class DataCollector extends AbstractDeviceListener {
 		flag=false;
 		switch(currentPose.getType()){
 		case FIST:
-			robot.mousePress(InputEvent.BUTTON1_MASK);
-			robot.mouseRelease(InputEvent.BUTTON1_MASK);
+//			robot.mousePress(InputEvent.BUTTON1_MASK);
+//			robot.mouseRelease(InputEvent.BUTTON1_MASK);
 			break;
 		case FINGERS_SPREAD:
 			flag=true;
@@ -87,14 +88,23 @@ public class DataCollector extends AbstractDeviceListener {
 			robot.mouseRelease(InputEvent.BUTTON1_MASK);
 			break;
 		case WAVE_OUT:
-			if(mainFrame.stage == 1 && pullflag == false){
-			MyoControl.x=1200;
-			MyoControl.y=70;
-			robot.mouseMove(1200, 70);
-			MyoControl.point.setLocation(1200, 70);
-			robot.mousePress(InputEvent.BUTTON1_MASK);
-			robot.mouseRelease(InputEvent.BUTTON1_MASK);
-			pullflag=true;
+			if(mainFrame.stage == 1 && pullflag == false){//gamestage
+				MyoControl.x=1200;
+				MyoControl.y=70;
+				robot.mouseMove(1200, 70);
+				MyoControl.point.setLocation(1200, 70);
+				robot.mousePress(InputEvent.BUTTON1_MASK);
+				robot.mouseRelease(InputEvent.BUTTON1_MASK);
+				pullflag=true;
+			}
+			if(mainFrame.stage==0 && nameflag == false){//startstage
+				MyoControl.x=560;
+				MyoControl.y=510;
+				robot.mouseMove(560, 510);
+				MyoControl.point.setLocation(560, 510);
+				robot.mousePress(InputEvent.BUTTON1_MASK);
+				robot.mouseRelease(InputEvent.BUTTON1_MASK);
+				nameflag=true;
 			}
 			break;
 		case REST:
@@ -106,17 +116,25 @@ public class DataCollector extends AbstractDeviceListener {
 				}
 			break;
 		case WAVE_IN:
-			if(mainFrame.stage == 1 && pullflag == true){
+			if(mainFrame.stage == 1 && pullflag == true){//gamestage
 				GamePanel panel = (GamePanel) mainFrame.getPanel();
 				robot.mousePress(InputEvent.BUTTON1_MASK);
 				robot.mouseRelease(InputEvent.BUTTON1_MASK);
-				
 				
 				MyoControl.x=683;
 				MyoControl.y=384;
 				robot.mouseMove(683, 384);
 				MyoControl.point.setLocation(683, 384);
 				pullflag= false;
+			}
+			if(mainFrame.stage==2){//endstage
+				mainFrame.stage = 0;
+				mainFrame.nextStage();
+			}
+			if(mainFrame.stage==0 && nameflag == true){//startstage 
+				mainFrame.stage = 1;
+				mainFrame.nextStage();
+				nameflag= false;
 			}
 			break;
 		
