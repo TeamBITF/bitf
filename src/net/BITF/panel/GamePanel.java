@@ -91,7 +91,7 @@ public class GamePanel extends BITFPanel implements ActionListener{
 		map.put(result, true);
 
 		listCircle = new ListCircle();
-		clip = Applet.newAudioClip(ResourceLoader.instance.getResource(""));
+		clip = Applet.newAudioClip(ResourceLoader.instance.getResource("data/se/クリック音.wav"));
 
 		//レイアウト
 		setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -164,6 +164,7 @@ public class GamePanel extends BITFPanel implements ActionListener{
 	}
 
 	public void click(int x, int y){
+		clip.play();
 		listCircle.clicked(x, y);
 	}
 
