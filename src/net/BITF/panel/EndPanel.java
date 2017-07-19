@@ -57,7 +57,7 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 		ImageIcon btn = new ImageIcon("./img/sample.png");
 		JButton bttn = new JButton(btn);
 		bttn.setText("タイトルへもどる");
-		bttn.setBounds(610, 610, 100,30 );
+		bttn.setBounds(900, 610, 100,30 );
 
 		add(bttn);
 		bttn.setActionCommand("start");
