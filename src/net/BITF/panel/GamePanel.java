@@ -45,6 +45,8 @@ public class GamePanel extends BITFPanel implements ActionListener{
 
 	private BufferedImage bg;
 
+	private ListCircle listCircle;
+
 	protected Timer timer;
 
 	/**
@@ -81,6 +83,7 @@ public class GamePanel extends BITFPanel implements ActionListener{
 		result = new Random().nextInt(ImageManager.getInstance().getSize());
 		map.put(result, true);
 
+		listCircle = new ListCircle();
 
 		//レイアウト
 		setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -153,7 +156,7 @@ public class GamePanel extends BITFPanel implements ActionListener{
 	}
 
 	public void click(int x, int y){
-		ListCircle.getInstance().clicked(x, y);
+		listCircle.clicked(x, y);
 	}
 
 	public void pass(){
@@ -225,7 +228,7 @@ public class GamePanel extends BITFPanel implements ActionListener{
 				}
 			}
 
-			ListCircle.getInstance().removeAllCircle();
+			listCircle.removeAllCircle();
 			result = mainComponent.changeImage(index);
 			answerComponent.reset();
 		}
@@ -238,7 +241,7 @@ public class GamePanel extends BITFPanel implements ActionListener{
 
 	@Override
 	public int update() {
-		ListCircle.getInstance().update();
+		listCircle.update();
 		mainComponent.updateUI();
 
 		return nextStage;
@@ -282,5 +285,10 @@ public class GamePanel extends BITFPanel implements ActionListener{
 	public int getTotalTimeLimit() {
 		return totalTimeLimit;
 	}
+
+	public ListCircle getListCircle() {
+		return listCircle;
+	}
+	
 
 }

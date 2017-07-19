@@ -6,7 +6,6 @@ import javax.swing.JTextPane;
 
 import net.BITF.FrameRate;
 import net.BITF.Main;
-import net.BITF.Circle.ListCircle;
 import net.BITF.myo.MyoControl;
 import net.BITF.panel.GamePanel;
 
@@ -47,7 +46,7 @@ public class DebugFrame extends JFrame{
 			addText("ImageID:" + Integer.toString(panel.getResult()));
 			addText("Left time:" + Integer.toString(panel.getTime()) + " / " + Integer.toString(GamePanel.TIME_LIMIT_PER_IMAGE));
 			addText("totalTimeLimit:"+Integer.toString(panel.getTotalTimeLimit()));
-			addText("CircleNum:" + ListCircle.getInstance().getList().size());
+			addText("CircleNum:" + panel.getListCircle().getList().size());
 		}
 
 		//=========
