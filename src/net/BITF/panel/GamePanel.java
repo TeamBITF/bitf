@@ -1,5 +1,6 @@
 ﻿package net.BITF.panel;
 
+import java.applet.Applet;
 import java.applet.AudioClip;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
@@ -90,6 +91,7 @@ public class GamePanel extends BITFPanel implements ActionListener{
 		map.put(result, true);
 
 		listCircle = new ListCircle();
+		clip = Applet.newAudioClip(ResourceLoader.instance.getResource(""));
 
 		//レイアウト
 		setLayout(new FlowLayout(FlowLayout.CENTER));
