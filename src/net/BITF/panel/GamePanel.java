@@ -229,11 +229,12 @@ public class GamePanel extends BITFPanel implements ActionListener{
 			}
 
 			//全体の制限時間
-			if (totalTimeLimit <= 0){//とりま20秒位で遷移
+			if (/*totalTimeLimit <= 0*/ totalTimeLimit <= 160000){//とりま20秒位で遷移
 				System.out.println("Timed out");
 				timer.stop();
 
 				nextStage = 2;
+				update();
 			}
 		}
 	}
@@ -243,4 +244,9 @@ public class GamePanel extends BITFPanel implements ActionListener{
 		Graphics2D g2 = (Graphics2D) g;
 		g2.drawImage(bg, 0, 0, this);
 	}
+
+	public int getTotalTimeLimit() {
+		return totalTimeLimit;
+	}
+
 }

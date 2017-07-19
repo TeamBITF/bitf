@@ -46,6 +46,7 @@ public class DebugFrame extends JFrame{
 			GamePanel panel = (GamePanel) mainFrame.bitfPanel;
 			addText("ImageID:" + Integer.toString(panel.getResult()));
 			addText("Left time:" + Integer.toString(panel.getTime()) + " / " + Integer.toString(GamePanel.TIME_LIMIT_PER_IMAGE));
+			addText("totalTimeLimit:"+Integer.toString(panel.getTotalTimeLimit()));
 			addText("CircleNum:" + ListCircle.getInstance().getList().size());
 		}
 

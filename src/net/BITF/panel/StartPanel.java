@@ -86,13 +86,17 @@ public class StartPanel extends BITFPanel implements ActionListener{
 	    button1.addActionListener(this);
 	    button2.setActionCommand("end");
 	    button2.addActionListener(this);
-
+	    name.setActionCommand("rename");
+	    name.addActionListener(this);
+	    
 	    setLoading(false);
 	}
 
 
 	@Override
 	public int update() {
+		MainFrame.userName = name.getText();
+		
 		updateUI();
 		return nextStage;
 	}
@@ -106,15 +110,17 @@ public class StartPanel extends BITFPanel implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		MainFrame.userName = name.getText();
+		
 		if(e.getActionCommand().equals("game")){
 			this.nextStage = 1;
 		}
 		else if(e.getActionCommand().equals("end")){
 			this.nextStage = 2;
-
 		}
-
+		else if(e.getActionCommand().equals("rename")){
+			MainFrame.userName = name.getText();
+			
+		}
 	}
 
 }

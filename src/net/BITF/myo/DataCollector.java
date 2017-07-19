@@ -79,8 +79,8 @@ public class DataCollector extends AbstractDeviceListener {
 		flag=false;
 		switch(currentPose.getType()){
 		case FIST:
-			robot.mousePress(InputEvent.BUTTON1_MASK);
-			robot.mouseRelease(InputEvent.BUTTON1_MASK);
+//			robot.mousePress(InputEvent.BUTTON1_MASK);
+//			robot.mouseRelease(InputEvent.BUTTON1_MASK);
 			break;
 		case FINGERS_SPREAD:
 			flag=true;
