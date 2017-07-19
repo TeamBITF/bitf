@@ -122,7 +122,7 @@ public class GamePanel extends BITFPanel implements ActionListener{
 
 		add(layoutPanelH);
 
-
+ 
 		/*
 		 * 背景画像の読み込み
 		 */
