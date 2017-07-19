@@ -36,7 +36,8 @@ public class StartPanel extends BITFPanel implements ActionListener{
 		super();
 
 		this.setLayout(null);
-
+		
+		
 		//this.setPreferredSize(new Dimension(1366, 768));
 
 		ImageIcon icon = new ImageIcon(ResourceLoader.instance.getResource("data/Start/fire.gif"));

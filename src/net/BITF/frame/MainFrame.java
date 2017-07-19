@@ -11,10 +11,12 @@ import net.BITF.panel.BITFPanel;
 import net.BITF.panel.EndPanel;
 import net.BITF.panel.GamePanel;
 import net.BITF.panel.StartPanel;
+import net.BITF.util.BGMManager;
 
 public class MainFrame extends JFrame{
 
 	public static final MainFrame instance = new MainFrame();
+	public static BGMManager bgmManager;
 
 	public static int oldStage;
 	public static int stage;
@@ -36,6 +38,8 @@ public class MainFrame extends JFrame{
 
 	private void init(){
 		userName = "";
+
+		bgmManager = new BGMManager();
 
 		setName("net.bitf.GameFrame");
 		setTitle("Back Image to the Future ~春の青菜ソースを添えて~");
@@ -65,6 +69,7 @@ public class MainFrame extends JFrame{
 		case 0:
 			System.out.println("Title");
 			bitfPanel = new StartPanel();
+//			this.bgmManager.BGMStart();
 			break;
 		case 1:
 			System.out.println("Game");

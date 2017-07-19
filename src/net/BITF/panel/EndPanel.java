@@ -109,7 +109,7 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 			JLabel[] label = new JLabel[digit];
 			ImageIcon[] icons = new ImageIcon[digit];
 
-
+			
 			for(int i=0; i < digit; i++){
 				icons[i] = new ImageIcon(ResourceLoader.instance.getResource("data/End/Dnumber/no"+list.get(i)+".png"));
 				label[i]=new JLabel(icons[i]);
