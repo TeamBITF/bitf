@@ -1,5 +1,6 @@
 ﻿package net.BITF.panel;
 
+import java.applet.AudioClip;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -44,6 +45,8 @@ public class GamePanel extends BITFPanel implements ActionListener{
 	private JPanel layoutPanelV;
 
 	private BufferedImage bg;
+
+	private AudioClip clip;
 
 	private ListCircle listCircle;
 
@@ -125,7 +128,7 @@ public class GamePanel extends BITFPanel implements ActionListener{
 
 		add(layoutPanelH);
 
- 
+
 		/*
 		 * 背景画像の読み込み
 		 */
@@ -289,6 +292,6 @@ public class GamePanel extends BITFPanel implements ActionListener{
 	public ListCircle getListCircle() {
 		return listCircle;
 	}
-	
+
 
 }
