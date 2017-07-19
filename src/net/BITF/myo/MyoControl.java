@@ -105,9 +105,11 @@ public class MyoControl {
 		robot.mouseMove(x, y);
 		point.setLocation(x, y);
 
+		if (MainFrame.stage != 1){
+			dataCollector.pullflag = false;
+		}
+
 	}
-
-
 
 }
 

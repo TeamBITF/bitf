@@ -19,9 +19,9 @@ import com.thalmic.myo.enums.XDirection;
 
 public class DataCollector extends AbstractDeviceListener {
 	private static final int SCALE = 18;
-	
+
 	protected MainFrame mainFrame;
-	
+
 	private double rollW;
 
 
@@ -31,15 +31,16 @@ public class DataCollector extends AbstractDeviceListener {
 	private Arm whichArm;
 
 	private Robot robot;
-	public boolean flag=false;
-	
-	public boolean pullflag=false;
-	public boolean nameflag=false;
-	
+
+	public boolean flag = false;
+
+	public boolean pullflag = false;
+	public boolean nameflag = false;
+
 	public DataCollector(MainFrame mainFrame) {
-		
+
 		this.mainFrame = mainFrame;
-		
+
 		rollW = 0;
 		pitchW = 0;
 		yawW = 0;
@@ -117,7 +118,7 @@ public class DataCollector extends AbstractDeviceListener {
 			}
 			break;
 		case REST:
-			if(mainFrame.stage == 1 && pullflag == false){
+			if(MainFrame.stage == 1 && pullflag == false){
 				GamePanel panel = (GamePanel) mainFrame.getPanel();
 //				robot.mousePress(InputEvent.BUTTON1_MASK);
 //				robot.mouseRelease(InputEvent.BUTTON1_MASK);
@@ -125,11 +126,11 @@ public class DataCollector extends AbstractDeviceListener {
 				}
 			break;
 		case WAVE_IN:
-			if(mainFrame.stage == 1 && pullflag == true){//gamestage
+			if(MainFrame.stage == 1 && pullflag == true){//gamestage
 				GamePanel panel = (GamePanel) mainFrame.getPanel();
 				robot.mousePress(InputEvent.BUTTON1_MASK);
 				robot.mouseRelease(InputEvent.BUTTON1_MASK);
-				
+
 				MyoControl.x=683;
 				MyoControl.y=384;
 				robot.mouseMove(683, 384);
@@ -140,13 +141,13 @@ public class DataCollector extends AbstractDeviceListener {
 				mainFrame.stage = 0;
 				mainFrame.nextStage();
 			}
-			if(mainFrame.stage==0 && nameflag == true){//startstage 
+			if(mainFrame.stage==0 && nameflag == true){//startstage
 				mainFrame.stage = 1;
 				mainFrame.nextStage();
 				nameflag= false;
 			}
 			break;
-		
+
 		default:
 		}
 	}
@@ -187,6 +188,7 @@ public class DataCollector extends AbstractDeviceListener {
 		builder.append(zDisplay);
 		builder.append(armString);
 		builder.append(poseString);
+
 		return builder.toString();
 	}
 
@@ -197,8 +199,6 @@ public class DataCollector extends AbstractDeviceListener {
 		}
 		return builder.toString();
 	}
-
-
 
 
 	public double getRollW() {

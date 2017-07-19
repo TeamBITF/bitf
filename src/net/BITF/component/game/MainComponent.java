@@ -13,7 +13,6 @@ import java.util.Random;
 import javax.swing.JPanel;
 
 import net.BITF.Circle.Circle;
-import net.BITF.Circle.ListCircle;
 import net.BITF.image.ImageData;
 import net.BITF.panel.GamePanel;
 import net.BITF.util.ImageManager;
@@ -95,7 +94,7 @@ public class MainComponent extends JPanel implements MouseListener{
 	public void paintComponent(Graphics g){
 		Graphics2D g2 = (Graphics2D) g;
 
-		List<Circle> list = ListCircle.getInstance().getList();
+		List<Circle> list = gamePanel.getListCircle().getList();
 
 	    for (int i = 0; i < list.size(); i++){
 	    	Circle circle = list.get(i);
@@ -199,10 +198,10 @@ public class MainComponent extends JPanel implements MouseListener{
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		if(e.getButton() == 1){		//左クリック
-
+		System.out.println("PressedCount:" + e.getClickCount());
+		if(e.getButton() == MouseEvent.BUTTON1){		//左クリック
+			gamePanel.click(e.getX(), e.getY());
 		}
-		gamePanel.click(e.getX(), e.getY());
 	}
 
 	@Override

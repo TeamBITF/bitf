@@ -40,4 +40,13 @@ public class BITFPanel extends JPanel{
 	public boolean isLoading() {
 		return isLoading;
 	}
+
+	public void startLoad(){
+		isLoading = true;
+
+	}
+
+	public void endLoad(){
+		isLoading = false;
+	}
 }

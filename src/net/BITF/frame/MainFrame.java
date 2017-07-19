@@ -1,5 +1,6 @@
 ﻿package net.BITF.frame;
 
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.GraphicsEnvironment;
 import java.awt.Rectangle;
@@ -10,6 +11,7 @@ import net.BITF.FrameRate;
 import net.BITF.panel.BITFPanel;
 import net.BITF.panel.EndPanel;
 import net.BITF.panel.GamePanel;
+import net.BITF.panel.LoadingPanel;
 import net.BITF.panel.StartPanel;
 import net.BITF.util.BGMManager;
 
@@ -24,15 +26,21 @@ public class MainFrame extends JFrame{
 	public static int score;
 
 	protected BITFPanel bitfPanel;
+	protected LoadingPanel loadingPanel;
 
 	public MainFrame(){
 		stage = 0;
 		score = 0;
+
+		loadingPanel = new LoadingPanel();
 		init();
+
 	}
 
 	public MainFrame(int stage){
 		MainFrame.stage = stage;
+		loadingPanel = new LoadingPanel();
+
 		init();
 	}
 
@@ -59,9 +67,12 @@ public class MainFrame extends JFrame{
 	public void nextStage(){
 		Container pane = getContentPane();
 
-//		init();
+		setBackground(Color.BLACK);
+
 		pane.removeAll();
-		//validate();
+		pane.add(loadingPanel);
+
+		pane.validate();
 
 		System.out.println("stageid:" + stage);
 
@@ -86,13 +97,10 @@ public class MainFrame extends JFrame{
 			bitfPanel = new StartPanel();
 		}
 
-
 		System.out.println(bitfPanel.toString());
 
-
+		pane.remove(loadingPanel);
 		pane.add(bitfPanel);
-
-
 
  	}
 
