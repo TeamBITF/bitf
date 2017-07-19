@@ -81,7 +81,7 @@ public class MainFrame extends JFrame{
 		case 0:
 			System.out.println("Title");
 			bitfPanel = new StartPanel();
-//			this.bgmManager.BGMStart();
+			bgmManager.BGMStart();
 			break;
 		case 1:
 			System.out.println("Game");
