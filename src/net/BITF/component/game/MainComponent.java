@@ -23,7 +23,7 @@ public class MainComponent extends JPanel implements MouseListener{
 	private int index;
 	private GamePanel gamePanel;
 
-	private int initialAlpha = 0x55000000;
+	private int initialAlpha = 0x0;
 	private int maskColor = 0xFF5698d5;
 
 	private BufferedImage image;
@@ -109,6 +109,9 @@ public class MainComponent extends JPanel implements MouseListener{
 	    }
 
 	    g2.drawImage(image, 0, 0, this);
+
+	    g2.setColor(Color.WHITE);
+	    g2.drawRect(0, 0, image.getWidth() - 1, image.getHeight() - 1);
 	}
 
 

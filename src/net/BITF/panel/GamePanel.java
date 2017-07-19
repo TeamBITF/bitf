@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Random;
 
 import javax.imageio.ImageIO;
@@ -45,7 +46,14 @@ public class GamePanel extends BITFPanel implements ActionListener{
 	private BufferedImage bg;
 
 	protected Timer timer;
+
+	/**
+	 * 3分
+	 */
 	protected int totalTimeLimit;
+
+	private HashMap<Integer, Boolean> map;
+	private int count;
 
 	/*
 	 * 画像1枚にかける時間
@@ -55,10 +63,7 @@ public class GamePanel extends BITFPanel implements ActionListener{
 	public GamePanel(){
 		super();
 
-		/**
-		 * 3分
-		 */
-		totalTimeLimit = 3 * 60 * 1000;
+
 
 
 		/* ================================================================
@@ -68,6 +73,14 @@ public class GamePanel extends BITFPanel implements ActionListener{
 		/*
 		 * GamePanelの初期化
 		 */
+		count = 0;
+		totalTimeLimit = 3 * 60 * 1000;
+
+		map = new HashMap<Integer, Boolean>();
+
+		result = new Random().nextInt(ImageManager.getInstance().getSize());
+		map.put(result, true);
+
 
 		//レイアウト
 		setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -89,7 +102,8 @@ public class GamePanel extends BITFPanel implements ActionListener{
 		//layoutPanelV.setBorder(new LineBorder(new Color(-1, true), 10));
 
 		//Components
-		result = new Random().nextInt(ImageManager.getInstance().getSize());
+
+
 		answerComponent = new AnswerComponent(this);
 		mainComponent = new MainComponent(this, result);
 		statusComponent = new StatusComponent(this);
@@ -196,9 +210,29 @@ public class GamePanel extends BITFPanel implements ActionListener{
 	}
 
 	public void changeImage(int index){
-		ListCircle.getInstance().removeAllCircle();
-		result = mainComponent.changeImage(index);
-		answerComponent.reset();
+
+		count++;
+		int size = ImageManager.getInstance().getSize();
+
+		if (count < size){
+			if (index < 0){
+				while (true){
+					index = new Random().nextInt(size);
+					if (!map.containsKey(index)){
+						map.put(index, true);
+						break;
+					}
+				}
+			}
+
+			ListCircle.getInstance().removeAllCircle();
+			result = mainComponent.changeImage(index);
+			answerComponent.reset();
+		}
+		else {
+			nextStage = 2;
+		}
+
 	}
 
 
