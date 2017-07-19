@@ -70,7 +70,7 @@ public class StartPanel extends BITFPanel implements ActionListener{
 
 	    name = new JTextField(15);
 	    name.setToolTipText("名前を入力");
-	    name.setText("aaaaa");
+	    name.setText("");
 
 
 	    name.setBounds(550,480,250,30);

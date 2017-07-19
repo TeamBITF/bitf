@@ -51,7 +51,7 @@ public class MyoControl {
 	}
 
 	public void update(){
-		hub.run(1000/20);
+		hub.run(1);
 
 		if(dataCollector.flag){
 			robot.mousePress(InputEvent.BUTTON1_MASK);

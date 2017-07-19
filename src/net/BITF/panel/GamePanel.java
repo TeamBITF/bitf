@@ -21,6 +21,7 @@ import net.BITF.component.game.AnswerComponent;
 import net.BITF.component.game.MainComponent;
 import net.BITF.component.game.StatusComponent;
 import net.BITF.frame.MainFrame;
+import net.BITF.myo.DataCollector;
 import net.BITF.util.ImageManager;
 import net.BITF.util.ResourceLoader;
 
@@ -52,6 +53,8 @@ public class GamePanel extends BITFPanel implements ActionListener{
 
 	protected Timer timer;
 
+
+	private DataCollector dataCollector;
 	/**
 	 * 3分
 	 */
@@ -195,7 +198,7 @@ public class GamePanel extends BITFPanel implements ActionListener{
 			MainFrame.score += time / 1000;
 			changeImage();
 
-		}
+			}
 		else {
 			//はずれ
 			System.out.println("不正解");

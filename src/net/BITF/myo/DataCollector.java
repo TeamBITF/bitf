@@ -73,7 +73,7 @@ public class DataCollector extends AbstractDeviceListener {
 		Pose oldPose = currentPose;
 		currentPose = pose;
 
-		if (currentPose.getType() == PoseType.FIST) {
+		if (currentPose.getType() ==  PoseType.FIST) {
 			myo.vibrate(VibrationType.VIBRATION_MEDIUM);
 		}
 
@@ -82,6 +82,31 @@ public class DataCollector extends AbstractDeviceListener {
 		case FIST:
 //			robot.mousePress(InputEvent.BUTTON1_MASK);
 //			robot.mouseRelease(InputEvent.BUTTON1_MASK);
+			
+			
+			if(MainFrame.stage == 1 && pullflag == true){//gamestage
+				GamePanel panel = (GamePanel) mainFrame.getPanel();
+				robot.mousePress(InputEvent.BUTTON1_MASK);
+				robot.mouseRelease(InputEvent.BUTTON1_MASK);
+
+				MyoControl.x=683;
+				MyoControl.y=384;
+				robot.mouseMove(683, 384);
+				MyoControl.point.setLocation(683, 384);
+				pullflag= false;
+			}
+			if(mainFrame.stage==2){//endstage
+				mainFrame.stage = 0;
+				mainFrame.nextStage();
+			}
+			if(mainFrame.stage==0 && nameflag == true){//startstage
+				mainFrame.stage = 1;
+				mainFrame.nextStage();
+				nameflag= false;
+			}
+			
+			
+			
 			break;
 		case FINGERS_SPREAD:
 			if(mainFrame.stage == 1 && pullflag == false){
@@ -126,26 +151,10 @@ public class DataCollector extends AbstractDeviceListener {
 				}
 			break;
 		case WAVE_IN:
-			if(MainFrame.stage == 1 && pullflag == true){//gamestage
-				GamePanel panel = (GamePanel) mainFrame.getPanel();
-				robot.mousePress(InputEvent.BUTTON1_MASK);
-				robot.mouseRelease(InputEvent.BUTTON1_MASK);
-
-				MyoControl.x=683;
-				MyoControl.y=384;
-				robot.mouseMove(683, 384);
-				MyoControl.point.setLocation(683, 384);
-				pullflag= false;
-			}
-			if(mainFrame.stage==2){//endstage
-				mainFrame.stage = 0;
-				mainFrame.nextStage();
-			}
-			if(mainFrame.stage==0 && nameflag == true){//startstage
-				mainFrame.stage = 1;
-				mainFrame.nextStage();
-				nameflag= false;
-			}
+			
+			
+			//ここにあった
+			
 			break;
 
 		default:
@@ -199,6 +208,7 @@ public class DataCollector extends AbstractDeviceListener {
 		}
 		return builder.toString();
 	}
+
 
 
 	public double getRollW() {
