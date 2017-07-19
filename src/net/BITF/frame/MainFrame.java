@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.GraphicsEnvironment;
 import java.awt.Rectangle;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import javax.swing.JFrame;
 
@@ -28,18 +30,18 @@ public class MainFrame extends JFrame{
 	protected BITFPanel bitfPanel;
 	protected LoadingPanel loadingPanel;
 
+	public ExecutorService threadPool;
+
 	public MainFrame(){
 		stage = 0;
 		score = 0;
 
-		loadingPanel = new LoadingPanel();
 		init();
 
 	}
 
 	public MainFrame(int stage){
 		MainFrame.stage = stage;
-		loadingPanel = new LoadingPanel();
 
 		init();
 	}
@@ -48,6 +50,10 @@ public class MainFrame extends JFrame{
 		userName = "";
 
 		bgmManager = new BGMManager();
+
+		threadPool = Executors.newFixedThreadPool(1);
+
+		loadingPanel = new LoadingPanel();
 
 		setName("net.bitf.GameFrame");
 		setTitle("Back Image to the Future ~春の青菜ソースを添えて~");
@@ -72,7 +78,7 @@ public class MainFrame extends JFrame{
 		pane.removeAll();
 		pane.add(loadingPanel);
 
-		
+
 		pane.validate();
 
 		System.out.println("stageid:" + stage);
@@ -81,7 +87,7 @@ public class MainFrame extends JFrame{
 		case 0:
 			System.out.println("Title");
 			bitfPanel = new StartPanel();
-			bgmManager.BGMStart();
+			bgmManager.setFile("data/bgm/famipop3.wav");
 			break;
 		case 1:
 			System.out.println("Game");
@@ -102,6 +108,8 @@ public class MainFrame extends JFrame{
 
 		pane.remove(loadingPanel);
 		pane.add(bitfPanel);
+
+		threadPool.execute(bgmManager);
 
  	}
 
