@@ -83,9 +83,18 @@ public class DataCollector extends AbstractDeviceListener {
 //			robot.mouseRelease(InputEvent.BUTTON1_MASK);
 			break;
 		case FINGERS_SPREAD:
-			flag=true;
-			robot.mousePress(InputEvent.BUTTON1_MASK);
-			robot.mouseRelease(InputEvent.BUTTON1_MASK);
+			if(mainFrame.stage == 1 && pullflag == false){
+				flag=true;
+				robot.mousePress(InputEvent.BUTTON1_MASK);
+				robot.mouseRelease(InputEvent.BUTTON1_MASK);
+			}
+			else if(mainFrame.stage == 1 && pullflag == true){
+				//なにもしない
+			}
+			else{
+				robot.mousePress(InputEvent.BUTTON1_MASK);
+				robot.mouseRelease(InputEvent.BUTTON1_MASK);
+			}
 			break;
 		case WAVE_OUT:
 			if(mainFrame.stage == 1 && pullflag == false){//gamestage

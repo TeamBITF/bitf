@@ -125,13 +125,13 @@ public class GamePanel extends BITFPanel implements ActionListener{
 
 		add(layoutPanelH);
 
-
+ 
 		/*
 		 * 背景画像の読み込み
 		 */
 
 		try {
-			bg = ImageIO.read(ResourceLoader.instance.getResource("data/Game/雷.jpg"));
+			bg = ImageIO.read(ResourceLoader.instance.getResource("data/Game/genutyu.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
