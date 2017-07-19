@@ -13,6 +13,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
+import net.BITF.util.ResourceLoader;
 import net.BITF.util.SqlManager;
 
 public class EndPanel extends BITFPanel implements ActionListener  {
@@ -30,32 +31,32 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 
 		this.setLayout(null);
 
-		ImageIcon icon = new ImageIcon("resource/data/End/utyu.jpg");
+		ImageIcon icon = new ImageIcon(ResourceLoader.instance.getResource("data/End/utyu.jpg"));
 		utyu = new JLabel(icon);
 		utyu.setBounds(0,0,icon.getIconWidth(),icon.getIconHeight());
 
-		icon = new ImageIcon("resource/data/End/result.png");
+		icon = new ImageIcon(ResourceLoader.instance.getResource("data/End/result.png"));
 		results= new JLabel(icon);
 		results.setBounds(0,0,icon.getIconWidth(),icon.getIconHeight());
 
-		icon=new ImageIcon("resource/data/End/1_cong.png");
+		icon=new ImageIcon(ResourceLoader.instance.getResource("data/End/1_cong.png"));
 		praise= new JLabel(icon);
 		praise.setBounds(400,00,icon.getIconWidth(),icon.getIconHeight());
 
 
-		icon = new ImageIcon("resource/data/End/1st.png");
+		icon = new ImageIcon(ResourceLoader.instance.getResource("data/End/1st.png"));
 		first = new JLabel(icon);
 		first.setBounds(395,260,icon.getIconWidth(),icon.getIconHeight());
-		icon = new ImageIcon("resource/data/End/2nd.png");
+		icon = new ImageIcon(ResourceLoader.instance.getResource("data/End/2nd.png"));
 		second = new JLabel(icon);
 		second.setBounds(400,330,icon.getIconWidth(),icon.getIconHeight());
-		icon = new ImageIcon("resource/data/End/3rd.png");
+		icon = new ImageIcon(ResourceLoader.instance.getResource("data/End/3rd.png"));
 		third = new JLabel(icon);
 		third.setBounds(395,400,icon.getIconWidth(),icon.getIconHeight());
 
 
-		ImageIcon btn = new ImageIcon("./img/sample.png");
-		JButton bttn = new JButton(btn);
+//		ImageIcon btn = new ImageIcon("./img/sample.png");
+		JButton bttn = new JButton();
 		bttn.setText("タイトルへもどる");
 		bttn.setBounds(610, 610, 100,30 );
 
@@ -103,7 +104,7 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 
 
 			for(int i=0; i < digit; i++){
-				icons[i] = new ImageIcon("resource/data/End/Dnumber/no"+list.get(i)+".png");
+				icons[i] = new ImageIcon(ResourceLoader.instance.getResource("data/End/Dnumber/no"+list.get(i)+".png"));
 				label[i]=new JLabel(icons[i]);
 
 				label[i].setBounds(840 - i * 40,265+a*70,icons[i].getIconWidth(),icons[i].getIconHeight());
@@ -117,7 +118,7 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 		}
 
 		for(int i = 0, a = 0;i <= 2;i++){
-			icon=new ImageIcon("resource/data/End/ran"+(i+4)+".png");
+			icon=new ImageIcon(ResourceLoader.instance.getResource("data/End/ran"+(i+4)+".png"));
 			Ranks[i] = new JLabel(icon);
 			Ranks[i].setBounds(420,480+a,icon.getIconWidth(),icon.getIconHeight());
 			a = a + 70;
@@ -128,7 +129,7 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 		add(second);
 		add(third);//1.2.3位
 
-		ImageIcon waku=new ImageIcon("resource/data/End/ran_waku.png");
+		ImageIcon waku=new ImageIcon(ResourceLoader.instance.getResource("data/End/ran_waku.png"));
 		for(int i = 0, a = 0; i < 6 ;i++, a += 70){
 			Rank[i]= new JLabel(waku);
 			Rank[i].setBounds(400,250+a,waku.getIconWidth(),waku.getIconHeight());

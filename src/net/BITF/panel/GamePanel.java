@@ -6,7 +6,6 @@ import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.util.Random;
 
@@ -21,6 +20,7 @@ import net.BITF.component.game.MainComponent;
 import net.BITF.component.game.StatusComponent;
 import net.BITF.frame.MainFrame;
 import net.BITF.util.ImageManager;
+import net.BITF.util.ResourceLoader;
 
 public class GamePanel extends BITFPanel implements ActionListener{
 
@@ -114,7 +114,7 @@ public class GamePanel extends BITFPanel implements ActionListener{
 		 */
 
 		try {
-			bg = ImageIO.read(new File("resource/data/Game/雷.jpg"));
+			bg = ImageIO.read(ResourceLoader.instance.getResource("data/Game/雷.jpg"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

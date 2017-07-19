@@ -1,10 +1,12 @@
 ﻿package net.BITF.image;
 
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 
 import javax.imageio.ImageIO;
+
+import net.BITF.util.ResourceLoader;
 
 public class ImageData {
 
@@ -15,11 +17,13 @@ public class ImageData {
 	public ImageData(String fileName, String name){
 		this.setName(name);
 
-		path = "resource/data/game/img/" + fileName;
-
-		System.out.println("Lead for \"" + fileName + "\"");
+		path = "data/game/img/" + fileName;
+		System.out.println(fileName);
 		try {
-			BufferedImage raw = ImageIO.read(new File(path));
+			URL url = ResourceLoader.instance.getResource(path);
+//			System.out.println(getClass().getClassLoader().getResource(path));
+
+			BufferedImage raw = ImageIO.read(url);
 			int w = raw.getWidth();
 			int h = raw.getHeight();
 
@@ -29,7 +33,7 @@ public class ImageData {
 			image.setRGB(0, 0, w, h, array, 0, w);
 
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println(e);
 		}
 	}
 

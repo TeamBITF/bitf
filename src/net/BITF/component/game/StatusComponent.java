@@ -6,12 +6,12 @@ import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import java.io.File;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import net.BITF.panel.GamePanel;
+import net.BITF.util.ResourceLoader;
 
 public class StatusComponent extends JPanel {
 
@@ -42,10 +42,10 @@ public class StatusComponent extends JPanel {
 		//ゲージの画像読み込み
 		statusGauge = new BufferedImage[3];
 		try{
-			statusFrame = ImageIO.read(new File("resource/data/Game/gauge_frame.gif"));
+			statusFrame = ImageIO.read(ResourceLoader.instance.getResource("data/Game/gauge_frame.gif"));
 
 			for (int i = 0; i < 3; i++){
-				statusGauge[i] = ImageIO.read(new File("resource/data/Game/gauge_" + Integer.toString(i) + ".jpg"));
+				statusGauge[i] = ImageIO.read(ResourceLoader.instance.getResource("data/Game/gauge_" + Integer.toString(i) + ".jpg"));
 			}
 		}
 		catch (Exception e){
