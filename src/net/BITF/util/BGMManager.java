@@ -11,13 +11,17 @@ import javax.sound.sampled.SourceDataLine;
 
 public class BGMManager implements Runnable{
 
+	Thread thread;
+
 	private AudioFormat audioFormat;
 	private SourceDataLine line;
 	private byte[] data;
 
+	public boolean play;
+
 	public BGMManager(){
 
-
+		play = false;
 
 		try{
 			AudioInputStream sta =
@@ -39,23 +43,27 @@ public class BGMManager implements Runnable{
 			System.exit(1);
 		}
 
+		thread = new Thread(this);
+		thread.start();
+
 	}
 
 	public void BGMStart(){
-		try {
-			line.open(audioFormat);
-			line.start();
-			line.write(data, 0, data.length);
-		} catch (LineUnavailableException e) {
-			System.err.println("そんな曲ねぇぞ");
-		}
-
-
+		play = true;
 	}
 
 	@Override
 	public void run() {
-		// TODO 自動生成されたメソッド・スタブ
-
+		while (true){
+			if (play){
+				try {
+					line.open(audioFormat);
+					line.start();
+					line.write(data, 0, data.length);
+				} catch (LineUnavailableException e) {
+					System.err.println("そんな曲ねぇぞ");
+				}
+			}
+		}
 	}
 }
