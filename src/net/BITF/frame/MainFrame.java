@@ -72,6 +72,7 @@ public class MainFrame extends JFrame{
 		pane.removeAll();
 		pane.add(loadingPanel);
 
+		
 		pane.validate();
 
 		System.out.println("stageid:" + stage);
