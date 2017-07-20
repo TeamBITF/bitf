@@ -10,52 +10,36 @@ import javax.swing.JPanel;
 
 import net.BITF.util.ResourceLoader;
 
-public class LoadingPanel extends JPanel implements Runnable{
-	private Thread thread;
-	private int count;
-
-	private BITFPanel bitfPanel;
-
-	private ImageIcon bg;
+public class LoadingPanel extends JPanel{
 	private ImageIcon loading;
-	private ImageIcon dot;
-
+	private ImageIcon backd;
 	public LoadingPanel(){
-		setPanelInfo(null);
+		
+		//setLayout(null);
 
-		count = 0;
+		
 
-		setBackground(Color.BLACK);
+		backd = new ImageIcon(ResourceLoader.instance.getResource("data/load/黒.png"));
+		loading = new ImageIcon(ResourceLoader.instance.getResource("data/load/loading.gif"));
 
-		loading = new ImageIcon(ResourceLoader.instance.getResource("data/load/loading.png"));
-		dot = new ImageIcon(ResourceLoader.instance.getResource("data/load/loading2.png"));
+		JLabel load = new JLabel(loading);
+		JLabel back = new JLabel(backd);
+		
 
-		add(new JLabel(loading));
-
-		thread = new Thread(this);
-		thread.start();
-	}
-
-	public void setPanelInfo(BITFPanel bitfPanel){
-		this.bitfPanel = bitfPanel;
-	}
-
-	@Override
-	public void run() {
-		while (thread != null){
-			if (count < 4){
-				count++;
-			}
-			else {
-				count = 0;
-			}
-
-			updateUI();
-		}
+		
+		
+		//this.add(back);
+		this.add(load);
+		//updateUI();
+		
 	}
 
 	@Override
 	public void paintComponent(Graphics g){
 		Graphics2D g2 = (Graphics2D) g;
+		g2.setColor(Color.BLACK);
+//		g2.drawRect(0, 0, loading.getIconWidth(), loading.getIconHeight());
+		g2.drawRect(0, 0, getWidth(), getHeight());
 	}
+	
 }

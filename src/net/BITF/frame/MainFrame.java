@@ -4,6 +4,7 @@ import java.applet.Applet;
 import java.applet.AudioClip;
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.GraphicsEnvironment;
 import java.awt.Rectangle;
 
@@ -17,7 +18,9 @@ import net.BITF.panel.LoadingPanel;
 import net.BITF.panel.StartPanel;
 import net.BITF.util.ResourceLoader;
 
-public class MainFrame extends JFrame{
+public class MainFrame extends JFrame implements Runnable{
+
+	private Thread thread;
 
 	public static int oldStage;
 	public static int stage;
@@ -28,9 +31,11 @@ public class MainFrame extends JFrame{
 
 
 	protected BITFPanel bitfPanel;
-	protected LoadingPanel loadingPanel;
+	private LoadingPanel loadingPanel;
 
 	public MainFrame(int stage){
+
+		thread = new Thread(this);
 
 		bgm = new AudioClip[3];
 		bgm[0] = Applet.newAudioClip(ResourceLoader.instance.getResource("data/bgm/famipop3.wav"));
@@ -39,8 +44,6 @@ public class MainFrame extends JFrame{
 
 		userName = "";
 		oldStage = 0;
-
-//		loadingPanel = new LoadingPanel();
 
 		setName("net.bitf.GameFrame");
 		setTitle("Back Image to the Future ~春の青菜ソースを添えて~");
@@ -54,10 +57,11 @@ public class MainFrame extends JFrame{
 
 		setLocationRelativeTo(this);
 
-		System.out.println("\nコンストラクタ2");
 		MainFrame.stage = stage;
 
 		nextStage();
+
+		thread.start();
 	}
 
 
@@ -66,9 +70,12 @@ public class MainFrame extends JFrame{
 
 		setBackground(Color.BLACK);
 
-		LoadingPanel loadingPanel = new LoadingPanel();
+		loadingPanel = new LoadingPanel();
+		loadingPanel.setPreferredSize(new Dimension(pane.getWidth(), pane.getHeight()));
 
 		pane.removeAll();
+		pane.setBackground(Color.BLACK);
+
 		pane.add(loadingPanel);
 
 
@@ -126,5 +133,15 @@ public class MainFrame extends JFrame{
 
 	public BITFPanel getPanel(){
 		return bitfPanel;
+	}
+
+
+	@Override
+	public void run() {
+		while(true){
+			if(loadingPanel != null){
+				loadingPanel.updateUI();
+			}
+		}
 	}
 }
