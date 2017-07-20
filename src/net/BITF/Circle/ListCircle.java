@@ -6,9 +6,9 @@ import java.util.List;
 
 public class ListCircle {
 
-//	private static final ListCircle instance = new ListCircle();
-
 	private List<Circle> list;
+	private static final int INCR = 15;
+	private static final int MAX_R = 135;
 
 	public ListCircle(){
 		list = new ArrayList<Circle>();
@@ -63,13 +63,17 @@ public class ListCircle {
 
 			//クリックされた座標に円がある
 			if((p2(c.x - mouse_x) + p2(c.y - mouse_y) < p2(c.r))){
-				System.out.println(c.toString());
-				System.out.print("extend " + c.r);
+
+//				System.out.println(c.toString());
+//				System.out.print("extend " + c.r);
 
 				c.alpha = 255;
-				c.r += Circle.INCR;
 
-				System.out.println(" -> " + c.r);
+				if (c.r < MAX_R){
+					c.r += INCR;
+				}
+
+//				System.out.println(" -> " + c.r);
 
 				collision = true;
 				//break;

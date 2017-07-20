@@ -2,29 +2,10 @@ package net.BITF.util;
 
 import java.sql.Connection;
 import java.sql.Driver;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
 
 public class SqlManager {
-
-	public ResultSet execute(String palam){
-
-		try {
-			Statement state = init();
-			ResultSet result = state.executeQuery(palam);
-
-			state.close();
-;
-			return result;
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-		return null;
-	}
 
 	public Statement init(){
 

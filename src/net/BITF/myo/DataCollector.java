@@ -85,7 +85,7 @@ public class DataCollector extends AbstractDeviceListener {
 
 			break;
 		case FINGERS_SPREAD:
-			if(mainFrame.stage == 1 && pullflag == false){
+			if(MainFrame.stage == 1 && pullflag == false){
 				flag=true;
 				robot.mousePress(InputEvent.BUTTON1_MASK);
 				robot.mouseRelease(InputEvent.BUTTON1_MASK);
@@ -99,7 +99,7 @@ public class DataCollector extends AbstractDeviceListener {
 			}
 			break;
 		case WAVE_OUT:
-			if(mainFrame.stage == 1 && pullflag == false){//gamestage
+			if(MainFrame.stage == 1 && pullflag == false){//gamestage
 				MyoControl.x=1200;
 				MyoControl.y=70;
 				robot.mouseMove(1200, 70);
@@ -108,7 +108,7 @@ public class DataCollector extends AbstractDeviceListener {
 				robot.mouseRelease(InputEvent.BUTTON1_MASK);
 				pullflag=true;
 			}
-			if(mainFrame.stage==0 && nameflag == false){//startstage
+			if(MainFrame.stage==0 && nameflag == false){//startstage
 				MyoControl.x=560;
 				MyoControl.y=510;
 				robot.mouseMove(560, 510);
@@ -139,19 +139,22 @@ public class DataCollector extends AbstractDeviceListener {
 				MyoControl.point.setLocation(683, 384);
 				pullflag= false;
 			}
+
 			if(mainFrame.stage==2){                    //endstage
 				mainFrame.stage = 0;
+
 				mainFrame.nextStage();
 				nameflag= false;
 			}
-			if(mainFrame.stage==0 && nameflag == true){//startstage
-				mainFrame.stage = 1;
+			if(MainFrame.stage==0 && nameflag == true){//startstage
+				MainFrame.stage = 1;
 				mainFrame.nextStage();
 			}
 
 			break;
 
 		default:
+			break;
 		}
 	}
 

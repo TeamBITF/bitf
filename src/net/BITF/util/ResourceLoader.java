@@ -10,6 +10,9 @@ public class ResourceLoader {
 	}
 
 	public URL getResource(String path){
-		return getClass().getClassLoader().getResource(path);
+		String p = path.toLowerCase();
+		final URL result = getClass().getClassLoader().getResource(p);
+		System.out.println(p);
+		return result;
 	}
 }

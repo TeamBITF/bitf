@@ -65,6 +65,9 @@ public class ImageManager {
 				new ImageData("food/burger.jpg","ハンバーガー"),
 				new ImageData("food/cake.jpg","ケーキ"),
 				new ImageData("food/carrots.jpg","にんじん"),
+				new ImageData("food/croissants.jpg","クロワッサン"),
+				new ImageData("food/dango.jpg","団子"),
+				new ImageData("food/donut.jpg","ドーナツ"),
 				new ImageData("food/kiwi.jpg","キウイ"),
 				new ImageData("food/onion.jpg","たまねぎ"),
 				new ImageData("food/orange.jpg","オレンジ"),
@@ -72,7 +75,9 @@ public class ImageManager {
 				new ImageData("food/potato.jpg","ポテトチップス"),
 				new ImageData("food/ra-men.jpg","ラーメン"),
 				new ImageData("food/salad.jpg","サラダ"),
+				new ImageData("food/sandwich.jpg","サンドウィッチ"),
 				new ImageData("food/soba.jpg","そば"),
+				new ImageData("food/soft.jpg","ソフトクリーム"),
 				new ImageData("food/strawberry.jpg","いちご"),
 				new ImageData("food/suika.jpg","すいか"),
 				new ImageData("food/sushi.jpg","お寿司"),
@@ -84,8 +89,7 @@ public class ImageManager {
 				new ImageData("norimono/ship.jpg","船"),
 				new ImageData("norimono/shobel.jpg","ショベルカー"),
 				new ImageData("norimono/tank.jpg","戦車"),
-				new ImageData("norimono/tricycle.jpg","三輪車"),
-
+				new ImageData("norimono/tricycle.jpg","三輪車")
 		};
 
 		images = new ArrayList<ImageData>(Arrays.asList(data));

@@ -74,7 +74,7 @@ public class StatusComponent extends JPanel {
 	}
 
 	private double getPersentage(){
-		return (double) gamePanel.getTime() / GamePanel.TIME_LIMIT_PER_IMAGE;
+		return (double) gamePanel.getTotalTimeLimit() / GamePanel.TIME_TOTAL_LIMIT;
 	}
 
 }

@@ -18,7 +18,6 @@ public class ImageData {
 		this.setName(name);
 
 		path = "data/game/img/" + fileName;
-		System.out.println(fileName);
 		try {
 			URL url = ResourceLoader.instance.getResource(path);
 //			System.out.println(getClass().getClassLoader().getResource(path));

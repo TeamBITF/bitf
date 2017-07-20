@@ -80,7 +80,7 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 				state.executeUpdate("INSERT INTO ScoreBoard VALUES ('" + MainFrame.userName + "'," + MainFrame.score + ")");
 			}
 
-			ResultSet select = state.executeQuery("select name, score from ScoreBoard order by score desc");
+			ResultSet select = state.executeQuery("SELECT name, score FROM ScoreBoard ORDER BY score DESC");
 
 			while (select.next()){
 				names.add(select.getString("name"));
@@ -96,6 +96,8 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 			e.printStackTrace();
 		}
 
+		MainFrame.score = 0;
+
 		for(int a = 0; a < scores.size(); a++){
 			int temp = scores.get(a);
 
@@ -109,7 +111,7 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 			JLabel[] label = new JLabel[digit];
 			ImageIcon[] icons = new ImageIcon[digit];
 
-			
+
 			for(int i=0; i < digit; i++){
 				icons[i] = new ImageIcon(ResourceLoader.instance.getResource("data/End/Dnumber/no"+list.get(i)+".png"));
 				label[i]=new JLabel(icons[i]);
@@ -120,12 +122,11 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 
 			list.clear();
 
-
 			setLoading(false);
 		}
 
 		for(int i = 0, a = 0;i <= 2;i++){
-			icon=new ImageIcon(ResourceLoader.instance.getResource("data/End/ran"+(i+4)+".png"));
+			icon=new ImageIcon(ResourceLoader.instance.getResource("data/End/ran"+(i + 4)+".png"));
 			Ranks[i] = new JLabel(icon);
 			Ranks[i].setBounds(420,480+a,icon.getIconWidth(),icon.getIconHeight());
 			a = a + 70;
@@ -162,27 +163,14 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 
 	}
 
-
-
-
-
-
 	@Override
 	public int update() {
-		// TODO 自動生成されたメソッド・スタブ
 		updateUI();
 		return nextStage;
 	}
 
-
-
-
-
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO 自動生成されたメソッド・スタブ
-
 		if(e.getActionCommand().equals("start")){
 			this.nextStage = 0;
 		}
