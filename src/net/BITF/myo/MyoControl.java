@@ -83,17 +83,18 @@ public class MyoControl {
 				x=(int) (x-(((int)roll_w-8)*v));//左
 			}
 				y = (int) (y-(((int)pitch_w - 8)*s));//上下
+			
 			if(x >= 880){
-				x=885;
+			x=875;
 			}
-			if(x <= 88){
-				x=93;
+			if(x <= 90){
+				x=95;
 			}
 			if(y <= 60){
 				y = 65;
 			}
 			if(y >= 641){
-				y=646;
+				y=636;
 			}
 			
 
