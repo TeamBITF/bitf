@@ -2,34 +2,28 @@ package net.BITF.util;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.Arrays;
-import java.util.List;
+
+import net.BITF.Control;
 
 public class Fps implements Runnable, KeyListener{
 
 	public int fps;
 
 	public Thread thread;
-	private List<IFps> objects;
-	private IFps o;
+	public Control control;
 
-	public Fps(int maxFps, IFps...object){
-		objects = Arrays.asList(object);
-		o = object[0];
+	public Fps(int maxFps){
 
 		fps = maxFps;
-
 
 		thread = new Thread(this);
 		thread.start();
 	}
 
-	public void add(IFps object){
-		objects.add(object);
-	}
-
 	@Override
 	public void run(){
+
+		control = new Control();
 
 		long error = 0;
 		long idealSleep = (1000 << 16) / fps;
@@ -40,9 +34,10 @@ public class Fps implements Runnable, KeyListener{
 
 			oldTime = newTime;
 
-			for (int i = 0; i < objects.size(); i++){
-				objects.get(i).update();
-			}
+			control.update();
+//			for (int i = 0; i < objects.size(); i++){
+//				objects.get(i).update();
+//			}
 
 			newTime = System.currentTimeMillis() << 16;
 			long sleepTime = idealSleep - (newTime - oldTime) - error; // 休止できる時間

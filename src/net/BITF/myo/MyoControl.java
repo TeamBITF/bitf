@@ -5,7 +5,7 @@ import java.awt.Robot;
 import java.awt.event.InputEvent;
 
 import net.BITF.frame.MainFrame;
-import net.BITF.panel.BITFPanel;
+import net.BITF.panel.GamePanel;
 
 import com.thalmic.myo.Hub;
 import com.thalmic.myo.Myo;
@@ -23,7 +23,7 @@ public class MyoControl {
 
 
 	public static int y,x;//マウス初期位置
-	private float v = 4, s = 2;
+	private float v = 5, s = 3;
 
 
 
@@ -67,7 +67,6 @@ public class MyoControl {
 	}
 
 	public void myocon(){
-		BITFPanel panel = mainFrame.getPanel();
 
 		x = (int) point.getX();
 		y = (int) point.getY();
@@ -75,34 +74,32 @@ public class MyoControl {
 		double roll_w = dataCollector.getRollW();
 		double pitch_w = dataCollector.getPitchW();
 
-		if (dataCollector.pullflag == false && MainFrame.stage == 1){
-			if(roll_w <= 8){
-				x=(int) (x-(((int)roll_w-8)*s)); //右
-			}
-				else{
-				x=(int) (x-(((int)roll_w-8)*v));//左
-			}
-				y = (int) (y-(((int)pitch_w - 8)*s));//上下
-			
-			if(x >= 880){
-			x=875;
-			}
-			if(x <= 90){
-				x=95;
-			}
-			if(y <= 60){
-				y = 65;
-			}
-			if(y >= 641){
-				y=636;
-			}
-			
+		if (MainFrame.stage == 1){
+			GamePanel panel = (GamePanel) mainFrame.getPanel();
 
-		}
-			else if(dataCollector.nameflag == true){
-				//なんもしない
-		}
-			else if(dataCollector.pullflag == true){
+			if (!dataCollector.pullflag){
+				if(roll_w <= 8){
+					x=(int) (x-(((int)roll_w-8)*s)); //右
+				}
+					else{
+					x=(int) (x-(((int)roll_w-8)*v));//左
+				}
+					y = (int) (y-(((int)pitch_w - 8)*s));//上下
+
+				if(x >= 880){
+				x=875;
+				}
+				if(x <= 90){
+					x=95;
+				}
+				if(y <= 60){
+					y = 65;
+				}
+				if(y >= 641){
+					y=636;
+				}
+			}
+			else{
 				if( y >= 70 && y <= 283){
 					y=y-(int)pitch_w+8;//上下
 				}else if(y < 70){
@@ -110,18 +107,16 @@ public class MyoControl {
 				}else if(y > 283){
 					y=283;
 				}
-		}else if(MainFrame.stage != 1){
-			if(roll_w <= 8){
-				x=(int) (x-(((int)roll_w-8)*s)); //右
 			}
-				else{
-				x=(int) (x-(((int)roll_w-8)*v));//左
-			}
-				y = (int) (y-(((int)pitch_w - 8)*s));//上下
-		}
 			
+			if(panel.getTime()==0){
+				x=683;
+				y=384;
+				dataCollector.pullflag= false;
+			}
+		}
 		
-
+		
 		if (dataCollector.getCurrentPose() != null) {
 			String  pose= dataCollector.getCurrentPose().getType().toString();
 		}

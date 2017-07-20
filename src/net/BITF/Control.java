@@ -30,6 +30,7 @@ public class Control implements IFps
 		}
 	}
 
+	@Override
 	public void update() {
 		mainFrame.update();
 

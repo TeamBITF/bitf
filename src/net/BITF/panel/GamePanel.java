@@ -246,6 +246,7 @@ public class GamePanel extends BITFPanel implements ActionListener{
 			listCircle.removeAllCircle();
 			result = mainComponent.changeImage(index);
 			answerComponent.reset();
+			
 		}
 		else {
 			nextStage = 2;
@@ -282,7 +283,7 @@ public class GamePanel extends BITFPanel implements ActionListener{
 			}
 
 			//全体の制限時間
-			if (totalTimeLimit <= 0){//とりま20秒位で遷移
+			if (totalTimeLimit <= 3000){//とりま20秒位で遷移
 				System.out.println("Timed out");
 				timer.stop();
 
