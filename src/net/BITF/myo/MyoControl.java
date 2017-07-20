@@ -23,7 +23,7 @@ public class MyoControl {
 
 
 	public static int y,x;//マウス初期位置
-	private float v = 3, s = 2;
+	private float v = 4, s = 2;
 
 
 
@@ -75,27 +75,51 @@ public class MyoControl {
 		double roll_w = dataCollector.getRollW();
 		double pitch_w = dataCollector.getPitchW();
 
-		if (dataCollector.pullflag == false && dataCollector.nameflag == false){
-		if(x<8){
-			x=(int) (x-(((int)roll_w-8)*v)); //左
-		}
-		else{
-			x=(int) (x-(((int)roll_w-8)*s));//右
-		}
-		y = (int) (y-(((int)pitch_w - 8)*s));//上下
-		}
-		else if(dataCollector.nameflag == true){
-		; //なんもしない
-		}
-		else{
-			if( y >= 70 && y <= 283){
-			y=y-(int)pitch_w+8;//上下
-			}else if(y < 70){
-				y=70;
-			}else if(y > 283){
-			y=283;
+		if (dataCollector.pullflag == false && MainFrame.stage == 1){
+			if(roll_w <= 8){
+				x=(int) (x-(((int)roll_w-8)*s)); //右
 			}
+				else{
+				x=(int) (x-(((int)roll_w-8)*v));//左
+			}
+				y = (int) (y-(((int)pitch_w - 8)*s));//上下
+			if(x >= 880){
+				x=885;
+			}
+			if(x <= 88){
+				x=93;
+			}
+			if(y <= 60){
+				y = 65;
+			}
+			if(y >= 641){
+				y=646;
+			}
+			
+
 		}
+			else if(dataCollector.nameflag == true){
+				//なんもしない
+		}
+			else if(dataCollector.pullflag == true){
+				if( y >= 70 && y <= 283){
+					y=y-(int)pitch_w+8;//上下
+				}else if(y < 70){
+					y=70;
+				}else if(y > 283){
+					y=283;
+				}
+		}else if(MainFrame.stage != 1){
+			if(roll_w <= 8){
+				x=(int) (x-(((int)roll_w-8)*s)); //右
+			}
+				else{
+				x=(int) (x-(((int)roll_w-8)*v));//左
+			}
+				y = (int) (y-(((int)pitch_w - 8)*s));//上下
+		}
+			
+		
 
 		if (dataCollector.getCurrentPose() != null) {
 			String  pose= dataCollector.getCurrentPose().getType().toString();

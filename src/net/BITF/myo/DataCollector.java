@@ -139,14 +139,14 @@ public class DataCollector extends AbstractDeviceListener {
 				MyoControl.point.setLocation(683, 384);
 				pullflag= false;
 			}
-			if(mainFrame.stage==2){//endstage
+			if(mainFrame.stage==2){                    //endstage
 				mainFrame.stage = 0;
 				mainFrame.nextStage();
+				nameflag= false;
 			}
 			if(mainFrame.stage==0 && nameflag == true){//startstage
 				mainFrame.stage = 1;
 				mainFrame.nextStage();
-				nameflag= false;
 			}
 
 			break;
