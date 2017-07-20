@@ -54,7 +54,8 @@ public class GamePanel extends BITFPanel implements ActionListener{
 
 	private BufferedImage bg;
 
-	private AudioClip clip;
+	private AudioClip exactly;
+	private AudioClip boo;
 
 	private ListCircle listCircle;
 
@@ -92,7 +93,9 @@ public class GamePanel extends BITFPanel implements ActionListener{
 		map.put(result, true);
 
 		listCircle = new ListCircle();
-		clip = Applet.newAudioClip(ResourceLoader.instance.getResource("data/se/クリック音.wav"));
+
+		exactly = Applet.newAudioClip(ResourceLoader.instance.getResource("data/se/正解.wav"));
+		boo = Applet.newAudioClip(ResourceLoader.instance.getResource("data/se/不正解.wav"));
 
 		//レイアウト
 		setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -165,7 +168,6 @@ public class GamePanel extends BITFPanel implements ActionListener{
 	}
 
 	public void click(int x, int y){
-		clip.play();
 		listCircle.clicked(x, y);
 	}
 
@@ -200,6 +202,7 @@ public class GamePanel extends BITFPanel implements ActionListener{
 			//正解
 			System.out.println("正解");
 			MainFrame.score += time / 10;
+			exactly.play();
 			init();
 			changeImage();
 
@@ -208,6 +211,7 @@ public class GamePanel extends BITFPanel implements ActionListener{
 			//はずれ
 			System.out.println("不正解");
 			MainFrame.score -= 10;
+			boo.play();
 		}
 	}
 
