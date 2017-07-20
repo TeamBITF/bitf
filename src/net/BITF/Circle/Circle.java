@@ -18,7 +18,6 @@ public class Circle {
 	protected int alpha;
 
 	protected static final int INITIAL_R = 15;
-	protected static final int INCR = 15;
 
 	public Circle(int x, int y){
 		this.x = x;
@@ -28,39 +27,6 @@ public class Circle {
 
 		alpha = 255;
 	}
-
-//	/**
-//	 * 当たり判定
-//	 * @param circle
-//	 * @param mouse_x
-//	 * @param mouse_y
-//	 * @return
-//	 */
-//	public static boolean collision(int mouse_x, int mouse_y){
-//
-//		boolean collision = false;
-//		Iterator<Circle> it = ListCircle.getInstance().getList().iterator();
-//
-//		while(it.hasNext()){
-//			Circle c = it.next();
-//
-//			//クリックされた座標に円がある
-//			if((p2(c.x - mouse_x) + p2(c.y - mouse_y) < p2(c.r))){
-//				System.out.println(c.toString());
-//				System.out.print("extend " + c.r);
-//
-//				c.alpha = 255;
-//				c.r += INCR;
-//
-//				System.out.println(" -> " + c.r);
-//
-//				collision = true;
-//				//break;
-//			}
-//		}
-//
-//		return collision;
-//	}
 
 	/**
 	 * チェックポイント

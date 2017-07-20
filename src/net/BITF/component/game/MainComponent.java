@@ -28,6 +28,7 @@ public class MainComponent extends JPanel implements MouseListener{
 	private BufferedImage image;
 
 	private static final int IMAGE_MAX_WIDTH = 800;
+	private int oldClickCount;
 
 	public MainComponent(GamePanel gamePanel){
 		this.gamePanel = gamePanel;
@@ -51,6 +52,8 @@ public class MainComponent extends JPanel implements MouseListener{
 
 	private int init(int index){
 		int result;
+
+		oldClickCount = 0;
 
 		addMouseListener(this);
 		setOpaque(false);
@@ -198,10 +201,17 @@ public class MainComponent extends JPanel implements MouseListener{
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		System.out.println("PressedCount:" + e.getClickCount());
-		if(e.getButton() == MouseEvent.BUTTON1){		//左クリック
-			gamePanel.click(e.getX(), e.getY());
+
+		final int clickCount = e.getClickCount();
+
+		if (oldClickCount == 0 || oldClickCount != clickCount){
+			System.out.println("PressedCount:" + e.getClickCount());
+			if(e.getButton() == MouseEvent.BUTTON1){		//左クリック
+				gamePanel.click(e.getX(), e.getY());
+			}
 		}
+
+		oldClickCount = clickCount;
 	}
 
 	@Override

@@ -96,6 +96,8 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 			e.printStackTrace();
 		}
 
+		MainFrame.score = 0;
+
 		for(int a = 0; a < scores.size(); a++){
 			int temp = scores.get(a);
 
@@ -109,7 +111,7 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 			JLabel[] label = new JLabel[digit];
 			ImageIcon[] icons = new ImageIcon[digit];
 
-			
+
 			for(int i=0; i < digit; i++){
 				icons[i] = new ImageIcon(ResourceLoader.instance.getResource("data/End/Dnumber/no"+list.get(i)+".png"));
 				label[i]=new JLabel(icons[i]);
@@ -162,27 +164,14 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 
 	}
 
-
-
-
-
-
 	@Override
 	public int update() {
-		// TODO 自動生成されたメソッド・スタブ
 		updateUI();
 		return nextStage;
 	}
 
-
-
-
-
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO 自動生成されたメソッド・スタブ
-
 		if(e.getActionCommand().equals("start")){
 			this.nextStage = 0;
 		}
