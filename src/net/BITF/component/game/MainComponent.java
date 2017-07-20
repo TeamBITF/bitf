@@ -175,13 +175,16 @@ public class MainComponent extends JPanel implements MouseListener{
 			}
 
 			int i = x + y * w;
+			int cw = w - x + offsetX;
 
-			int[] rgb = Arrays.copyOfRange(array, i, i + w - x);
+
+
+			int[] rgb = Arrays.copyOfRange(array, i, i + cw);
 			for (int j = 0; j < rgb.length; j++){
 				rgb[j] &= 0xFFFFFF | alpha << 24;
 			}
 
-			image.setRGB(startX + x, startY + y, w - x * 2, 1, rgb, 0, w - x);
+			image.setRGB(startX + x, startY + y, w - x * 2, 1, rgb, 0, cw);
 
 		}
 
