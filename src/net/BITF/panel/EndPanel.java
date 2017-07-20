@@ -80,7 +80,7 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 				state.executeUpdate("INSERT INTO ScoreBoard VALUES ('" + MainFrame.userName + "'," + MainFrame.score + ")");
 			}
 
-			ResultSet select = state.executeQuery("select name, score from ScoreBoard order by score desc");
+			ResultSet select = state.executeQuery("SELECT name, score FROM ScoreBoard ORDER BY score DESC");
 
 			while (select.next()){
 				names.add(select.getString("name"));
@@ -122,12 +122,11 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 
 			list.clear();
 
-
 			setLoading(false);
 		}
 
 		for(int i = 0, a = 0;i <= 2;i++){
-			icon=new ImageIcon(ResourceLoader.instance.getResource("data/End/ran"+(i+4)+".png"));
+			icon=new ImageIcon(ResourceLoader.instance.getResource("data/End/ran"+(i + 4)+".png"));
 			Ranks[i] = new JLabel(icon);
 			Ranks[i].setBounds(420,480+a,icon.getIconWidth(),icon.getIconHeight());
 			a = a + 70;
