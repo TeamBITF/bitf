@@ -1,11 +1,11 @@
 ﻿package net.BITF.frame;
 
+import java.applet.Applet;
+import java.applet.AudioClip;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.GraphicsEnvironment;
 import java.awt.Rectangle;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 import javax.swing.JFrame;
 
@@ -15,45 +15,32 @@ import net.BITF.panel.EndPanel;
 import net.BITF.panel.GamePanel;
 import net.BITF.panel.LoadingPanel;
 import net.BITF.panel.StartPanel;
-import net.BITF.util.BGMManager;
+import net.BITF.util.ResourceLoader;
 
 public class MainFrame extends JFrame{
-
-	public static final MainFrame instance = new MainFrame();
-	public static BGMManager bgmManager;
 
 	public static int oldStage;
 	public static int stage;
 	public static String userName;
 	public static int score;
 
+	private AudioClip[] bgm;
+
+
 	protected BITFPanel bitfPanel;
 	protected LoadingPanel loadingPanel;
 
-	public ExecutorService threadPool;
-
-	public MainFrame(){
-		stage = 0;
-		score = 0;
-
-		init();
-
-	}
-
 	public MainFrame(int stage){
-		MainFrame.stage = stage;
 
-		init();
-	}
+		bgm = new AudioClip[3];
+		bgm[0] = Applet.newAudioClip(ResourceLoader.instance.getResource("data/bgm/famipop3.wav"));
+		bgm[1] = Applet.newAudioClip(ResourceLoader.instance.getResource("data/bgm/game.wav"));
+		bgm[2] = Applet.newAudioClip(ResourceLoader.instance.getResource("data/bgm/ranking.wav"));
 
-	private void init(){
 		userName = "";
+		oldStage = 0;
 
-		bgmManager = new BGMManager();
-
-		threadPool = Executors.newFixedThreadPool(1);
-
-		loadingPanel = new LoadingPanel();
+//		loadingPanel = new LoadingPanel();
 
 		setName("net.bitf.GameFrame");
 		setTitle("Back Image to the Future ~春の青菜ソースを添えて~");
@@ -67,13 +54,19 @@ public class MainFrame extends JFrame{
 
 		setLocationRelativeTo(this);
 
+		System.out.println("\nコンストラクタ2");
+		MainFrame.stage = stage;
+
 		nextStage();
 	}
+
 
 	public void nextStage(){
 		Container pane = getContentPane();
 
 		setBackground(Color.BLACK);
+
+		LoadingPanel loadingPanel = new LoadingPanel();
 
 		pane.removeAll();
 		pane.add(loadingPanel);
@@ -87,12 +80,11 @@ public class MainFrame extends JFrame{
 		case 0:
 			System.out.println("Title");
 			bitfPanel = new StartPanel();
-			bgmManager.setFile("data/bgm/famipop3.wav");
-			bgmManager.setVolume(0.3F);
 			break;
 		case 1:
 			System.out.println("Game");
 			bitfPanel = new GamePanel();
+
 			break;
 		case 2:
 			System.out.println("End");
@@ -110,7 +102,12 @@ public class MainFrame extends JFrame{
 		pane.remove(loadingPanel);
 		pane.add(bitfPanel);
 
-		threadPool.execute(bgmManager);
+		for (int i = 0; i < bgm.length; i++){
+			bgm[i].stop();
+		}
+
+		bgm[stage].loop();
+
 
  	}
 

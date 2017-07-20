@@ -24,7 +24,7 @@ public class Main{
 	public static Myo myo;
 	public static Hub hub;
 
-	private static Control control;
+//	private static Control control;
 
 	public static void main(String[] args) {
 		Main.args = args;
@@ -56,7 +56,9 @@ public class Main{
 			}
 		}
 
-		control = new Control();
-		fps = new Fps(30, control);
+
+//		new Control();
+//		control = new Control();
+		fps = new Fps(30);
 	}
 }
