@@ -88,6 +88,7 @@ public class MainFrame extends JFrame{
 			System.out.println("Title");
 			bitfPanel = new StartPanel();
 			bgmManager.setFile("data/bgm/famipop3.wav");
+			bgmManager.setVolume(0.3F);
 			break;
 		case 1:
 			System.out.println("Game");

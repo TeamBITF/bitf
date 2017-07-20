@@ -41,15 +41,7 @@ public class Circle {
 		return false;
 	}
 
-	private int p2(int value){
-		return value * value;
-	}
-
 	public int getAlpha() {
 		return alpha;
-	}
-
-	public float getAlphaFloat(){
-		return 1 - (float) alpha / 255;
 	}
 }

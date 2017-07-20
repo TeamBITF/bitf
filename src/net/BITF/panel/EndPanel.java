@@ -1,5 +1,6 @@
 package net.BITF.panel;
 
+import java.applet.AudioClip;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -25,6 +26,8 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 	private JLabel first,second,third;
 	private JLabel Rank[] = new JLabel[100];
 	private JLabel Ranks[]=new JLabel[100];
+
+	private AudioClip clip;
 
 	public EndPanel(){
 
@@ -98,7 +101,7 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 
 		MainFrame.score = 0;
 
-		for(int a = 0; a < scores.size(); a++){
+		for(int a = 0; a < 6; a++){
 			int temp = scores.get(a);
 
 			int digit;
