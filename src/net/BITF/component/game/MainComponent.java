@@ -22,7 +22,7 @@ public class MainComponent extends JPanel implements MouseListener{
 	private int index;
 	private GamePanel gamePanel;
 
-	private int initialAlpha = 0x0;
+	private int initialAlpha = 0;//0xaa000000;
 	private int maskColor = 0xFF5698d5;
 
 	private BufferedImage image;
@@ -161,15 +161,43 @@ public class MainComponent extends JPanel implements MouseListener{
 		//一部分の読み取り
 		ImageData data = ImageManager.getInstance().getImageFromList(index);
 		int[] array =  data.getRGBArray(startX, startY, w, h);
+		int x, y;
 
-		for (int y = 0; y < h; y++){
-			for (int x = 0; x < w; x++){
+//		for (y = 0; y < h; y++){
+//			int i = 0;
+//			for (x = 0; x < w; x++){
+//
+//				//配列のインデックス
+//				i = x + y * w;
+//
+//				//透明な範囲
+//				boolean flag = (p2(x - r - offsetX) + p2(y - r - offsetY)) < p2(r);
+//				if ((p2(x - r - offsetX) + p2(y - r - offsetY)) < p2(r)){
+//					break;
+//				}
+//
+//				int alpha = (flag) ? circle.getAlpha() : initialAlpha;
+//
+////				alpha = circle.getAlpha();
+//
+//				array[i] = array[i] & 0xFFFFFF | alpha << 24;
+//
+//			}
+//
+//			int[] rgb = Arrays.copyOfRange(array, i, w - x);
+//
+//		}
+
+		for (y = 0; y < h; y++){
+			for (x = 0; x < w; x++){
 
 				//配列のインデックス
 				int i = x + y * w;
 
 				boolean flag = (p2(x - r - offsetX) + p2(y - r - offsetY)) < p2(r);
 				int alpha = (flag) ? circle.getAlpha() : initialAlpha;
+
+//				alpha = circle.getAlpha();
 
 				array[i] = array[i] & 0xFFFFFF | alpha << 24;
 
@@ -181,8 +209,26 @@ public class MainComponent extends JPanel implements MouseListener{
 	}
 
 	private int p2(int value){
-		return value * value;
+		/*
+		 * TODO 頑張ってシフト演算にする
+		 * MEMO
+		 *
+		 *
+		 */
+		if (value < 0){
+			value = (0xffffffff ^ value) + 1;
+		}
+
+		//大体2乗した値になるらしい
+		int a = 0;
+		for (int n = 1; n <= value; n++){
+			a += (n << 1) - 1;
+		}
+
+		return a;
+//		return value * value;
 	}
+
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -204,8 +250,8 @@ public class MainComponent extends JPanel implements MouseListener{
 
 		final int clickCount = e.getClickCount();
 
-		if (oldClickCount == 0 || oldClickCount != clickCount){
-			System.out.println("PressedCount:" + e.getClickCount());
+		if (oldClickCount == 0 || oldClickCount != clickCount){			//1ループで2回以上来ることがあるから仕方ないね。
+//			System.out.println("PressedCount:" + e.getClickCount());
 			if(e.getButton() == MouseEvent.BUTTON1){		//左クリック
 				gamePanel.click(e.getX(), e.getY());
 			}

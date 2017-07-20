@@ -28,16 +28,22 @@ import net.BITF.util.ResourceLoader;
 
 public class GamePanel extends BITFPanel implements ActionListener{
 
-	/**
-	 * 正解を格納する変数
-	 */
 	private int result;
+	private static final int LOOP_PER_SECONDS = 50;
 
 	/**
 	 * 1枚最大1分
 	 * value = 60
 	 */
-	public static int TIME_LIMIT_PER_IMAGE = 60 * 1000;
+	public static int TIME_LIMIT_PER_IMAGE = 10 * 1000 / LOOP_PER_SECONDS;
+
+	/**
+	 * 全体のタイムリミット
+	 * 3分
+	 */
+	public static int TIME_TOTAL_LIMIT = 3 * 60 * 1000 / LOOP_PER_SECONDS;
+
+
 
 	private AnswerComponent answerComponent;
 	private MainComponent mainComponent;
@@ -56,10 +62,8 @@ public class GamePanel extends BITFPanel implements ActionListener{
 
 
 	private DataCollector dataCollector;
-	/**
-	 * 3分
-	 */
-	protected int totalTimeLimit;
+
+	private int totalTimeLimit;
 
 	private HashMap<Integer, Boolean> map;
 	private int count;
@@ -72,9 +76,6 @@ public class GamePanel extends BITFPanel implements ActionListener{
 	public GamePanel(){
 		super();
 
-
-
-
 		/* ================================================================
 		 * 初期化
 		 * ================================================================*/
@@ -83,7 +84,7 @@ public class GamePanel extends BITFPanel implements ActionListener{
 		 * GamePanelの初期化
 		 */
 		count = 0;
-		totalTimeLimit = 3 * 60 * 1000;
+		totalTimeLimit = TIME_TOTAL_LIMIT;
 
 		map = new HashMap<Integer, Boolean>();
 
@@ -150,7 +151,7 @@ public class GamePanel extends BITFPanel implements ActionListener{
 		/* ================================================================
 		 * Timerの設定
 		 * ================================================================*/
-		timer = new Timer(1, this);
+		timer = new Timer(LOOP_PER_SECONDS, this);
 		timer.setActionCommand("time");
 		timer.start();
 
@@ -198,14 +199,15 @@ public class GamePanel extends BITFPanel implements ActionListener{
 		else if (answer.equals(manager.getImageFromList(result).getName())){
 			//正解
 			System.out.println("正解");
-			MainFrame.score += time / 1000;
+			MainFrame.score += time / 10;
+			init();
 			changeImage();
 
 			}
 		else {
 			//はずれ
 			System.out.println("不正解");
-			MainFrame.score -= 5;
+			MainFrame.score -= 10;
 		}
 	}
 
@@ -269,13 +271,14 @@ public class GamePanel extends BITFPanel implements ActionListener{
 			}
 			else {
 
-				//ペナルティ処理追加する?
+				MainFrame.score -= 50;
 
 				init();
+				changeImage();
 			}
 
 			//全体の制限時間
-			if (/*totalTimeLimit <= 0*/ totalTimeLimit <= 160000){//とりま20秒位で遷移
+			if (totalTimeLimit <= 0){//とりま20秒位で遷移
 				System.out.println("Timed out");
 				timer.stop();
 
