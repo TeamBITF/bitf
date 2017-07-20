@@ -35,7 +35,7 @@ public class GamePanel extends BITFPanel implements ActionListener{
 	 * 1枚最大1分
 	 * value = 60
 	 */
-	public static int TIME_LIMIT_PER_IMAGE = 10 * 1000 / LOOP_PER_SECONDS;
+	public static int TIME_LIMIT_PER_IMAGE = 60 * 1000 / LOOP_PER_SECONDS;
 
 	/**
 	 * 全体のタイムリミット

@@ -167,24 +167,21 @@ public class MainComponent extends JPanel implements MouseListener{
 		final int alpha = circle.getAlpha();
 
 		for (y = 0; y < h; y++){
-			for (x = 0; x < w; x++){
+			for (x = offsetX; x < w; x++){
 				//透明な範囲
 				if ((p2(x - r - offsetX) + p2(y - r - offsetY)) < p2(r)){
 					break;
 				}
 			}
-
+			
 			int i = x + y * w;
-			int cw = w - x + offsetX;
 
-
-
-			int[] rgb = Arrays.copyOfRange(array, i, i + cw);
+			int[] rgb = Arrays.copyOfRange(array, i, i + w - x);
 			for (int j = 0; j < rgb.length; j++){
 				rgb[j] &= 0xFFFFFF | alpha << 24;
 			}
 
-			image.setRGB(startX + x, startY + y, w - x * 2, 1, rgb, 0, cw);
+			image.setRGB(startX + x, startY + y, w - x * 2, 1, rgb, 0, w - x);
 
 		}
 
