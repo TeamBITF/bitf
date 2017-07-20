@@ -140,14 +140,15 @@ public class DataCollector extends AbstractDeviceListener {
 				pullflag= false;
 			}
 
-			if(mainFrame.stage==2){                    //endstage
-				mainFrame.stage = 0;
+			if(MainFrame.stage==2){//endstage
+				MainFrame.stage = 0;
+
 				mainFrame.nextStage();
+				nameflag= false;
 			}
 			if(MainFrame.stage==0 && nameflag == true){//startstage
 				MainFrame.stage = 1;
 				mainFrame.nextStage();
-				nameflag= false;
 			}
 
 			break;
