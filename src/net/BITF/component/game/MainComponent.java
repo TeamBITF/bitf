@@ -7,6 +7,7 @@ import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -117,7 +118,7 @@ public class MainComponent extends JPanel implements MouseListener{
 	}
 
 
-	private int[] render(Circle circle){
+	private void render(Circle circle){
 
 		final int r = circle.r;
 
@@ -161,71 +162,48 @@ public class MainComponent extends JPanel implements MouseListener{
 		//一部分の読み取り
 		ImageData data = ImageManager.getInstance().getImageFromList(index);
 		int[] array =  data.getRGBArray(startX, startY, w, h);
-		int x, y;
 
-//		for (y = 0; y < h; y++){
-//			int i = 0;
-//			for (x = 0; x < w; x++){
-//
-//				//配列のインデックス
-//				i = x + y * w;
-//
-//				//透明な範囲
-//				boolean flag = (p2(x - r - offsetX) + p2(y - r - offsetY)) < p2(r);
-//				if ((p2(x - r - offsetX) + p2(y - r - offsetY)) < p2(r)){
-//					break;
-//				}
-//
-//				int alpha = (flag) ? circle.getAlpha() : initialAlpha;
-//
-////				alpha = circle.getAlpha();
-//
-//				array[i] = array[i] & 0xFFFFFF | alpha << 24;
-//
-//			}
-//
-//			int[] rgb = Arrays.copyOfRange(array, i, w - x);
-//
-//		}
+		int x, y;
+		final int alpha = circle.getAlpha();
 
 		for (y = 0; y < h; y++){
 			for (x = 0; x < w; x++){
-
-				//配列のインデックス
-				int i = x + y * w;
-
-				boolean flag = (p2(x - r - offsetX) + p2(y - r - offsetY)) < p2(r);
-				int alpha = (flag) ? circle.getAlpha() : initialAlpha;
-
-//				alpha = circle.getAlpha();
-
-				array[i] = array[i] & 0xFFFFFF | alpha << 24;
-
+				//透明な範囲
+				if ((p2(x - r - offsetX) + p2(y - r - offsetY)) < p2(r)){
+					break;
+				}
 			}
+
+			int i = x + y * w;
+
+			int[] rgb = Arrays.copyOfRange(array, i, i + w - x);
+			for (int j = 0; j < rgb.length; j++){
+				rgb[j] &= 0xFFFFFF | alpha << 24;
+			}
+
+			image.setRGB(startX + x, startY + y, w - x * 2, 1, rgb, 0, w - x);
+
 		}
 
-		image.setRGB(startX, startY, w, h, array, 0, w);
-		return array;
 	}
 
+	/**
+	 * 2乗する関数
+	 */
 	private int p2(int value){
-		/*
-		 * TODO 頑張ってシフト演算にする
-		 * MEMO
-		 *
-		 *
-		 */
+		int result = 0;
+
+		//マイナスだったらプラスにする
 		if (value < 0){
-			value = (0xffffffff ^ value) + 1;
+			value = (0xFFFFFFFF ^ value) + 1;
 		}
 
 		//大体2乗した値になるらしい
-		int a = 0;
 		for (int n = 1; n <= value; n++){
-			a += (n << 1) - 1;
+			result += (n << 1) - 1;
 		}
 
-		return a;
+		return result;
 //		return value * value;
 	}
 
