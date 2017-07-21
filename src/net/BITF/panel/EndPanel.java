@@ -29,12 +29,10 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 		this.setLayout(null);
 
 		ImageIcon icon = new ImageIcon(ResourceLoader.instance.getResource("data/End/utyu.jpg"));
-
 		JLabel utyu = new JLabel(icon);
 		utyu.setBounds(0,0,icon.getIconWidth(),icon.getIconHeight());
 
 		icon = new ImageIcon(ResourceLoader.instance.getResource("data/End/result.png"));
-
 		JLabel results = new JLabel(icon);
 		results.setBounds(0,0,icon.getIconWidth(),icon.getIconHeight());
 
@@ -204,7 +202,7 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 		add(results);
 		add(utyu); //背景
 
-
+		validate();
 
 	}
 
