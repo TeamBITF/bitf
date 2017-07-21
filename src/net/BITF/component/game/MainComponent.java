@@ -185,10 +185,8 @@ public class MainComponent extends JPanel implements MouseListener{
 
 			if (x < 0){
 				s = 0;
+				e = -x;
 			}
-
-			//かぶってる
-			s = (x < 0) ? 0 : x;
 
 			//見つからなかったとき
 			if (x == w / 2){
@@ -196,7 +194,7 @@ public class MainComponent extends JPanel implements MouseListener{
 			}
 
 //			int[] rgb = Arrays.copyOfRange(array, i, w + y * w - x);
-			int[] rgb = Arrays.copyOfRange(array, ih + s, ih + w - x);
+			int[] rgb = Arrays.copyOfRange(array, ih + s, ih + w - e);
 			for (int j = 0; j < rgb.length; j++){
 				rgb[j] &= 0xFFFFFF | alpha << 24;
 			}
