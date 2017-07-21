@@ -20,14 +20,6 @@ import net.BITF.util.SqlManager;
 
 public class EndPanel extends BITFPanel implements ActionListener  {
 
-	private JLabel utyu;
-	private JLabel results;
-	private JLabel praise;
-	private JLabel first,second,third;
-	private JLabel Rank[] = new JLabel[100];
-	private JLabel Ranks[]=new JLabel[100];
-	private JLabel res[]=new JLabel[5];
-
 	private AudioClip clip;
 
 	public EndPanel(){
@@ -37,15 +29,17 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 		this.setLayout(null);
 
 		ImageIcon icon = new ImageIcon(ResourceLoader.instance.getResource("data/End/utyu.jpg"));
-		utyu = new JLabel(icon);
+
+		JLabel utyu = new JLabel(icon);
 		utyu.setBounds(0,0,icon.getIconWidth(),icon.getIconHeight());
 
 		icon = new ImageIcon(ResourceLoader.instance.getResource("data/End/result.png"));
-		results= new JLabel(icon);
+
+		JLabel results = new JLabel(icon);
 		results.setBounds(0,0,icon.getIconWidth(),icon.getIconHeight());
 
 
-
+		JLabel first, second, third;
 
 		icon = new ImageIcon(ResourceLoader.instance.getResource("data/End/1st.png"));
 		first = new JLabel(icon);
@@ -97,34 +91,53 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		if(MainFrame.oldStage==1){
-		int rankin = 0;
-		int size = 0;
-		for(;rankin < 5;rankin++){
-			icon=new ImageIcon(ResourceLoader.instance.getResource("data/end/res/res"+(rankin+1)+".png"));
-			res[rankin]=new JLabel(icon);
-			res[rankin].setBounds(500,50,icon.getIconWidth(),icon.getIconHeight());
+
+		if(MainFrame.oldStage == 1){
+
+			int rank;
+//			for(int rankin = 0; rankin < 5; rankin++){
+//				icon=new ImageIcon(ResourceLoader.instance.getResource("data/end/res/res"+(rankin + 1)+".png"));
+//				res[rankin]=new JLabel(icon);
+//				res[rankin].setBounds(500,50,icon.getIconWidth(),icon.getIconHeight());
+//			}
+
+			for(rank = 0; rank < scores.size(); rank++){
+				if(MainFrame.score == scores.get(rank)){//ランキングと比べてる
+					break;
+				}
 			}
-		for(;size < scores.size(); size++){
-			if(MainFrame.score == scores.get(size)){//ランキングと比べてる
-				break;
+
+			ImageIcon comment;
+			if (rank < 3){
+				comment = new ImageIcon(ResourceLoader.instance.getResource("data/end/res/res"+ (rank + 1) +".png"));
 			}
+			else if (rank >= 6){
+				comment = new ImageIcon(ResourceLoader.instance.getResource("data/end/res/res5.png"));
+			}
+			else{
+				comment = new ImageIcon(ResourceLoader.instance.getResource("data/end/res/res4.png"));
+			}
+
+			JLabel commentLabel = new JLabel(comment);
+			commentLabel.setBounds(500, 50, comment.getIconWidth(), comment.getIconHeight());
+			add(commentLabel);
+
+//			switch(rank+1){
+//				case 1:
+//					add(res[0]);break;
+//				case 2:
+//					add(res[1]);break;
+//				case 3:
+//					add(res[2]);break;
+//				case 4:
+//				case 5:
+//				case 6:
+//					add(res[3]);break;
+//				default:
+//					add(res[4]);break;
+//			}
 		}
-		switch(size+1){
-			case 1:
-				add(res[0]);break;
-			case 2:
-				add(res[1]);break;
-			case 3:
-				add(res[2]);break;
-			case 4:
-			case 5:
-			case 6:
-				add(res[3]);break;
-			default:
-				add(res[4]);break;
-		}
-		}
+
 		MainFrame.score = 0;
 
 		for(int a = 0; a < 6 && a < scores.size(); a++){
@@ -154,18 +167,21 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 			setLoading(false);
 		}
 
-		for(int i = 0, a = 0;i <= 2;i++){
-			icon=new ImageIcon(ResourceLoader.instance.getResource("data/End/ran"+(i + 4)+".png"));
-			Ranks[i] = new JLabel(icon);
-			Ranks[i].setBounds(420,480+a,icon.getIconWidth(),icon.getIconHeight());
+		JLabel ranks[] = new JLabel[3];
+		for(int i = 0, a = 0; i < 3; i++){
+			icon = new ImageIcon(ResourceLoader.instance.getResource("data/End/ran"+(i + 4)+".png"));
+			ranks[i] = new JLabel(icon);
+			ranks[i].setBounds(420,480+a,icon.getIconWidth(),icon.getIconHeight());
 			a = a + 70;
-			add(Ranks[i]);//4.5.6位
+			add(ranks[i]);//4.5.6位
 		}
 
 		add(first);
 		add(second);
 		add(third);//1.2.3位
 
+
+		JLabel Rank[] = new JLabel[6];
 		ImageIcon waku=new ImageIcon(ResourceLoader.instance.getResource("data/End/ran_waku.png"));
 		for(int i = 0, a = 0; i < 6 ;i++, a += 70){
 			Rank[i]= new JLabel(waku);
@@ -189,11 +205,6 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 		add(utyu); //背景
 
 
-
-	}
-
-	private void swhich(int rank2) {
-		// TODO 自動生成されたメソッド・スタブ
 
 	}
 
