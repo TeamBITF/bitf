@@ -174,53 +174,16 @@ public class MainComponent extends JPanel implements MouseListener{
 				}
 			}
 
-//			x = 0;
-
 			int i = x + y * w;
 
-			int[] rgb = Arrays.copyOfRange(array, i, i + w - x);
+			int[] rgb = Arrays.copyOfRange(array, i, i + r * 2 - x);
 			for (int j = 0; j < rgb.length; j++){
 				rgb[j] &= 0xFFFFFF | alpha << 24;
 			}
 
-			image.setRGB(startX + x, startY + y, w - x * 2, 1, rgb, 0, w - x);
+			image.setRGB(startX + x, startY + y, w - x * 2, 1, rgb, 0, 0);
 
 		}
-
-
-//		for (y = 0; y < h; y++){
-//			for (x = offsetX; x < r; x++){
-//				//透明な範囲
-//				if ((p2(Math.abs(x) - r) + p2(y - r - offsetY)) < p2(r)){
-//					break;
-//				}
-//			}
-//
-//			if (x == r){
-//				continue;
-//			}
-////			x = 0;
-//
-//			int s = x;
-//
-//			if (x < 0){
-//				s = 0;
-//			}
-//
-//			int i = s + y * w;
-//
-//			System.out.println("r:" + r);
-//			System.out.println("w:" + w);
-//
-//			int[] rgb = Arrays.copyOfRange(array, i, i + w - Math.abs(x * 2));
-//			for (int j = 0; j < rgb.length; j++){
-//				rgb[j] &= 0xFFFFFF | alpha << 24;
-//			}
-//
-//			image.setRGB(startX + s, startY + y, rgb.length, 1, rgb, 0, 0);
-//
-//		}
-
 	}
 
 	/**
