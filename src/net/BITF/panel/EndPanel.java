@@ -26,6 +26,7 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 	private JLabel first,second,third;
 	private JLabel Rank[] = new JLabel[100];
 	private JLabel Ranks[]=new JLabel[100];
+	private JLabel res[]=new JLabel[5];
 
 	private AudioClip clip;
 
@@ -43,9 +44,7 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 		results= new JLabel(icon);
 		results.setBounds(0,0,icon.getIconWidth(),icon.getIconHeight());
 
-		icon=new ImageIcon(ResourceLoader.instance.getResource("data/End/1_cong.png"));
-		praise= new JLabel(icon);
-		praise.setBounds(400,00,icon.getIconWidth(),icon.getIconHeight());
+
 
 
 		icon = new ImageIcon(ResourceLoader.instance.getResource("data/End/1st.png"));
@@ -72,7 +71,7 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 		SqlManager sql = new SqlManager();
 
 		ArrayList<String> names = new ArrayList<>();
-		ArrayList<Integer> scores = new ArrayList<>();
+		ArrayList<Integer> scores = new ArrayList<Integer>();
 
 		//SQLから点数を取得
 		try {
@@ -98,10 +97,37 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
+		if(MainFrame.oldStage==1){
+		int rankin = 0;
+		int size = 0;
+		for(;rankin < 5;rankin++){
+			icon=new ImageIcon(ResourceLoader.instance.getResource("data/end/res/res"+(rankin+1)+".png"));
+			res[rankin]=new JLabel(icon);
+			res[rankin].setBounds(500,50,icon.getIconWidth(),icon.getIconHeight());
+			}
+		for(;size < scores.size(); size++){
+			if(MainFrame.score == scores.get(size)){//ランキングと比べてる
+				break;
+			}
+		}
+		switch(size+1){
+			case 1:
+				add(res[0]);break;
+			case 2:
+				add(res[1]);break;
+			case 3:
+				add(res[2]);break;
+			case 4:
+			case 5:
+			case 6:
+				add(res[3]);break;
+			default:
+				add(res[4]);break;
+		}
+		}
 		MainFrame.score = 0;
 
-		for(int a = 0; a < 6; a++){
+		for(int a = 0; a < 6 && a < scores.size(); a++){
 			int temp = scores.get(a);
 
 			int digit;
@@ -158,11 +184,16 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 
 			add(Rank[i]); //マリカみたいな枠
 		}
-		add(praise);//順位によって変わる褒め言葉
+		//add(praise);//順位によって変わる褒め言葉
 		add(results);
 		add(utyu); //背景
 
 
+
+	}
+
+	private void swhich(int rank2) {
+		// TODO 自動生成されたメソッド・スタブ
 
 	}
 

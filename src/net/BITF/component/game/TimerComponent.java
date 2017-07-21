@@ -8,10 +8,10 @@ import java.awt.Graphics2D;
 import javax.swing.JPanel;
 
 import net.BITF.panel.GamePanel;
-
 public class TimerComponent extends JPanel{
 
 	private GamePanel gamePanel;
+	public Object BorderLayout;
 
 	public TimerComponent(GamePanel gamePanel) {
 		this.gamePanel = gamePanel;

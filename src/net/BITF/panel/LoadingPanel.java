@@ -1,6 +1,5 @@
 package net.BITF.panel;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
@@ -21,19 +20,16 @@ public class LoadingPanel extends JPanel implements Runnable{
 	private ImageIcon dot;
 
 	public LoadingPanel(){
-		setPanelInfo(null);
 
-		count = 0;
 
-		setBackground(Color.BLACK);
+
 
 		loading = new ImageIcon(ResourceLoader.instance.getResource("data/load/loadingend.gif"));
 		 JLabel load = new JLabel(loading);
 		 load.setLocation(0, 0);
 		add(load);
 
-		thread = new Thread(this);
-		thread.start();
+
 	}
 
 	public void setPanelInfo(BITFPanel bitfPanel){
