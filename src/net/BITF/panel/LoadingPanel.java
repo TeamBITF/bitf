@@ -28,9 +28,9 @@ public class LoadingPanel extends JPanel implements Runnable{
 		setBackground(Color.BLACK);
 
 		loading = new ImageIcon(ResourceLoader.instance.getResource("data/load/loadingend.gif"));
-		dot = new ImageIcon(ResourceLoader.instance.getResource("data/load/loading2.png"));
-
-		add(new JLabel(loading));
+		 JLabel load = new JLabel(loading);
+		 load.setLocation(0, 0);
+		add(load);
 
 		thread = new Thread(this);
 		thread.start();
