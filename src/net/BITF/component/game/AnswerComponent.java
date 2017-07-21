@@ -19,6 +19,7 @@ public class AnswerComponent extends JPanel{
 
 	private NextButton pass;
 	private JComboBox<String> comboBox;
+	private TimerComponent timer;
 
 	private GamePanel gamePanel;
 
@@ -27,6 +28,7 @@ public class AnswerComponent extends JPanel{
 
 		pass = new NextButton(gamePanel);
 		comboBox = new JComboBox<String>();
+		timer = new TimerComponent(gamePanel);
 
 		reset();
 
@@ -35,6 +37,7 @@ public class AnswerComponent extends JPanel{
 
 		add(pass);
 		add(comboBox);
+		add(timer);
 
 	}
 
@@ -62,5 +65,9 @@ public class AnswerComponent extends JPanel{
 		Graphics2D g2 = (Graphics2D) g;
 
 		g2.drawRect(0, 0, getWidth() - 1, getHeight() - 1);
+	}
+
+	public void update(){
+		timer.updateUI();
 	}
 }
