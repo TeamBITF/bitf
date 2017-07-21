@@ -167,42 +167,59 @@ public class MainComponent extends JPanel implements MouseListener{
 		final int alpha = circle.getAlpha();
 
 		for (y = 0; y < h; y++){
-			for (x = offsetX; x < w / 2; x++){
+			for (x = 0; x < w; x++){
 				//透明な範囲
 				if ((p2(x - r - offsetX) + p2(y - r - offsetY)) < p2(r)){
 					break;
 				}
 			}
 
-			final int ih = y * w;
-			int e = ih + w;
-			int s = ih;
+//			x = 0;
 
-			System.out.printf("array\ns:%d\ne:%d\ns+x:%d\ne-x:%d\nx:%d\n", s, e, s + x, e - x, x);
+			int i = x + y * w;
 
-			s = x;
-			e = x;
-
-			if (x < 0){
-				s = 0;
-				e = -x;
-			}
-
-			//見つからなかったとき
-			if (x == w / 2){
-				continue;
-			}
-
-//			int[] rgb = Arrays.copyOfRange(array, i, w + y * w - x);
-			int[] rgb = Arrays.copyOfRange(array, ih + s, ih + w - e);
+			int[] rgb = Arrays.copyOfRange(array, i, i + w - x);
 			for (int j = 0; j < rgb.length; j++){
 				rgb[j] &= 0xFFFFFF | alpha << 24;
 			}
 
-//			image.setRGB(startX + x, startY + y, w - x * 2, 1, rgb, 0, 0);
-			image.setRGB(startX + s, startY + y, rgb.length, 1, rgb, 0, 0);
+			image.setRGB(startX + x, startY + y, w - x * 2, 1, rgb, 0, w - x);
 
 		}
+
+
+//		for (y = 0; y < h; y++){
+//			for (x = offsetX; x < r; x++){
+//				//透明な範囲
+//				if ((p2(Math.abs(x) - r) + p2(y - r - offsetY)) < p2(r)){
+//					break;
+//				}
+//			}
+//
+//			if (x == r){
+//				continue;
+//			}
+////			x = 0;
+//
+//			int s = x;
+//
+//			if (x < 0){
+//				s = 0;
+//			}
+//
+//			int i = s + y * w;
+//
+//			System.out.println("r:" + r);
+//			System.out.println("w:" + w);
+//
+//			int[] rgb = Arrays.copyOfRange(array, i, i + w - Math.abs(x * 2));
+//			for (int j = 0; j < rgb.length; j++){
+//				rgb[j] &= 0xFFFFFF | alpha << 24;
+//			}
+//
+//			image.setRGB(startX + s, startY + y, rgb.length, 1, rgb, 0, 0);
+//
+//		}
 
 	}
 
