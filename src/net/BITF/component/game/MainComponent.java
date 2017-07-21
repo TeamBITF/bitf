@@ -181,8 +181,15 @@ public class MainComponent extends JPanel implements MouseListener{
 			System.out.printf("array\ns:%d\ne:%d\ns+x:%d\ne-x:%d\nx:%d\n", s, e, s + x, e - x, x);
 
 			s = x;
+			e = x;
+
+			if (x < 0){
+				s = 0;
+			}
+
+			//かぶってる
 			s = (x < 0) ? 0 : x;
-			
+
 			//見つからなかったとき
 			if (x == w / 2){
 				continue;
