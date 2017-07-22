@@ -38,7 +38,6 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 
 		}
 
-
 		setLayout(null);
 		yourScore = MainFrame.score;
 
@@ -46,9 +45,10 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 		JLabel utyu = new JLabel(icon);
 		utyu.setBounds(0,0,icon.getIconWidth(),icon.getIconHeight());
 
+
 		icon = new ImageIcon(ResourceLoader.instance.getResource("data/End/result.png"));
 		JLabel results = new JLabel(icon);
-		results.setBounds(-40,0,icon.getIconWidth(),icon.getIconHeight());
+		results.setBounds(-40, 0,icon.getIconWidth(),icon.getIconHeight());
 
 
 		JLabel first, second, third;
@@ -121,6 +121,10 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 				}
 			}
 
+
+
+
+
 			ImageIcon comment;
 			if (rank < 3){
 				comment = new ImageIcon(ResourceLoader.instance.getResource("data/end/res/res"+ (rank + 1) +".png"));
@@ -136,10 +140,10 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 			}
 
 			JLabel commentLabel = new JLabel(comment);
-			commentLabel.setBounds(500, 50, comment.getIconWidth(), comment.getIconHeight());
+			commentLabel.setBounds(550, 110, comment.getIconWidth(), comment.getIconHeight());
+			dispYourScore(rank);
 			add(commentLabel);
 
-//			dispYourScore();
 
 		}
 
@@ -159,7 +163,7 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 			ImageIcon[] icons = new ImageIcon[digit];
 
 
-			for(int i=0; i < digit; i++){
+			for(int i = 0; i < digit; i++){
 				icons[i] = new ImageIcon(ResourceLoader.instance.getResource("data/End/Dnumber/no"+list.get(i)+".png"));
 				label[i]=new JLabel(icons[i]);
 
@@ -212,7 +216,6 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 		//add(praise);//順位によって変わる褒め言葉
 		add(results);
 		add(utyu); //背景
-
 		validate();
 
 		if (clip != null){
@@ -221,14 +224,20 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 
 	}
 
-	private void dispYourScore(){
-		JLabel label = new JLabel();
-		label.setText("Your Score:" + Integer.toString(yourScore));
-		label.setForeground(Color.WHITE);
-		System.out.println(label.getPreferredSize());
+	private void dispYourScore(int rank){
+		JLabel[] label = new JLabel[2];
+		label[0] = new JLabel("Your Score:" + Integer.toString(yourScore));
+		label[1] = new JLabel("rank:" + Integer.toString(rank));
+		for (int i = 0; i < label.length; i++){
+			label[i].setForeground(Color.WHITE);
+			label[i].setFont(new Font("ＭＳ ゴシック", Font.BOLD, 16));
+			label[i].setBounds(1000, 100, 16 * 14, 600 + i * 60);
 
-//		label.setBounds(0, 0, label.getWidth(), label.getHeight());
-		add(label);
+			add(label[i]);
+		}
+		System.out.println("score:" + yourScore);
+
+
 
 	}
 

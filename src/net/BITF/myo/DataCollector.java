@@ -79,14 +79,14 @@ public class DataCollector extends AbstractDeviceListener {
 
 		flag=false;
 		switch(currentPose.getType()){
-		
+
 		case FIST:
 			if(MainFrame.stage == 1 && pullflag == false){
 				flag=true;
 				robot.mousePress(InputEvent.BUTTON1_MASK);
 				robot.mouseRelease(InputEvent.BUTTON1_MASK);
 			}
-			else if(mainFrame.stage == 1 && pullflag == true){
+			else if(MainFrame.stage == 1 && pullflag == true){
 				//なにもしない
 			}
 			else{

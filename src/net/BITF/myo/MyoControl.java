@@ -108,20 +108,20 @@ public class MyoControl {
 					y=283;
 				}
 			}
-			
+
 			if(panel.getTime()==0){
 				x=683;
 				y=384;
 				dataCollector.pullflag= false;
 			}
 		}
-		
-		
+
+
 		if (dataCollector.getCurrentPose() != null) {
 			String  pose= dataCollector.getCurrentPose().getType().toString();
 		}
 
-		System.out.println(x+","+y);
+//		System.out.println(x+","+y);
 		robot.mouseMove(x, y);
 		point.setLocation(x, y);
 
