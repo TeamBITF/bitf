@@ -38,7 +38,7 @@ public class MainFrame extends JFrame implements Runnable{
 		thread = new Thread(this);
 
 		bgm = new AudioClip[3];
-		bgm[0] = Applet.newAudioClip(ResourceLoader.instance.getResource("data/bgm/famipop3.wav"));
+		bgm[0] = Applet.newAudioClip(ResourceLoader.instance.getResource("data/bgm/startbgm.wav"));
 		bgm[1] = Applet.newAudioClip(ResourceLoader.instance.getResource("data/bgm/game.wav"));
 		bgm[2] = Applet.newAudioClip(ResourceLoader.instance.getResource("data/bgm/ranking.wav"));
 

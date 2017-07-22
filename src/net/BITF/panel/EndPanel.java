@@ -35,7 +35,7 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 
 		icon = new ImageIcon(ResourceLoader.instance.getResource("data/End/result.png"));
 		JLabel results = new JLabel(icon);
-		results.setBounds(0,0,icon.getIconWidth(),icon.getIconHeight());
+		results.setBounds(-40,0,icon.getIconWidth(),icon.getIconHeight());
 
 
 		JLabel first, second, third;
