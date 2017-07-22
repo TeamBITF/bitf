@@ -43,7 +43,7 @@ public class GamePanel extends BITFPanel implements ActionListener{
 	 * 全体のタイムリミット
 	 * 3分
 	 */
-	public static int TIME_TOTAL_LIMIT = 3 * 60 * (1000 / LOOP_PER_SECONDS);
+	public static int TIME_TOTAL_LIMIT = 2 * 60 * (1000 / LOOP_PER_SECONDS);
 
 
 

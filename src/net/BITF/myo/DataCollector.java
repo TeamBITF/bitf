@@ -79,10 +79,20 @@ public class DataCollector extends AbstractDeviceListener {
 
 		flag=false;
 		switch(currentPose.getType()){
+		
 		case FIST:
-//			robot.mousePress(InputEvent.BUTTON1_MASK);
-//			robot.mouseRelease(InputEvent.BUTTON1_MASK);
-
+			if(MainFrame.stage == 1 && pullflag == false){
+				flag=true;
+				robot.mousePress(InputEvent.BUTTON1_MASK);
+				robot.mouseRelease(InputEvent.BUTTON1_MASK);
+			}
+			else if(mainFrame.stage == 1 && pullflag == true){
+				//なにもしない
+			}
+			else{
+				robot.mousePress(InputEvent.BUTTON1_MASK);
+				robot.mouseRelease(InputEvent.BUTTON1_MASK);
+			}
 			break;
 		case FINGERS_SPREAD:
 			if(MainFrame.stage == 1 && pullflag == false){
@@ -145,7 +155,7 @@ public class DataCollector extends AbstractDeviceListener {
 				mainFrame.nextStage();
 				nameflag= false;
 			}
-			if(MainFrame.stage==0 && nameflag == true){//startstage
+			if(MainFrame.stage==0 && nameflag == true && 10 <= this.pitchW){//startstage
 				MainFrame.stage = 1;
 				mainFrame.nextStage();
 			}
