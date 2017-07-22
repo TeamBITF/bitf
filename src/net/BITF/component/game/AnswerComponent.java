@@ -37,7 +37,7 @@ public class AnswerComponent extends JPanel{
 
 		add(pass);
 		add(comboBox);
-		add(timer);
+//		add(timer);
 
 	}
 
