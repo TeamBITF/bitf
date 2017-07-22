@@ -1,5 +1,6 @@
 package net.BITF.panel;
 
+import java.applet.Applet;
 import java.applet.AudioClip;
 import java.awt.Color;
 import java.awt.Font;
@@ -21,7 +22,7 @@ import net.BITF.util.SqlManager;
 public class EndPanel extends BITFPanel implements ActionListener  {
 
 	private AudioClip clip;
-
+	
 	public EndPanel(){
 
 		super();
@@ -108,12 +109,15 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 			ImageIcon comment;
 			if (rank < 3){
 				comment = new ImageIcon(ResourceLoader.instance.getResource("data/end/res/res"+ (rank + 1) +".png"));
+				clip = Applet.newAudioClip(ResourceLoader.instance.getResource("data/se/終わったら"+(rank+1)+".wav"));
 			}
 			else if (rank >= 6){
 				comment = new ImageIcon(ResourceLoader.instance.getResource("data/end/res/res5.png"));
+				clip = Applet.newAudioClip(ResourceLoader.instance.getResource("data/se/パララッパラ.wav"));
 			}
 			else{
 				comment = new ImageIcon(ResourceLoader.instance.getResource("data/end/res/res4.png"));
+				clip = Applet.newAudioClip(ResourceLoader.instance.getResource("data/se/ランキングに入れなかったら.wav"));
 			}
 
 			JLabel commentLabel = new JLabel(comment);
@@ -203,7 +207,7 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 		add(utyu); //背景
 
 		validate();
-
+		clip.play();
 	}
 
 	@Override
