@@ -15,19 +15,32 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
+import net.BITF.Main;
 import net.BITF.frame.MainFrame;
 import net.BITF.util.ResourceLoader;
 import net.BITF.util.SqlManager;
 
 public class EndPanel extends BITFPanel implements ActionListener  {
 
+	private int yourScore;
 	private AudioClip clip;
-	
+
 	public EndPanel(){
 
 		super();
 
-		this.setLayout(null);
+		if(Main.isDebugMode){
+
+			if (MainFrame.oldStage != 1){
+				MainFrame.oldStage = 1;
+				MainFrame.score = 100;
+			}
+
+		}
+
+
+		setLayout(null);
+		yourScore = MainFrame.score;
 
 		ImageIcon icon = new ImageIcon(ResourceLoader.instance.getResource("data/End/utyu.jpg"));
 		JLabel utyu = new JLabel(icon);
@@ -72,7 +85,15 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 
 			//直前の画面がゲーム画面だった場合
 			if (MainFrame.oldStage == 1){
-				state.executeUpdate("INSERT INTO ScoreBoard VALUES ('" + MainFrame.userName + "'," + MainFrame.score + ")");
+
+				String name = MainFrame.userName;
+
+				if (name.equals("")){
+					name = "noname";
+				}
+
+				state.executeUpdate("INSERT INTO ScoreBoard VALUES ('" + name + "'," + MainFrame.score + ")");
+				MainFrame.userName = "";
 			}
 
 			ResultSet select = state.executeQuery("SELECT name, score FROM ScoreBoard ORDER BY score DESC");
@@ -94,12 +115,6 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 		if(MainFrame.oldStage == 1){
 
 			int rank;
-//			for(int rankin = 0; rankin < 5; rankin++){
-//				icon=new ImageIcon(ResourceLoader.instance.getResource("data/end/res/res"+(rankin + 1)+".png"));
-//				res[rankin]=new JLabel(icon);
-//				res[rankin].setBounds(500,50,icon.getIconWidth(),icon.getIconHeight());
-//			}
-
 			for(rank = 0; rank < scores.size(); rank++){
 				if(MainFrame.score == scores.get(rank)){//ランキングと比べてる
 					break;
@@ -124,20 +139,8 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 			commentLabel.setBounds(500, 50, comment.getIconWidth(), comment.getIconHeight());
 			add(commentLabel);
 
-//			switch(rank+1){
-//				case 1:
-//					add(res[0]);break;
-//				case 2:
-//					add(res[1]);break;
-//				case 3:
-//					add(res[2]);break;
-//				case 4:
-//				case 5:
-//				case 6:
-//					add(res[3]);break;
-//				default:
-//					add(res[4]);break;
-//			}
+//			dispYourScore();
+
 		}
 
 		MainFrame.score = 0;
@@ -202,13 +205,33 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 
 			add(Rank[i]); //マリカみたいな枠
 		}
+
+
+
+
 		//add(praise);//順位によって変わる褒め言葉
 		add(results);
 		add(utyu); //背景
 
 		validate();
-		clip.play();
+
+		if (clip != null){
+			clip.play();
+		}
+
 	}
+
+	private void dispYourScore(){
+		JLabel label = new JLabel();
+		label.setText("Your Score:" + Integer.toString(yourScore));
+		label.setForeground(Color.WHITE);
+		System.out.println(label.getPreferredSize());
+
+//		label.setBounds(0, 0, label.getWidth(), label.getHeight());
+		add(label);
+
+	}
+
 
 	@Override
 	public int update() {
