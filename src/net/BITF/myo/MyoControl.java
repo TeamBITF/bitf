@@ -114,6 +114,27 @@ public class MyoControl {
 				y=384;
 				dataCollector.pullflag= false;
 			}
+		}else if(MainFrame.stage == 0){
+			if(roll_w <= 8){
+				x=(int) (x-(((int)roll_w-8)*s)); //右
+			}
+				else{
+				x=(int) (x-(((int)roll_w-8)*v));//左
+			}
+				y = (int) (y-(((int)pitch_w - 8)*s));//上下
+
+			if(x >= 880){
+			x=875;
+			}
+			if(x <= 90){
+				x=95;
+			}
+			if(y <= 60){
+				y = 65;
+			}
+			if(y >= 641){
+				y=636;
+			}
 		}
 
 
