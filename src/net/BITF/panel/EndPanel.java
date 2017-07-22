@@ -140,7 +140,7 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 			}
 
 			JLabel commentLabel = new JLabel(comment);
-			commentLabel.setBounds(550, 110, comment.getIconWidth(), comment.getIconHeight());
+			commentLabel.setBounds(400, 110, comment.getIconWidth(), comment.getIconHeight());
 			dispYourScore(rank + 1);
 			add(commentLabel);
 
