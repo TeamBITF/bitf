@@ -128,7 +128,7 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 			ImageIcon comment;
 			if (rank < 3){
 				comment = new ImageIcon(ResourceLoader.instance.getResource("data/end/res/res"+ (rank + 1) +".png"));
-				clip = Applet.newAudioClip(ResourceLoader.instance.getResource("data/se/終わったら"+(rank+1)+".wav"));
+				clip = Applet.newAudioClip(ResourceLoader.instance.getResource("data/se/終わったら"+(rank+1)+"位.wav"));
 			}
 			else if (rank >= 6){
 				comment = new ImageIcon(ResourceLoader.instance.getResource("data/end/res/res5.png"));
