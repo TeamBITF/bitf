@@ -132,11 +132,11 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 			}
 			else if (rank >= 6){
 				comment = new ImageIcon(ResourceLoader.instance.getResource("data/end/res/res5.png"));
-				clip = Applet.newAudioClip(ResourceLoader.instance.getResource("data/se/パララッパラ.wav"));
+				clip = Applet.newAudioClip(ResourceLoader.instance.getResource("data/se/ランキングに入れなかったら.wav"));
 			}
 			else{
 				comment = new ImageIcon(ResourceLoader.instance.getResource("data/end/res/res4.png"));
-				clip = Applet.newAudioClip(ResourceLoader.instance.getResource("data/se/ランキングに入れなかったら.wav"));
+				clip = Applet.newAudioClip(ResourceLoader.instance.getResource("data/se/パララッパラ.wav"));
 			}
 
 			JLabel commentLabel = new JLabel(comment);
