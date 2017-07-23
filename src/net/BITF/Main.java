@@ -57,8 +57,6 @@ public class Main{
 		}
 
 
-//		new Control();
-//		control = new Control();
 		fps = new Fps(30);
 	}
 }
