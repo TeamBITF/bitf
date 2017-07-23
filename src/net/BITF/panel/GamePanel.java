@@ -197,7 +197,7 @@ public class GamePanel extends BITFPanel implements ActionListener{
 		 * ここで画像は切り替えない
 		 */
 
-		if (answer.equals("選択なし")){
+		if (answer.equals("もう1度画像を見る")){
 			//何もしない
 		}
 		else if (answer.equals(manager.getImageFromList(result).getName())){

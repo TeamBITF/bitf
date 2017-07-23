@@ -92,7 +92,13 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 					name = "noname";
 				}
 
-				state.executeUpdate("INSERT INTO ScoreBoard VALUES ('" + name + "'," + MainFrame.score + ")");
+				if (!name.equals("_demo")){
+
+					String device = (Main.isConnectingMyo) ? "myo" : "mouse";
+
+					state.executeUpdate("INSERT INTO ScoreBoard VALUES ('" + name + "'," + MainFrame.score + "," + device +")");
+				}
+
 				MainFrame.userName = "";
 			}
 
