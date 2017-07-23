@@ -45,7 +45,7 @@ public class AnswerComponent extends JPanel{
 		ImageManager images = ImageManager.getInstance();
 
 		List<String> list = new ArrayList<String>();
-		list.add("選択なし");
+		list.add("もう1度画像を見る");
 		list.addAll(Arrays.asList(images.generateRandomList(gamePanel.getResult())));
 
 		DefaultComboBoxModel<String> model = new DefaultComboBoxModel<String>();
