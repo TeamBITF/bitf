@@ -1,5 +1,7 @@
 package net.BITF.frame;
 
+import java.awt.Color;
+
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JTextPane;
@@ -31,6 +33,7 @@ public class DebugFrame extends JFrame{
 		setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 
 		text = new JTextPane();
+		text.setForeground(Color.black);
 		add(text);
 	}
 
