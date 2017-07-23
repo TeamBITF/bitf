@@ -27,7 +27,7 @@ public class DebugFrame extends JFrame{
 		setResizable(false);
 		setAlwaysOnTop(true);
 
-		setBounds(0, 0, 500, 200);
+		setBounds(850, 600, 500, 200);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 		setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
