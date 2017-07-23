@@ -39,14 +39,16 @@ public class DebugFrame extends JFrame{
 
 		//=========
 
-		addText(mainFrame.bitfPanel.toString());
-
 		if (mainFrame.bitfPanel instanceof GamePanel){
 			GamePanel panel = (GamePanel) mainFrame.bitfPanel;
-			addText("ImageID:" + Integer.toString(panel.getResult()));
-			addText("Left time:" + Integer.toString(panel.getTime()) + " / " + Integer.toString(GamePanel.TIME_LIMIT_PER_IMAGE));
-			addText("totalTimeLimit:"+Integer.toString(panel.getTotalTimeLimit()));
-			addText("CircleNum:" + panel.getListCircle().getList().size());
+
+			if (Main.isDebugMode){
+				addText("ImageID:" + Integer.toString(panel.getResult()));
+				addText("Left time:" + Integer.toString(panel.getTime()) + " / " + Integer.toString(GamePanel.TIME_LIMIT_PER_IMAGE));
+				addText("totalTimeLimit:"+Integer.toString(panel.getTotalTimeLimit()));
+				addText("CircleNum:" + panel.getListCircle().getList().size());
+
+			}
 		}
 
 		//=========
