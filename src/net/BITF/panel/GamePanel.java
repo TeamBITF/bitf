@@ -5,6 +5,7 @@ import java.applet.AudioClip;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Robot;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -67,7 +68,7 @@ public class GamePanel extends BITFPanel implements ActionListener{
 	private DataCollector dataCollector;
 
 	private int totalTimeLimit;
-
+	private Robot robot;
 	private HashMap<Integer, Boolean> map;
 	private int count;
 
@@ -197,7 +198,7 @@ public class GamePanel extends BITFPanel implements ActionListener{
 		 * ここで画像は切り替えない
 		 */
 
-		if (answer.equals("選択なし")){
+		if (answer.equals("もう1度画像を見る")){
 			//何もしない
 		}
 		else if (answer.equals(manager.getImageFromList(result).getName())){
@@ -262,13 +263,14 @@ public class GamePanel extends BITFPanel implements ActionListener{
 		listCircle.update();
 		mainComponent.updateUI();
 		answerComponent.update();
-
+	
 		return nextStage;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-
+		
+		
 		if(e.getActionCommand().equals("time")){
 			totalTimeLimit--;
 
