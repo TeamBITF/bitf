@@ -63,14 +63,14 @@ public class DebugFrame extends JFrame{
 
 		//==========
 
-		addText("PlayerName:" + mainFrame.userName);
+		addText("PlayerName:" + MainFrame.userName);
 		addText("score:" + Integer.toString(MainFrame.score));
 
 		//==========
 
 		if(Main.isConnectingMyo){
 			addText("MyoState:" + ((myo != null) ? "Connected" : "Disconnected"));
-			addText(myo.getDataCollector().toString());
+			addText(myo.getDataCollector());
 		}
 
 		text.setText(message);
@@ -83,5 +83,9 @@ public class DebugFrame extends JFrame{
 
 	private void addText(String text){
 		message += text + "\n";
+	}
+
+	private void addText(Object obj){
+		addText(obj.toString());
 	}
 }
