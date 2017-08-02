@@ -63,7 +63,7 @@ public class DebugFrame extends JFrame{
 
 		//==========
 
-		addText("PlayerName:" + mainFrame.userName);
+		addText("PlayerName:" + MainFrame.userName);
 		addText("score:" + Integer.toString(MainFrame.score));
 
 		//==========
