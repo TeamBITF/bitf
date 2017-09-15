@@ -5,8 +5,6 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -22,6 +20,8 @@ import net.BITF.util.ImageManager;
 
 public class AnswerComponent extends JPanel{
 
+	private boolean resetFlag;
+
 	private NextButton pass;
 	private JList<String> answerList;
 
@@ -31,12 +31,29 @@ public class AnswerComponent extends JPanel{
 	public AnswerComponent(GamePanel gamePanel){
 		this.gamePanel = gamePanel;
 
+		resetFlag = false;
+
 		setLayout(new FlowLayout(FlowLayout.LEFT));
 //		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
 		pass = new NextButton(gamePanel);
 
-		answerList = new JList<>();
+		reset();
+
+		add(answerList);
+
+		if (!Main.isConnectingMyo){
+			add(pass);
+		}
+
+	}
+
+	public void reset(){
+		resetFlag = true;
+
+		ImageManager images = ImageManager.getInstance();
+
+		JList<String> answerList = new JList<>();
 
 		answerList.setAlignmentY(Component.TOP_ALIGNMENT);
 		answerList.setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -45,22 +62,6 @@ public class AnswerComponent extends JPanel{
 		answerList.setAlignmentY(Component.TOP_ALIGNMENT);
 		answerList.setAlignmentX(Component.LEFT_ALIGNMENT);
 		answerList.setFont(new Font("ＭＳ ゴシック", Font.BOLD, 30));
-
-		reset();
-
-		answerList.setSelectedIndex(0);
-
-		add(answerList);
-
-		if (!Main.isConnectingMyo){
-			add(pass);
-		}
-
-		selectNext();
-	}
-
-	public void reset(){
-		ImageManager images = ImageManager.getInstance();
 
 		List<String> list = new ArrayList<String>();
 		list.add("もう1度画像を見る");
@@ -71,8 +72,14 @@ public class AnswerComponent extends JPanel{
 			model.addElement(list.get(i));
 		}
 
+		System.out.println(model);
+
 		answerList.setModel(model);
 		answerList.setSelectedIndex(0);
+
+		this.answerList = answerList;
+
+		resetFlag = false;
 	}
 
 	public String getAnswer(){
@@ -92,6 +99,8 @@ public class AnswerComponent extends JPanel{
 	}
 
 	public void selectNext(){
+		if (resetFlag) return;
+
 		int index = answerList.getSelectedIndex();
 		index++;
 
@@ -104,12 +113,14 @@ public class AnswerComponent extends JPanel{
 	}
 
 	public void selectPre(){
+		if (resetFlag) return;
+
 		int index = answerList.getSelectedIndex();
 		index--;
 		final int size = answerList.getModel().getSize();
 
 		//選択値がマイナスになった
-		if (index < size){
+		if (index < 0){
 			index = size - 1;
 		}
 

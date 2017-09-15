@@ -27,6 +27,7 @@ public class Main{
 //	private static Control control;
 
 	public static void main(String[] args) {
+		boolean mouseFlag = false;
 		Main.args = args;
 
 		myo = null;
@@ -40,18 +41,23 @@ public class Main{
 				stage = Integer.valueOf(args[++i]);
 			}
 			else if(args[i].equals("-m")){
-				hub = new Hub("com.example.hello-myo");
+				mouseFlag = true;
 
-				System.out.println("Attempting to find a Myo...");
-				myo = hub.waitForMyo(10000);
+			}
+		}
 
-				if (myo == null) {
-					throw new RuntimeException("Unable to find a Myo!");
-				}
-				else {
-					System.out.println("Connected to Myo");
-					isConnectingMyo = true;
-				}
+		if (!mouseFlag){
+			hub = new Hub("com.example.hello-myo");
+
+			System.out.println("Attempting to find a Myo...");
+			myo = hub.waitForMyo(10000);
+
+			if (myo == null) {
+				throw new RuntimeException("Unable to find a Myo!");
+			}
+			else {
+				System.out.println("Connected to Myo");
+				isConnectingMyo = true;
 			}
 		}
 

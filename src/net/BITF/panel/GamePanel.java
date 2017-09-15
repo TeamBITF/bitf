@@ -47,7 +47,7 @@ public class GamePanel extends BITFPanel implements ActionListener{
 	 */
 	public static int TIME_TOTAL_LIMIT = 2 * 60 * (1000 / LOOP_PER_SECONDS);
 
-
+	public boolean prepare;
 
 	private AnswerComponent answerComponent;
 	private InfoComponent infoComponent;
@@ -90,6 +90,8 @@ public class GamePanel extends BITFPanel implements ActionListener{
 		/*
 		 * GamePanelの初期化
 		 */
+
+		prepare = true;
 		count = 0;
 		totalTimeLimit = TIME_TOTAL_LIMIT;
 
@@ -174,16 +176,13 @@ public class GamePanel extends BITFPanel implements ActionListener{
 		timer.start();
 
 		setLoading(false);
+		prepare = false;
 	}
 
 	private void init(){
 		//TIME_LIMIT_PER_IMAGEで初期化
 		time = GamePanel.TIME_LIMIT_PER_IMAGE;
 
-	}
-
-	public void click(int x, int y){
-		listCircle.clicked(x, y);
 	}
 
 	public void pass(){
@@ -235,6 +234,18 @@ public class GamePanel extends BITFPanel implements ActionListener{
 		infoComponent.update();
 	}
 
+	public void selectNextAnswer(){
+		answerComponent.selectNext();
+	}
+
+	public void click(int x, int y){
+		listCircle.clicked(x, y);
+	}
+
+	public void selectPreAnswer(){
+		answerComponent.selectPre();
+	}
+
 	public int getTime(){
 		return time;
 	}
@@ -253,6 +264,8 @@ public class GamePanel extends BITFPanel implements ActionListener{
 		int size = ImageManager.getInstance().getSize();
 
 		if (count < size){
+			prepare = true;
+
 			if (index < 0){
 				while (true){
 					index = new Random().nextInt(size);
@@ -264,8 +277,13 @@ public class GamePanel extends BITFPanel implements ActionListener{
 			}
 
 			listCircle.removeAllCircle();
+
+			System.out.println("ImageID:" + Integer.toString(index));
+
 			result = mainComponent.changeImage(index);
 			answerComponent.reset();
+
+			prepare = false;
 
 		}
 		else {
@@ -280,6 +298,7 @@ public class GamePanel extends BITFPanel implements ActionListener{
 		listCircle.update();
 		mainComponent.updateUI();
 		timerComponent.updateUI();
+		infoComponent.update();
 
 		return nextStage;
 	}

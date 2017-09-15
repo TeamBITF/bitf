@@ -11,7 +11,7 @@ public class Control implements IFps
 	private MainFrame mainFrame;
 	private DebugFrame debugFrame;
 
-	private MyoControl myoControl;
+	public static MyoControl myoControl;
 
 	public Control(){
 

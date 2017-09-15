@@ -78,6 +78,57 @@ public class DataCollector extends AbstractDeviceListener {
 		}
 
 		flag=false;
+
+
+		if (MainFrame.stage == 0){
+			switch(currentPose.getType()){
+			default:
+				break;
+
+			}
+		}
+		else if (MainFrame.stage == 1){
+			GamePanel panel = (GamePanel) mainFrame.getPanel();
+
+			if (oldPose != currentPose){
+
+				System.out.println(currentPose);
+				switch(currentPose.getType()){
+				case WAVE_IN:
+					panel.selectNextAnswer();
+					break;
+
+				case WAVE_OUT:
+					panel.selectPreAnswer();
+					break;
+
+				case FINGERS_SPREAD:
+					robot.mousePress(InputEvent.BUTTON1_MASK);
+					robot.mouseRelease(InputEvent.BUTTON1_MASK);
+					break;
+
+				case DOUBLE_TAP:
+					if (panel.prepare) break;
+
+					panel.answer();
+					break;
+
+				default:
+					break;
+
+				}
+			}
+
+		}
+		else {
+			switch(currentPose.getType()){
+			default:
+				break;
+
+			}
+		}
+
+
 		switch(currentPose.getType()){
 
 		case FIST:
@@ -100,7 +151,7 @@ public class DataCollector extends AbstractDeviceListener {
 				robot.mousePress(InputEvent.BUTTON1_MASK);
 				robot.mouseRelease(InputEvent.BUTTON1_MASK);
 			}
-			else if(mainFrame.stage == 1 && pullflag == true){
+			else if(MainFrame.stage == 1 && pullflag == true){
 				//なにもしない
 			}
 			else{
@@ -110,13 +161,18 @@ public class DataCollector extends AbstractDeviceListener {
 			break;
 		case WAVE_OUT:
 			if(MainFrame.stage == 1 && pullflag == false){//gamestage
-				MyoControl.x=1200;
-				MyoControl.y=70;
-				robot.mouseMove(1200, 70);
-				MyoControl.point.setLocation(1200, 70);
-				robot.mousePress(InputEvent.BUTTON1_MASK);
-				robot.mouseRelease(InputEvent.BUTTON1_MASK);
-				pullflag=true;
+//
+//				GamePanel panel = (GamePanel) mainFrame.getPanel();
+//
+//				panel.selectNextAnswer();
+
+//				MyoControl.x=1200;
+//				MyoControl.y=70;
+//				robot.mouseMove(1200, 70);
+//				MyoControl.point.setLocation(1200, 70);
+//				robot.mousePress(InputEvent.BUTTON1_MASK);
+//				robot.mouseRelease(InputEvent.BUTTON1_MASK);
+//				pullflag=true;
 			}
 			if(MainFrame.stage==0 && nameflag == false){//startstage
 				MyoControl.x=560;
@@ -133,21 +189,24 @@ public class DataCollector extends AbstractDeviceListener {
 				GamePanel panel = (GamePanel) mainFrame.getPanel();
 //				robot.mousePress(InputEvent.BUTTON1_MASK);
 //				robot.mouseRelease(InputEvent.BUTTON1_MASK);
-				panel.answer();
+//				panel.answer();
 				}
 			break;
 		case WAVE_IN:
 
 			if(MainFrame.stage == 1 && pullflag == true){//gamestage
-				GamePanel panel = (GamePanel) mainFrame.getPanel();
-				robot.mousePress(InputEvent.BUTTON1_MASK);
-				robot.mouseRelease(InputEvent.BUTTON1_MASK);
 
-				MyoControl.x=683;
-				MyoControl.y=384;
-				robot.mouseMove(683, 384);
-				MyoControl.point.setLocation(683, 384);
-				pullflag= false;
+//				GamePanel panel = (GamePanel) mainFrame.getPanel();
+//				panel.selectPreAnswer();
+
+//				robot.mousePress(InputEvent.BUTTON1_MASK);
+//				robot.mouseRelease(InputEvent.BUTTON1_MASK);
+//
+//				MyoControl.x=683;
+//				MyoControl.y=384;
+//				robot.mouseMove(683, 384);
+//				MyoControl.point.setLocation(683, 384);
+//				pullflag= false;
 			}
 
 			if(MainFrame.stage==2){//endstage
