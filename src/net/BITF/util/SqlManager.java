@@ -11,7 +11,7 @@ public class SqlManager {
 
 		try{
 			Driver driver = (Driver) Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
-			String url = "jdbc:sqlserver://172.16.31.8\\SQLEXPRESS;database=BITF;integratedSecurity=false;user=BITFkagi810;password=123456";
+			String url = "jdbc:sqlserver://localhost\\SQLEXPRESS;database=BITF;integratedSecurity=false;user=BITFkagi810;password=123456";
 
 			Connection connection = driver.connect(url, new Properties());
 

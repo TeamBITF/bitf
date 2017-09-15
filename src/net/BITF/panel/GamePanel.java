@@ -19,8 +19,10 @@ import javax.swing.Timer;
 
 import net.BITF.Circle.ListCircle;
 import net.BITF.component.game.AnswerComponent;
+import net.BITF.component.game.InfoComponent;
 import net.BITF.component.game.MainComponent;
 import net.BITF.component.game.StatusComponent;
+import net.BITF.component.game.TimerComponent;
 import net.BITF.frame.MainFrame;
 import net.BITF.myo.DataCollector;
 import net.BITF.util.ImageManager;
@@ -48,10 +50,12 @@ public class GamePanel extends BITFPanel implements ActionListener{
 
 
 	private AnswerComponent answerComponent;
+	private InfoComponent infoComponent;
 	private MainComponent mainComponent;
 	private StatusComponent statusComponent;
+	private TimerComponent timerComponent;
 
-	private JPanel layoutPanelH;
+	private JPanel mainPanel;
 	private JPanel layoutPanelV;
 
 	private BufferedImage bg;
@@ -99,6 +103,16 @@ public class GamePanel extends BITFPanel implements ActionListener{
 		exactly = Applet.newAudioClip(ResourceLoader.instance.getResource("data/se/正解.wav"));
 		boo = Applet.newAudioClip(ResourceLoader.instance.getResource("data/se/不正解.wav"));
 
+		/*
+		 * 背景画像の読み込み
+		 */
+
+		try {
+			bg = ImageIO.read(ResourceLoader.instance.getResource("data/Game/genutyu.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 		//レイアウト
 		setLayout(new FlowLayout(FlowLayout.CENTER));
 
@@ -107,9 +121,9 @@ public class GamePanel extends BITFPanel implements ActionListener{
 		 */
 
 		//縦
-		layoutPanelH = new JPanel();
-		layoutPanelH.setLayout(new BoxLayout(layoutPanelH, BoxLayout.Y_AXIS));
-		layoutPanelH.setOpaque(false);
+		mainPanel = new JPanel();
+		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
+		mainPanel.setOpaque(false);
 		//layoutPanelH.setBorder(new EmptyBorder(0, 0, 0, 20));
 
 		//横
@@ -122,33 +136,32 @@ public class GamePanel extends BITFPanel implements ActionListener{
 
 
 		answerComponent = new AnswerComponent(this);
+		infoComponent = new InfoComponent();
 		mainComponent = new MainComponent(this, result);
 		statusComponent = new StatusComponent(this);
+		timerComponent = new TimerComponent(this);
 
 
 		/* ================================================================
 		 * Componentの配置
 		 * ================================================================*/
 
-		layoutPanelH.add(statusComponent);
-
+		mainPanel.add(statusComponent);
 		layoutPanelV.add(mainComponent);
-		layoutPanelV.add(answerComponent);
-
-		layoutPanelH.add(layoutPanelV);
-
-		add(layoutPanelH);
 
 
-		/*
-		 * 背景画像の読み込み
-		 */
+		JPanel answer = new JPanel();
+		answer.setLayout(new BoxLayout(answer, BoxLayout.Y_AXIS));
+		answer.setOpaque(false);
+		answer.add(answerComponent);
 
-		try {
-			bg = ImageIO.read(ResourceLoader.instance.getResource("data/Game/genutyu.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		answer.add(infoComponent);
+		answer.add(timerComponent);
+
+		layoutPanelV.add(answer);
+		mainPanel.add(layoutPanelV);
+
+		add(mainPanel);
 
 		//その他
 		init();
@@ -203,18 +216,23 @@ public class GamePanel extends BITFPanel implements ActionListener{
 		else if (answer.equals(manager.getImageFromList(result).getName())){
 			//正解
 			System.out.println("正解");
-			MainFrame.score += time / 10;
+			MainFrame.score += time / 1 + MainFrame.continuous * 10;
+			MainFrame.continuous++;
 			exactly.play();
+
 			init();
 			changeImage();
 
-			}
+		}
 		else {
 			//はずれ
 			System.out.println("不正解");
+			MainFrame.continuous = 0;
 			MainFrame.score -= 10;
 			boo.play();
 		}
+
+		infoComponent.update();
 	}
 
 	public int getTime(){
@@ -261,7 +279,7 @@ public class GamePanel extends BITFPanel implements ActionListener{
 	public int update() {
 		listCircle.update();
 		mainComponent.updateUI();
-		answerComponent.update();
+		timerComponent.updateUI();
 
 		return nextStage;
 	}
@@ -309,6 +327,4 @@ public class GamePanel extends BITFPanel implements ActionListener{
 	public ListCircle getListCircle() {
 		return listCircle;
 	}
-
-
 }

@@ -24,12 +24,12 @@ public class Control implements IFps
 			myoControl = new MyoControl(Main.myo, Main.hub, mainFrame);
 		}
 
-		debugFrame = new DebugFrame(mainFrame, myoControl);
-		debugFrame.setVisible(true);
-//		if(Main.isDebugMode){
-//			debugFrame = new DebugFrame(mainFrame, myoControl);
-//			debugFrame.setVisible(true);
-//		}
+//		debugFrame = new DebugFrame(mainFrame, myoControl);
+//		debugFrame.setVisible(true);
+		if(Main.isDebugMode){
+			debugFrame = new DebugFrame(mainFrame, myoControl);
+			debugFrame.setVisible(true);
+		}
 	}
 
 	@Override

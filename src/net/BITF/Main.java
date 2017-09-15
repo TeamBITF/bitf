@@ -49,8 +49,7 @@ public class Main{
 					throw new RuntimeException("Unable to find a Myo!");
 				}
 				else {
-					System.out.println("Connected "
-							+ "to Myo");
+					System.out.println("Connected to Myo");
 					isConnectingMyo = true;
 				}
 			}

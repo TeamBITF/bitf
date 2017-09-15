@@ -27,6 +27,8 @@ public class MainFrame extends JFrame implements Runnable{
 	public static String userName;
 	public static int score;
 
+	public static int continuous;
+
 	private AudioClip[] bgm;
 
 
@@ -44,6 +46,7 @@ public class MainFrame extends JFrame implements Runnable{
 
 		userName = "";
 		oldStage = 0;
+		continuous = 0;
 
 		setName("net.bitf.GameFrame");
 		setTitle("Back Image to the Future ~春の青菜ソースを添えて~");
@@ -103,6 +106,8 @@ public class MainFrame extends JFrame implements Runnable{
 			stage = 0;
 			bitfPanel = new StartPanel();
 		}
+
+
 
 		System.out.println(bitfPanel.toString());
 

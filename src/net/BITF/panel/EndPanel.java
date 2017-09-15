@@ -81,6 +81,8 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 
 		//SQLから点数を取得
 		try {
+
+			String device = (Main.isConnectingMyo) ? "myo" : "mouse";
 			Statement state = sql.init();
 
 			//直前の画面がゲーム画面だった場合
@@ -88,13 +90,12 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 
 				String name = MainFrame.userName;
 
+
 				if (name.equals("")){
 					name = "noname";
 				}
 
 				if (!name.equals("_demo")){
-
-					String device = (Main.isConnectingMyo) ? "myo" : "mouse";
 
 					state.executeUpdate("INSERT INTO ScoreBoard VALUES ('" + name + "'," + MainFrame.score + ",'" + device +"')");
 				}
@@ -102,7 +103,7 @@ public class EndPanel extends BITFPanel implements ActionListener  {
 				MainFrame.userName = "";
 			}
 
-			ResultSet select = state.executeQuery("SELECT name, score FROM ScoreBoard ORDER BY score DESC");
+			ResultSet select = state.executeQuery("SELECT name, score FROM ScoreBoard WHERE device = '" + device + "' ORDER BY score DESC");
 
 			while (select.next()){
 				names.add(select.getString("name"));

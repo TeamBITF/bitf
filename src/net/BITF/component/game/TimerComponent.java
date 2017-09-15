@@ -16,7 +16,7 @@ public class TimerComponent extends JPanel{
 	public TimerComponent(GamePanel gamePanel) {
 		this.gamePanel = gamePanel;
 
-		setOpaque(true);
+		setOpaque(false);
 		setPreferredSize(new Dimension(100, 100));
 	}
 
@@ -24,8 +24,8 @@ public class TimerComponent extends JPanel{
 	public void paintComponent(Graphics g){
 		Graphics2D g2 = (Graphics2D) g;
 
-		g2.setColor(new Color(0xff000000, true));
-		g2.fillRect(0, 0, getWidth(), getHeight());
+		g2.setColor(new Color(0x80aaaaaa, true));
+		g2.fillRect(0, 0, 100, 100);
 
 		g2.setColor(Color.RED);
 		g2.fillOval(0, 0, 100, 100);
@@ -38,5 +38,4 @@ public class TimerComponent extends JPanel{
 		g2.setColor(Color.BLACK);
 		g2.drawOval(0, 0, 100, 100);
 	}
-
 }

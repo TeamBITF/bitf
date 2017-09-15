@@ -1,5 +1,6 @@
 ﻿package net.BITF.component;
 
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -16,6 +17,9 @@ public class NextButton extends JButton implements ActionListener{
 
 		this.gamePanel = gamePanel;
 		this.addActionListener(this);
+
+		this.setAlignmentY(Component.TOP_ALIGNMENT);
+		this.setAlignmentX(Component.LEFT_ALIGNMENT);
 	}
 
 	@Override
