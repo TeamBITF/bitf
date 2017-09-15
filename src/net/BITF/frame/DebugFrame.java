@@ -46,10 +46,10 @@ public class DebugFrame extends JFrame{
 			GamePanel panel = (GamePanel) mainFrame.bitfPanel;
 
 			if (Main.isDebugMode){
-//				addText("ImageID:" + Integer.toString(panel.getResult()));
-//				addText("Left time:" + Integer.toString(panel.getTime()) + " / " + Integer.toString(GamePanel.TIME_LIMIT_PER_IMAGE));
-//				addText("totalTimeLimit:"+Integer.toString(panel.getTotalTimeLimit()));
-//				addText("CircleNum:" + panel.getListCircle().getList().size());
+				addText("ImageID:" + Integer.toString(panel.getResult()));
+				addText("Left time:" + Integer.toString(panel.getTime()) + " / " + Integer.toString(GamePanel.TIME_LIMIT_PER_IMAGE));
+				addText("totalTimeLimit:"+Integer.toString(panel.getTotalTimeLimit()));
+				addText("CircleNum:" + panel.getListCircle().getList().size());
 
 			}
 		}
@@ -63,14 +63,14 @@ public class DebugFrame extends JFrame{
 
 		//==========
 
-		addText("PlayerName:" + mainFrame.userName);
+		addText("PlayerName:" + MainFrame.userName);
 		addText("score:" + Integer.toString(MainFrame.score));
 
 		//==========
 
 		if(Main.isConnectingMyo){
 			addText("MyoState:" + ((myo != null) ? "Connected" : "Disconnected"));
-			addText(myo.getDataCollector().toString());
+			addText(myo.getDataCollector());
 		}
 
 		text.setText(message);
@@ -83,5 +83,9 @@ public class DebugFrame extends JFrame{
 
 	private void addText(String text){
 		message += text + "\n";
+	}
+
+	private void addText(Object obj){
+		addText(obj.toString());
 	}
 }

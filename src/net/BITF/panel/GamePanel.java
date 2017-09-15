@@ -5,6 +5,7 @@ import java.applet.AudioClip;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Robot;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -71,7 +72,7 @@ public class GamePanel extends BITFPanel implements ActionListener{
 	private DataCollector dataCollector;
 
 	private int totalTimeLimit;
-
+	private Robot robot;
 	private HashMap<Integer, Boolean> map;
 	private int count;
 
@@ -297,15 +298,21 @@ public class GamePanel extends BITFPanel implements ActionListener{
 	public int update() {
 		listCircle.update();
 		mainComponent.updateUI();
+<<<<<<< HEAD
 		timerComponent.updateUI();
 		infoComponent.update();
 
+=======
+		answerComponent.update();
+	
+>>>>>>> refs/remotes/origin/master
 		return nextStage;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-
+		
+		
 		if(e.getActionCommand().equals("time")){
 			totalTimeLimit--;
 
