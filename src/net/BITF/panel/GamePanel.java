@@ -298,21 +298,16 @@ public class GamePanel extends BITFPanel implements ActionListener{
 	public int update() {
 		listCircle.update();
 		mainComponent.updateUI();
-<<<<<<< HEAD
 		timerComponent.updateUI();
 		infoComponent.update();
 
-=======
-		answerComponent.update();
-	
->>>>>>> refs/remotes/origin/master
 		return nextStage;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
-		
+
+
 		if(e.getActionCommand().equals("time")){
 			totalTimeLimit--;
 
