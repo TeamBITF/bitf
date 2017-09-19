@@ -32,6 +32,8 @@ public class DataCollector extends AbstractDeviceListener {
 
 	private Robot robot;
 
+	protected boolean click;
+
 	public boolean flag = false;
 
 	public boolean pullflag = false;
@@ -40,6 +42,7 @@ public class DataCollector extends AbstractDeviceListener {
 	public DataCollector(MainFrame mainFrame) {
 
 		this.mainFrame = mainFrame;
+		click = false;
 
 		rollW = 0;
 		pitchW = 0;
@@ -90,33 +93,31 @@ public class DataCollector extends AbstractDeviceListener {
 		else if (MainFrame.stage == 1){
 			GamePanel panel = (GamePanel) mainFrame.getPanel();
 
-			if (oldPose != currentPose){
+			System.out.println(currentPose);
+			click = false;
 
-				System.out.println(currentPose);
-				switch(currentPose.getType()){
-				case WAVE_IN:
-					panel.selectNextAnswer();
-					break;
+			if (currentPose.getType() == PoseType.FINGERS_SPREAD){
+				click = true;
+			}
 
-				case WAVE_OUT:
-					panel.selectPreAnswer();
-					break;
+			switch(currentPose.getType()){
+			case WAVE_IN:
+				panel.selectNextAnswer();
+				break;
 
-				case FINGERS_SPREAD:
-					robot.mousePress(InputEvent.BUTTON1_MASK);
-					robot.mouseRelease(InputEvent.BUTTON1_MASK);
-					break;
+			case WAVE_OUT:
+				panel.selectPreAnswer();
+				break;
 
-				case DOUBLE_TAP:
-					if (panel.prepare) break;
+			case DOUBLE_TAP:
+				if (panel.prepare) break;
 
-					panel.answer();
-					break;
+				panel.answer();
+				break;
 
-				default:
-					break;
+			default:
+				break;
 
-				}
 			}
 
 		}
@@ -133,30 +134,30 @@ public class DataCollector extends AbstractDeviceListener {
 
 		case FIST:
 			if(MainFrame.stage == 1 && pullflag == false){
-				flag=true;
-				robot.mousePress(InputEvent.BUTTON1_MASK);
-				robot.mouseRelease(InputEvent.BUTTON1_MASK);
+//				flag=true;
+//				robot.mousePress(InputEvent.BUTTON1_MASK);
+//				robot.mouseRelease(InputEvent.BUTTON1_MASK);
 			}
 			else if(MainFrame.stage == 1 && pullflag == true){
 				//なにもしない
 			}
 			else{
-				robot.mousePress(InputEvent.BUTTON1_MASK);
-				robot.mouseRelease(InputEvent.BUTTON1_MASK);
+//				robot.mousePress(InputEvent.BUTTON1_MASK);
+//				robot.mouseRelease(InputEvent.BUTTON1_MASK);
 			}
 			break;
 		case FINGERS_SPREAD:
 			if(MainFrame.stage == 1 && pullflag == false){
-				flag=true;
-				robot.mousePress(InputEvent.BUTTON1_MASK);
-				robot.mouseRelease(InputEvent.BUTTON1_MASK);
+//				flag=true;
+//				robot.mousePress(InputEvent.BUTTON1_MASK);
+//				robot.mouseRelease(InputEvent.BUTTON1_MASK);
 			}
 			else if(MainFrame.stage == 1 && pullflag == true){
 				//なにもしない
 			}
 			else{
-				robot.mousePress(InputEvent.BUTTON1_MASK);
-				robot.mouseRelease(InputEvent.BUTTON1_MASK);
+//				robot.mousePress(InputEvent.BUTTON1_MASK);
+//				robot.mouseRelease(InputEvent.BUTTON1_MASK);
 			}
 			break;
 		case WAVE_OUT:

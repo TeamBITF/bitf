@@ -40,20 +40,23 @@ public class AnswerComponent extends JPanel{
 
 		reset();
 
-		add(answerList);
-
-		if (!Main.isConnectingMyo){
-			add(pass);
-		}
+//		add(answerList);
+//
+//		if (!Main.isConnectingMyo){
+//			add(pass);
+//		}
 
 	}
 
 	public void reset(){
+
+		this.removeAll();
+
 		resetFlag = true;
 
 		ImageManager images = ImageManager.getInstance();
 
-		JList<String> answerList = new JList<>();
+		answerList = new JList<>();
 
 		answerList.setAlignmentY(Component.TOP_ALIGNMENT);
 		answerList.setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -77,9 +80,13 @@ public class AnswerComponent extends JPanel{
 		answerList.setModel(model);
 		answerList.setSelectedIndex(0);
 
-		this.answerList = answerList;
+		add(answerList);
+		if (!Main.isConnectingMyo){
+			add(pass);
+		}
 
 		resetFlag = false;
+		updateUI();
 	}
 
 	public String getAnswer(){

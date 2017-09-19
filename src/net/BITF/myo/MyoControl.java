@@ -53,12 +53,15 @@ public class MyoControl {
 	public void update(){
 		hub.run(1);
 
-		if(dataCollector.flag){
+//		if(dataCollector.flag){
+		if (dataCollector.click){
 			robot.mousePress(InputEvent.BUTTON1_MASK);
 			robot.mouseRelease(InputEvent.BUTTON1_MASK);
 		}
 
-		myocon();	//実処理
+		if (mainFrame.stage == 1){
+			myocon();	//実処理
+		}
 
 	}
 

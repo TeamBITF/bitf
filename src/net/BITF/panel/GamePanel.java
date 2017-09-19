@@ -216,7 +216,7 @@ public class GamePanel extends BITFPanel implements ActionListener{
 		else if (answer.equals(manager.getImageFromList(result).getName())){
 			//正解
 			System.out.println("正解");
-			MainFrame.score += time / 1 + MainFrame.continuous * 10;
+			MainFrame.score += time / 16 + MainFrame.continuous * 10;
 			MainFrame.continuous++;
 			exactly.play();
 

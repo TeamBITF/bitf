@@ -229,9 +229,8 @@ public class MainComponent extends JPanel implements MouseListener{
 
 		if (oldClickCount == 0 || oldClickCount != clickCount){			//1ループで2回以上来ることがあるから仕方ないね。
 //			System.out.println("PressedCount:" + e.getClickCount());
-			if(e.getButton() == MouseEvent.BUTTON1){		//左クリック
-				gamePanel.click(e.getX(), e.getY());
-			}
+
+			gamePanel.click(e.getX(), e.getY());
 		}
 
 		oldClickCount = clickCount;
