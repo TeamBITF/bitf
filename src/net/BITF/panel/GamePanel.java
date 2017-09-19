@@ -300,7 +300,6 @@ public class GamePanel extends BITFPanel implements ActionListener{
 		mainComponent.updateUI();
 		timerComponent.updateUI();
 		infoComponent.update();
-//		answerComponent.update();
 
 		return nextStage;
 	}
